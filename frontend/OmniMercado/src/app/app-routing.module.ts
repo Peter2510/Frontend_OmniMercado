@@ -7,13 +7,15 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { PrincipalUsuarioComponent } from './usuario/principal-usuario/principal-usuario.component';
 import { VisitanteComponent } from './visitante/visitante.component';
 import { usuarioGuard } from './login/guard/usuario/usuario.guard';
+import { SignupComponent } from './signup/signup.component';
 
 
 const routes: Routes = [
   { path: "", redirectTo: 'visitante', pathMatch: 'full' },
   { path: "login", component: LoginComponent },
-  { path: "admin", component: AdminComponent, canActivate: [adminGuard] },
-  { path: "usuario", component: PrincipalUsuarioComponent , canActivate: [usuarioGuard] },
+  { path: "signup", component: SignupComponent },
+  { path: "admin", component: AdminComponent, /*canActivate: [adminGuard]*/ },
+  { path: "usuario", component: PrincipalUsuarioComponent ,/* canActivate: [usuarioGuard]*/ },
   { path: "visitante", component: VisitanteComponent },
   { path: "not-found", component: NotFoundComponent},
   { path: "**", redirectTo: "not-found" }

@@ -12,6 +12,7 @@ import { VisitanteComponent } from './visitante/visitante.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { PrincipalUsuarioComponent } from './usuario/principal-usuario/principal-usuario.component';
 import { HttpClientModule } from '@angular/common/http';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
     VisitanteComponent,
     NotFoundComponent,
     PrincipalUsuarioComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
