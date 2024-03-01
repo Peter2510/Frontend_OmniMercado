@@ -1,0 +1,62 @@
+<div class="container">
+
+
+
+<nav id="navbar-example2" class="navbar bg-body-tertiary px-3 mb-3 mt-4">
+    <a class="navbar-brand" href="#">OnmiMercado</a>
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#scrollspyHeading1">Ventas</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#scrollspyHeading2">Voluntariados</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#scrollspyHeading2">Iniciar Sesion</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#scrollspyHeading2">REgistrarse</a>
+      </li>
+    </ul>
+  </nav>
+  <div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
+       
+    <!-- PRODUCTOS -->
+
+    <div class="row mt-4">
+        <h4 id="scrollspyHeading1">Ventas</h4>
+        <div class="col-md-4 mt-3" *ngFor="let producto of productos">
+        
+            <div class="card file">        
+                <img src="../../assets/producto.png" class="card-img-top">
+                <div class="card-body">
+                    <p class="card-text text-center">{{producto.nombre}}</p>
+                    <p class="card-text text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel doloribus tempore autem, veniam odio numquam ea reprehenderit natus! Non eaque laudantium praesentium autem debitis deleniti omnis exercitationem! Asperiores, maxime itaque.</p>
+                </div>
+            </div>
+        
+        </div>
+        
+        </div>
+    
+
+    
+    <!-- VOLUNTARIADOS -->
+    <div class="row mt-4">
+        <h4 id="scrollspyHeading2">Voluntariados</h4>
+        <div class="col-md-4 mt-3" *ngFor="let producto of productos">    
+            <div class="card file">        
+                <img src="../../assets/producto.png" class="card-img-top">
+                <div class="card-body">
+                    <p class="card-text text-center">{{producto.nombre}}</p>
+                    <p class="card-text text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel doloribus tempore autem, veniam odio numquam ea reprehenderit natus! Non eaque laudantium praesentium autem debitis deleniti omnis exercitationem! Asperiores, maxime itaque.</p>
+                </div>
+            </div>
+        
+        </div>
+        
+        </div>
+    
+  </div>
+
+</div>

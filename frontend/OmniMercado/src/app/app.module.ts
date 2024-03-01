@@ -13,7 +13,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { PrincipalUsuarioComponent } from './usuario/principal-usuario/principal-usuario.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
-
+import { ProductosComponent } from './productos/productos.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import { SignupComponent } from './signup/signup.component';
     NotFoundComponent,
     PrincipalUsuarioComponent,
     SignupComponent,
-  ],
+    ProductosComponent,
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
