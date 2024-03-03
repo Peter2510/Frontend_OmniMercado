@@ -1,14 +1,16 @@
-const express = require('express')
-const app = express()
-const cors = require('cors')
-require('dotenv').config()
+const express = require('express');
+const app = express();
+const cors = require('cors');
+const usuarioRoutes = require('./routes/usuario.route');
 
-app.use(express.json({limit:'5mb'}))
-app.use(cors({origin:'http://127.0.0.1:4200'}))
+app.use(express.json({limit:'5mb'}));
+app.use(express.urlencoded({ extended: false }));
+app.use(cors({origin:'http://127.0.0.1:4200'}));
 
 app.get('/',(req,res)=>{
-    res.json({message:'Hola mundo'})
-})
+    res.send('Hola desde la ruta inicial');
+});
 
+app.use('/usuario',usuarioRoutes);
 
 module.exports = app
