@@ -12,7 +12,7 @@ class PermissionsServiceUser {
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     
-    if(this.loginService.estaLoggeado()&& this.loginService.getRol()==2){
+    if(this.loginService.isLogged()&& this.loginService.getRole()==1){
       return true;
     }
     this.router.navigate(['login']);

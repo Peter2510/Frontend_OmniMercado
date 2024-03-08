@@ -12,7 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class SignupComponent {
 
-  data = {
+  user = {
     name: '',
     email: '',
     birthYear: '',
@@ -34,16 +34,16 @@ export class SignupComponent {
 
 
   validateCredentials() {
-    this.nameNull = this.data.name !== '';
-    this.emailNull = this.data.email !== '';
-    this.dateNull = this.data.birthYear !== '';
-    this.passNull = this.data.password !== '';
-    this.confpassNull = this.data.confpassword !== '';
-    this.samePass = this.data.password == this.data.confpassword;
+    this.nameNull = this.user.name !== '';
+    this.emailNull = this.user.email !== '';
+    this.dateNull = this.user.birthYear !== '';
+    this.passNull = this.user.password !== '';
+    this.confpassNull = this.user.confpassword !== '';
+    this.samePass = this.user.password == this.user.confpassword;
 
     if (this.dateNull) {
         const _date = new Date();
-        const yearUser = new Date(this.data.birthYear).getFullYear();
+        const yearUser = new Date(this.user.birthYear).getFullYear();
         this.isAdult = _date.getFullYear() - yearUser >= 18;
     }
 
@@ -53,7 +53,7 @@ export class SignupComponent {
 }
 
 validateEmailAndCreateUser() {
-    this.signupService.validateEmail(this.data.email).subscribe({
+    this.signupService.validateEmail({email:this.user.email}).subscribe({
         next: (r_exitosa) => {
             this.createUser();
         },
@@ -64,7 +64,7 @@ validateEmailAndCreateUser() {
 }
 
 createUser() {
-    this.signupService.crearUsuario(this.data).subscribe({
+    this.signupService.createUser(this.user).subscribe({
         next: (r_exitosa) => {
             this.handleSuccessfulUserCreation(r_exitosa);
         },

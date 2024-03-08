@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, Subject, catchError } from 'rxjs';
-import { Usuario } from 'src/app/models/Usuario';
+import { User} from 'src/app/models/User';
 import { environment } from '../../../environments/environment';
 
 // Usar la variable de entorno
@@ -16,19 +16,19 @@ export class LoginService {
 
   public loginStatusSubject = new Subject<boolean>;
 
-  public verificarCredenciales(loginData: any): Observable<Usuario> {
+  public validateCredentials(loginData: any): Observable<any> {
 
-    return this.http.post<Usuario>(`${baseURL}/login`, loginData);
+    return this.http.post<any>(`${baseURL}/validar-credenciales-login`, loginData);
       
   }
   
-    public sesion(usuario:any){
+    public startSesion(usuario:any){
       //Guarda el objeto retornado en el local storage
-      localStorage.setItem('usuario',JSON.stringify(usuario));
+      localStorage.setItem('user',JSON.stringify(usuario));
     }
   
-    public estaLoggeado(){
-      let userStorage = localStorage.getItem('usuario');
+    public isLogged(){
+      let userStorage = localStorage.getItem('user');
   
       if(userStorage==undefined || userStorage == '' || userStorage == null){
         return false;
@@ -39,12 +39,12 @@ export class LoginService {
     }
   
     public logOut(){
-      localStorage.removeItem('usuario');
+      localStorage.removeItem('user');
       return true;
     }
   
-    public getUsuario(){
-      let userStorage = localStorage.getItem('usuario');
+    public getUser(){
+      let userStorage = localStorage.getItem('user');
       if(userStorage!=null){
         return JSON.parse(userStorage);
       }else{
@@ -53,18 +53,18 @@ export class LoginService {
       }
     }
   
-    public getRol(){
-      let userStorage = this.getUsuario();
+    public getRole(){
+      let userStorage = this.getUser();
       if(userStorage!=null){
-        return userStorage.rol;
+        return userStorage.tipo_usuario;
       }else{
         this.logOut();
         return null;
       }
     }
   
-    public getNombre(){
-      let userStorage = this.getUsuario();
+    public getName(){
+      let userStorage = this.getUser();
       if(userStorage!=null){
         return userStorage.nombre;
       }else{
@@ -73,8 +73,8 @@ export class LoginService {
       }
     }
   
-    public getNombreUsuario(){
-      let userStorage = this.getUsuario();
+    public getUserName(){
+      let userStorage = this.getUser();
       if(userStorage!=null){
         return userStorage.usuario;
       }else{
@@ -84,7 +84,7 @@ export class LoginService {
     }
   
     public getId(){
-      let userStorage = this.getUsuario();
+      let userStorage = this.getUser();
       if(userStorage!=null){
         return userStorage._id;
       }else{

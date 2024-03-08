@@ -12,7 +12,7 @@ class PermissionsServiceAdmin {
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     
-    if(this.loginService.estaLoggeado()&& this.loginService.getRol()==1){
+    if(this.loginService.isLogged()&& this.loginService.getRole()==0){
       return true;
     }
     this.router.navigate(['login']);

@@ -4,8 +4,8 @@ import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { adminGuard } from './login/guard/admin/admin.guard';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { PrincipalUsuarioComponent } from './usuario/principal-usuario/principal-usuario.component';
-import { VisitanteComponent } from './visitante/visitante.component';
+import { PrincipalUsuarioComponent } from './user/user.component';
+import { VisitanteComponent } from './visitor/visitor.component';
 import { usuarioGuard } from './login/guard/usuario/usuario.guard';
 import { SignupComponent } from './signup/signup.component';
 
@@ -14,8 +14,8 @@ const routes: Routes = [
   { path: "", redirectTo: 'visitante', pathMatch: 'full' },
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignupComponent },
-  { path: "admin", component: AdminComponent, /*canActivate: [adminGuard]*/ },
-  { path: "usuario", component: PrincipalUsuarioComponent ,/* canActivate: [usuarioGuard]*/ },
+  { path: "admin", component: AdminComponent, canActivate: [adminGuard] },
+  { path: "usuario", component: PrincipalUsuarioComponent ,canActivate: [usuarioGuard]},
   { path: "visitante", component: VisitanteComponent },
   { path: "not-found", component: NotFoundComponent},
   { path: "**", redirectTo: "not-found" }

@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { Usuario } from 'src/app/models/Usuario';
 
 const baseURL = environment.apiUrl;
 
@@ -17,14 +16,13 @@ export class SignupService {
 
   public validateEmail(data: any): Observable<any> {
     
-    return this.http.post<any>(`${baseURL}/validar-correo`, {correo:data});
+    return this.http.post<any>(`${baseURL}/validar-correo`, data);
   }
 
-  public crearUsuario(data: any): Observable<any> {
-    
+  public createUser(data: any): Observable<any> {
+    console.log(data)
     return this.http.post<any>(`${baseURL}/crear-usuario`, data);
   }
-  
 
     
 }

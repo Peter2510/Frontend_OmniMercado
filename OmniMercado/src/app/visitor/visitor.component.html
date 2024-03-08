@@ -1,6 +1,6 @@
 <nav class="navbar sticky-top navbar-expand-lg nav">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">OnmiMercado</a>
+        <a class="navbar-brand" href="#ventas">OnmiMercado</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -13,7 +13,7 @@
                     <a class="nav-link" href="#voluntariados">Voluntariados</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">Iniciar Sesion</a>
+                    <a class="nav-link" href="/login">Iniciar Sesión</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/signup">Registrarse</a>
@@ -23,6 +23,19 @@
     </div>
 </nav>
 
-<app-productos></app-productos>
+<div class="container mt-3">
+
+    <div data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true"
+        class="scrollspy-example bg-body-tertiary p-3 rounded-2" tabindex="0">
+
+        <app-products></app-products>
+        <app-volunteering></app-volunteering>
+
+    </div>
+
+</div>
+
+
+
 
 

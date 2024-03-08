@@ -7,26 +7,24 @@
 
                 <div class="form-color">
 
-                    <form (ngSubmit)="validarLogin()">
+                    <form (ngSubmit)="validateCredentials()">
 
                         <p class="fs-3 text-center color-text">Iniciar sesión</p>
 
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="Correo" placeholder="email">
+                            <input type="email" class="form-control" id="Correo" placeholder="email" [(ngModel)]="loginData.email" [ngModelOptions]="{standalone: true}">
                             <label for="Correo">Correo</label>
-                            <!-- asf <div class="alert alert-warning mt-2" role="alert">
-                                validar
+                            <div class="alert alert-warning mt-2" role="alert" *ngIf="emailNull">
+                                Ingresa tu correo electronico registrado
                             </div>
-                            -->
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="Contraseña" placeholder="contrasenia">
+                            <input type="password" class="form-control" id="Contraseña" placeholder="contrasenia" [(ngModel)]="loginData.password" [ngModelOptions]="{standalone: true}">
                             <label for="Contraseña" class="d-block" >Contraseña</label>
-                            <!-- asf <div class="alert alert-warning mt-2" role="alert">
-                                validar
+                            <div class="alert alert-warning mt-2" role="alert" *ngIf="passNull">
+                                Ingresa tu contraseña
                             </div>
-                            -->
                         </div>
 
                         <div class="d-grid">

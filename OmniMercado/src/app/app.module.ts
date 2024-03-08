@@ -5,31 +5,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
-import { ComprasComponent } from './usuario/compras/compras.component';
-import { VentasComponent } from './usuario/ventas/ventas.component';
-import { VoluntariadosComponent } from './usuario/voluntariados/voluntariados.component';
-import { VisitanteComponent } from './visitante/visitante.component';
+import { VisitanteComponent } from './visitor/visitor.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { PrincipalUsuarioComponent } from './usuario/principal-usuario/principal-usuario.component';
+import { PrincipalUsuarioComponent } from './user/user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SignupComponent } from './signup/signup.component';
-import { ProductosComponent } from './productos/productos.component';
+import { ProductosComponent } from './sales/products.component';
 import { FormsModule } from '@angular/forms';
+import { VoluntariadosComponent } from './volunteering/volunteering.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ComprasComponent,
-    VentasComponent,
     AdminComponent,
     PrincipalUsuarioComponent,
-    VoluntariadosComponent,
     VisitanteComponent,
     NotFoundComponent,
     PrincipalUsuarioComponent,
     SignupComponent,
-    ProductosComponent
+    ProductosComponent,
+    VoluntariadosComponent
     ],
   imports: [
     BrowserModule,
