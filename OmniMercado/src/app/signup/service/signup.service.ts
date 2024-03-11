@@ -14,6 +14,11 @@ export class SignupService {
 
   public signupStatusSubject = new Subject<boolean>;
 
+  public getGenders(): Observable<any> {
+    
+    return this.http.get<any>(`${baseURL}/obtener-generos`);
+  }
+
   public validateEmail(data: any): Observable<any> {
     
     return this.http.post<any>(`${baseURL}/validar-correo`, data);

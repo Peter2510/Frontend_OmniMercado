@@ -9,11 +9,11 @@
 
                     <form (ngSubmit)="validateCredentials()">
 
-                        <p class="fs-3 text-center color-text">Registrarse</p>
+                        <p class="fs-2 text-center color-text">Registrarse</p>
 
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="Nombre" placeholder="nombre" [(ngModel)]="user.name" [ngModelOptions]="{standalone: true}">
-                            <label for="Nombre text-primary">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" placeholder="nombre" [(ngModel)]="user.name" [ngModelOptions]="{standalone: true}">
+                            <label for="nombre">Nombre</label>
                             <div class="alert alert-warning mt-2" role="alert" *ngIf="!nameNull">
                                 Debes ingresar un nombre
                             </div>
@@ -21,8 +21,8 @@
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="Correo" placeholder="email" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}">
-                            <label for="Correo">Correo</label>
+                            <input type="email" class="form-control" id="correo" placeholder="email" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}">
+                            <label for="correo">Correo</label>
                             <div class="alert alert-warning mt-2" role="alert" *ngIf="!emailNull">
                                 Debes ingresar un correo
                             </div>
@@ -30,7 +30,7 @@
 
                         <div class="form-floating mb-3">
                             <input type="date" class="form-control" id="fechanacimiento" placeholder="fecha_nacimiento" [(ngModel)]="user.birthYear" [ngModelOptions]="{standalone: true}">
-                            <label for="Correo">Fecha de nacimiento</label>
+                            <label for="fechanacimiento">Fecha de nacimiento</label>
                             <div class="alert alert-warning mt-2" role="alert" *ngIf="!dateNull">
                                 Ingresa una fecha de nacimiento
                             </div>
@@ -40,8 +40,24 @@
                         </div>
 
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="Contraseña" placeholder="pass" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}">
-                            <label for="Contraseña" class="d-block" >Contraseña</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option class="d-block truncate-te" selected disabled>Selecciona un género</option>
+                                <option class="form-select" *ngFor="let gender of genders" [value]="gender.id_genero">{{gender.nombre}}</option>
+                            </select>
+                            <label for="genero">Género</label>
+                            <div class="alert alert-warning mt-2" role="alert" *ngIf="!dateNull">
+                                Debes seleccionar un género
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label color-text">Foto de perfil</label>
+                            <input class="form-control" accept=".jpg, .png" name="avatar" type="file" id="formFile">
+                        </div>
+
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control" id="contraseña" placeholder="pass" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}">
+                            <label for="contraseña" class="d-block" >Contraseña</label>
                             <div class="alert alert-warning mt-2" role="alert" *ngIf="!passNull">
                                 Debes ingresar una contraseña
                             </div>

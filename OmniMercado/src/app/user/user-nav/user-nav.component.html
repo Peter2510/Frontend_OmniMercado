@@ -1,0 +1,18 @@
+<nav class="navbar sticky-top navbar-expand-lg nav">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/usuario">OnmiMercado</a>
+        <div class="btn-group dropstart">
+            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+              <img class= "mt-2 rounded-circle" src="https://assets.vogue.in/photos/65172cf7d802ffb0cdeaac18/16:9/w_1280,c_limit/Paramore.jpg" alt="Bootstrap" width="30" height="25">
+            </button>
+            <ul class="dropdown-menu ">
+                <li><a class="dropdown-item " href="/perfil-usuario">{{loginService.getName()}}</a></li>
+                <li><a class="dropdown-item" (click)="logOut()">Cerrar sesión</a></li>              
+            </ul>
+          </div>
+    </div>
+</nav>
+
+
+
+

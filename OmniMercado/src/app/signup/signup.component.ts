@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { SignupService } from './service/signup.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import {Gender} from '../models/Gender'
+
 
 
 @Component({
@@ -20,6 +22,8 @@ export class SignupComponent {
     confpassword: ''
   };
 
+  genders:Gender[];
+
   nameNull = true;
   emailNull = true;
   passNull = true;
@@ -29,8 +33,19 @@ export class SignupComponent {
   samePass = true;
   
   constructor(private signupService: SignupService, private router: Router) {
-
+    this.getGenders()
   }
+
+  getGenders() {
+    this.signupService.getGenders().subscribe({
+        next: (r_success) => {
+            this.genders = r_success.genders
+        },
+        error: (error: HttpErrorResponse) => {
+            this.handleErrorResponse(error);
+        }
+    });
+}
 
 
   validateCredentials() {

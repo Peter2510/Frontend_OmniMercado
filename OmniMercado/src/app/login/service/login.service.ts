@@ -93,5 +93,15 @@ export class LoginService {
       }
     }
 
+    public getCoins(){
+      let userStorage = this.getUser();
+      if(userStorage!=null){
+        return userStorage.cantidad_moneda_virtual;
+      }else{
+        this.logOut();
+        return null;
+      }
+    }
+
 
 }

@@ -1,0 +1,12 @@
+nav{
+    background-color: var(--tertiary-color);
+}
+
+a{
+    color: var(--text-color);
+}
+
+ul{
+    background-color: var(--secondary-color);
+}
+
