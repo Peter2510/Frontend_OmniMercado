@@ -13,6 +13,12 @@ export class UserNavComponent {
 
   }
 
+  getEncodedImageSource() {
+    const type = this.loginService.getTypeImage(); // Suponiendo que esta función devuelve el tipo de imagen
+    const encodedImage = this.loginService.getEncodedImage(); // Suponiendo que esta función devuelve la imagen codificada en Base64
+    return `data:image/${type};base64,${encodedImage}`;
+  }
+
   logOut(){
     this.loginService.logOut();
     window.location.reload();

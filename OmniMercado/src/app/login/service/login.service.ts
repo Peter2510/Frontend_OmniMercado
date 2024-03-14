@@ -22,9 +22,10 @@ export class LoginService {
       
   }
   
-    public startSesion(usuario:any){
+    public startSesion(usuario:any,photo:any){
       //Guarda el objeto retornado en el local storage
       localStorage.setItem('user',JSON.stringify(usuario));
+      localStorage.setItem('profile_photo',JSON.stringify(photo));
     }
   
     public isLogged(){
@@ -40,6 +41,7 @@ export class LoginService {
   
     public logOut(){
       localStorage.removeItem('user');
+      localStorage.removeItem('profile_photo');
       return true;
     }
   
@@ -102,6 +104,38 @@ export class LoginService {
         return null;
       }
     }
+
+    public getImage(){
+      let userStorage = localStorage.getItem('profile_photo');
+      if(userStorage!=null){
+        return JSON.parse(userStorage);
+      }else{
+        this.logOut();
+        return null;
+      }
+    }
+
+    public getTypeImage(){
+      let ImageStorage = this.getImage();
+      if(ImageStorage!=null){
+        return ImageStorage.type;
+      }else{
+        this.logOut();
+        return null;
+      }
+    }
+
+    public getEncodedImage(){
+      let ImageStorage = this.getImage();
+      if(ImageStorage!=null){
+        return ImageStorage.image;
+      }else{
+        this.logOut();
+        return null;
+      }
+    }
+
+
 
 
 }

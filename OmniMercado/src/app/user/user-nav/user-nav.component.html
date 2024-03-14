@@ -8,9 +8,14 @@
       </div>
       <div class="btn-group dropstart">
         <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+
           <img class="rounded-circle"
-            src="https://assets.vogue.in/photos/65172cf7d802ffb0cdeaac18/16:9/w_1280,c_limit/Paramore.jpg"
-            alt="Bootstrap" width="30" height="28">
+          [src]="getEncodedImageSource()"
+          alt="Imagen Base64"
+          width="30"
+          height="28">
+     
+
         </button>
         <ul class="dropdown-menu">
           <li><a class="dropdown-item" href="/perfil-usuario">{{loginService.getName()}}</a></li>

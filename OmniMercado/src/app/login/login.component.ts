@@ -5,6 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { User } from '../models/User';
 import { Admin } from '../models/Admin';
+import { ProfileImage } from '../models/ProfilePhoto';
 
 @Component({
   selector: 'app-login',
@@ -43,12 +44,12 @@ export class LoginComponent{
   validateEmailAndPassword() {
     this.loginService.validateCredentials(this.loginData).subscribe({
         next: (r_success) => {
-          
+          console.log(r_success);
           if(r_success.user){
             let user:User = r_success.user;
             if(user.activo_plataforma){
               user.tipo_usuario = 1;
-              this.loginService.startSesion(user);
+              this.loginService.startSesion(user,r_success.profile_image);
               this.router.navigate(['usuario']);
               this.loginService.loginStatusSubject.next(true);
             }else{
@@ -58,10 +59,11 @@ export class LoginComponent{
           }else if(r_success.admin){
             //admin
             let admin:Admin = r_success.admin;
+            let profilePhoto:ProfileImage = r_success.profile_image;
 
             if(admin.activo){
               admin.tipo_usuario = 0;
-              this.loginService.startSesion(admin);
+              this.loginService.startSesion(admin,profilePhoto);
               this.router.navigate(['admin']);
               this.loginService.loginStatusSubject.next(true);
             }else{

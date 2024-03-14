@@ -40,20 +40,20 @@
                         </div>
 
                         <div class="form-floating mb-3">
-                            <select class="form-select" aria-label="Default select example">
-                                <option class="d-block truncate-te" selected disabled>Selecciona un género</option>
+                            <select class="form-select" aria-label="Default select example" [(ngModel)]="user.gender" [ngModelOptions]="{standalone: true}">
+                                <option class="d-block truncate-te" selected disabled [value]="0" >Selecciona un género</option>
                                 <option class="form-select" *ngFor="let gender of genders" [value]="gender.id_genero">{{gender.nombre}}</option>
                             </select>
                             <label for="genero">Género</label>
-                            <div class="alert alert-warning mt-2" role="alert" *ngIf="!dateNull">
+                            <div class="alert alert-warning mt-2" role="alert" *ngIf="!genderNull">
                                 Debes seleccionar un género
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label for="formFile" class="form-label color-text">Foto de perfil</label>
-                            <input class="form-control" accept=".jpg, .png" name="avatar" type="file" id="formFile">
-                        </div>
+                            <input class="form-control" accept=".jpg, .png" name="avatar" type="file" id="formFile" (change)="onFileSelected($event)">
+                          </div>
 
                         <div class="form-floating mb-3">
                             <input type="password" class="form-control" id="contraseña" placeholder="pass" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}">

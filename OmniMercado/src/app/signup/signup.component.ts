@@ -7,6 +7,7 @@ import {Gender} from '../models/Gender'
 
 
 
+
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -19,7 +20,8 @@ export class SignupComponent {
     email: '',
     birthYear: '',
     password: '',
-    confpassword: ''
+    confpassword: '',
+    gender: 0
   };
 
   genders:Gender[];
@@ -31,6 +33,8 @@ export class SignupComponent {
   isAdult = true;
   confpassNull = true;
   samePass = true;
+  genderNull = true;
+  photo: File | null = null;
   
   constructor(private signupService: SignupService, private router: Router) {
     this.getGenders()
@@ -55,17 +59,22 @@ export class SignupComponent {
     this.passNull = this.user.password !== '';
     this.confpassNull = this.user.confpassword !== '';
     this.samePass = this.user.password == this.user.confpassword;
+    this.genderNull = this.user.gender != 0;
 
     if (this.dateNull) {
         const _date = new Date();
         const yearUser = new Date(this.user.birthYear).getFullYear();
         this.isAdult = _date.getFullYear() - yearUser >= 18;
     }
-
-    if (this.nameNull && this.emailNull && this.samePass && this.isAdult && this.dateNull) {
+    
+    if (this.nameNull && this.emailNull && this.samePass && this.isAdult && this.dateNull && this.genderNull) {
         this.validateEmailAndCreateUser();
     }
 }
+
+onFileSelected(event: any) {
+    this.photo = event.target.files[0];
+  }
 
 validateEmailAndCreateUser() {
     this.signupService.validateEmail({email:this.user.email}).subscribe({
@@ -79,7 +88,7 @@ validateEmailAndCreateUser() {
 }
 
 createUser() {
-    this.signupService.createUser(this.user).subscribe({
+    this.signupService.createUser(this.user,this.photo).subscribe({
         next: (r_exitosa) => {
             this.handleSuccessfulUserCreation(r_exitosa);
         },
@@ -100,6 +109,7 @@ handleErrorResponse(error: HttpErrorResponse) {
     if (error.status == 400) {
         Swal.fire('', `${error.error.message}`, 'warning');
     } else {
+        console.log(error.error)
         Swal.fire('Lo sentimos', `Estamos experimentando problemas técnicos. Por favor, inténtalo de nuevo más tarde.`, 'warning');
     }
 }
