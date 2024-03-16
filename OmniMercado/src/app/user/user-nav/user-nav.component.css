@@ -4,9 +4,22 @@ nav{
 
 a{
     color: var(--text-color);
+    cursor: pointer;
+}
+
+ul li{
+    color: var(--text-color);
+    cursor: pointer;
 }
 
 ul{
     background-color: var(--secondary-color);
 }
 
+.nav-bar {
+    background-color: var(--tertiary-color);
+}
+
+.nav-bar ul{
+    background-color: var(--tertiary-color);
+}

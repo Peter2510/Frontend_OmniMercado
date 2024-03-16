@@ -10,6 +10,8 @@ import { usuarioGuard } from './login/guard/usuario/usuario.guard';
 import { SignupComponent } from './signup/signup.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { SalesComponent } from './products/sales/sales.component';
+import { CreateSale } from './createSale/createSale.component';
 
 
 const routes: Routes = [
@@ -20,6 +22,12 @@ const routes: Routes = [
   { path: "perfil-admin", component: AdminProfileComponent, canActivate: [adminGuard]},
   { path: "usuario", component: UserComponent , canActivate: [usuarioGuard] },
   { path: "perfil-usuario", component: UserProfileComponent , canActivate: [usuarioGuard] },
+
+  { path: "crear-venta", component: CreateSale , canActivate: [usuarioGuard] },
+  { path: "compras", component: SalesComponent , canActivate: [usuarioGuard] },
+  { path: "perfil-usuario", component: UserProfileComponent , canActivate: [usuarioGuard] },
+  { path: "perfil-usuario", component: UserProfileComponent , canActivate: [usuarioGuard] },
+
   { path: "visitante", component: VisitorComponent },
   { path: "not-found", component: NotFoundComponent},
   { path: "**", redirectTo: "not-found" }

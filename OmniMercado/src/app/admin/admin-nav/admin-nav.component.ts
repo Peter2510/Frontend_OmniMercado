@@ -13,6 +13,12 @@ export class AdminNavComponent {
 
   }
 
+  getEncodedImageSource() {
+    const type = this.loginService.getTypeImage();
+    const encodedImage = this.loginService.getEncodedImage();
+    return `data:image/${type};base64,${encodedImage}`;
+  }
+
   logOut(){
     this.loginService.logOut();
     window.location.reload();

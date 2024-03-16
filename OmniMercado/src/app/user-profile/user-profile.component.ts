@@ -11,7 +11,4 @@ export class UserProfileComponent{
   constructor(private login: LoginService) { }
 
 
-  imagenBase64: string;
-
-
 }
