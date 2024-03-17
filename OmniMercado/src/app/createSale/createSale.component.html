@@ -68,11 +68,12 @@
                               </div>
 
 
-                            <div class="mb-3">
+                              <div class="mb-3">
                                 <label for="formFile" class="form-label color-text">Fotos para la publicación</label>
-                                <input class="form-control" accept=".jpg, .png" name="avatar" type="file" id="formFile" multiple [(ngModel)]="photos" [ngModelOptions]="{standalone: true}">
-                              </div>
-                              <div class="alert alert-warning mt-2" role="alert" *ngIf="photosNull">
+                                <input class="form-control" accept=".jpg, .png, .jpeg" type="file" id="formFile" multiple (change)="onFileChange($event)">
+                            </div>
+                            
+                            <div class="alert alert-warning mt-2" role="alert" *ngIf="photosNull">
                                 Debes seleccionar por lo menos una fotografía
                             </div>
     

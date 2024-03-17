@@ -13,6 +13,7 @@ import { ProductCategory } from '../models/ProductCategory';
 })
 export class CreateSale {
 
+  
   dropdownList;
   dropdownSettings;
   form: FormGroup;
@@ -21,18 +22,20 @@ export class CreateSale {
   categoryNull = false;
   photosNull = false;
   productConditionTypes:ProductConditionType[];
+  productCategoryTypesSelected;
   productCategoryTypes:ProductCategory[];
-
-  saleData={
-    title: '',
-    localCurrency:0,
-    virtualCoin:0,
-    condition:0,
-    description:''
-  }
-
+  maxFiles: number = 5;
   photos: File[] | null = null;
-  
+
+  saleData:SaleData = {
+    title: '',
+    localCurrency: 0,
+    virtualCoin: 0,
+    condition: 0,
+    description: '',
+    categories: []
+  };
+
   constructor(private formBuilder : FormBuilder,private saleService:CreateSaleService){}
 
   getProductConditionTypes(){
@@ -47,10 +50,11 @@ export class CreateSale {
   }
 
   handleErrorResponse(error: HttpErrorResponse) {
-        Swal.fire(
-          'Lo sentimos', `Estamos experimentando problemas técnicos. Por favor, inténtalo de nuevo más tarde.`,
-          'warning'
-         );  
+        // Swal.fire(
+        //   'Lo sentimos', `Estamos experimentando problemas técnicos. Por favor, inténtalo de nuevo más tarde.`,
+        //   'warning'
+        //  );  
+        console.error(error);
   }
 
   ngOnInit(){
@@ -83,6 +87,10 @@ export class CreateSale {
   onItemSelect($event:any){
     //console.log('$event is ', $event); 
     //this.handleButtonClick();
+  }
+
+  selectedCategories(){
+    return this.getObjectListFromData(this.form.value.category.map(item => item.id_tipo_categoria));
   }
 
   getObjectListFromData(ids:any){
@@ -122,17 +130,46 @@ export class CreateSale {
     this.categoryNull = this.form.getRawValue().category.length ==0;
     this.photosNull = this.photos == null;
 
-    if(!this.titleNull && !this.conditionNull && !this.categoryNull && !this.photosNull){
-      this.createSale();
+    if(!this.titleNull && !this.conditionNull && !this.categoryNull && this.photos!=null){
+        this.saleData.categories = this.selectedCategories();
+
+        if(!(this.photos.length>this.maxFiles)){
+
+          this.createSale()
+      
+        }else{
+          Swal.fire('',`Solo se permite un máximo de ${this.maxFiles} fotos por publicación`,'info');
+        }
+
     }
 
   }
 
+  onFileChange(event: any) {
+    const files = event.target.files;
+    this.photos = files;
+  }
+  
+
   createSale(){
-    alert('crear venta')
+    this.saleService.createSale(this.saleData,this.photos).subscribe({
+      next: (r_success)=>{
+        Swal.fire('',`${r_success.message}`,'success');
+      },
+      error:(err:HttpErrorResponse)=>{
+        this.handleErrorResponse(err);
+      }
+    })
   }
 
 
+}
 
-
+interface SaleData {
+  title: string;
+  localCurrency: number;
+  virtualCoin: number;
+  condition: number;
+  description: string;
+  categories: any[];
 }

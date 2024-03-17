@@ -85,10 +85,20 @@ export class LoginService {
       }
     }
   
-    public getId(){
+    public getIdUser(){
       let userStorage = this.getUser();
       if(userStorage!=null){
-        return userStorage._id;
+        return userStorage.id_usuario;
+      }else{
+        this.logOut();
+        return null;
+      }
+    }
+
+    public getAdmin(){
+      let userStorage = this.getUser();
+      if(userStorage!=null){
+        return userStorage.id_administrativo;
       }else{
         this.logOut();
         return null;
