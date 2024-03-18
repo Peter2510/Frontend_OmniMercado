@@ -1,5 +1,6 @@
 import { Component} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ProductConditionType } from '../models/ProductConditionType';
 import { CreateSaleService } from './service/create-sale.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -36,7 +37,7 @@ export class CreateSale {
     categories: []
   };
 
-  constructor(private formBuilder : FormBuilder,private saleService:CreateSaleService){}
+  constructor(private formBuilder : FormBuilder,private saleService:CreateSaleService,private router:Router){}
 
   getProductConditionTypes(){
     this.saleService.getProductConditionTypes().subscribe({
@@ -50,11 +51,10 @@ export class CreateSale {
   }
 
   handleErrorResponse(error: HttpErrorResponse) {
-        // Swal.fire(
-        //   'Lo sentimos', `Estamos experimentando problemas técnicos. Por favor, inténtalo de nuevo más tarde.`,
-        //   'warning'
-        //  );  
-        console.error(error);
+        Swal.fire(
+          'Lo sentimos', `Estamos experimentando problemas técnicos. Por favor, inténtalo de nuevo más tarde.`,
+          'warning'
+         );  
   }
 
   ngOnInit(){
@@ -136,6 +136,7 @@ export class CreateSale {
         if(!(this.photos.length>this.maxFiles)){
 
           this.createSale()
+          //console.log(this.selectedCategories)
       
         }else{
           Swal.fire('',`Solo se permite un máximo de ${this.maxFiles} fotos por publicación`,'info');
@@ -152,9 +153,12 @@ export class CreateSale {
   
 
   createSale(){
-    this.saleService.createSale(this.saleData,this.photos).subscribe({
+    this.saleService.createSale(this.saleData,this.photos,this.selectedCategories()).subscribe({
       next: (r_success)=>{
-        Swal.fire('',`${r_success.message}`,'success');
+        Swal.fire('',`${r_success.message}`,'success').then(() => {
+          window.location.reload();
+        });;
+        
       },
       error:(err:HttpErrorResponse)=>{
         this.handleErrorResponse(err);

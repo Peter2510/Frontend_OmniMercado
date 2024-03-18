@@ -7,16 +7,16 @@ import { Component } from '@angular/core';
 })
 export class VoluntariadosComponent {
 
-  voluntariados = [
+  voluntarings = [
 
-    {nombre:'Voluntariado1',descripcion:'Descripcion voluntariado 1'},
-    {nombre:'Voluntariado2',descripcion:'Descripcion voluntariado 2'},
-    {nombre:'Voluntariado3',descripcion:'Descripcion voluntariado 3'},
-    {nombre:'Voluntariado4',descripcion:'Descripcion voluntariado 4'},
-    {nombre:'Voluntariado4',descripcion:'Descripcion voluntariado 4'},
-    {nombre:'Voluntariado4',descripcion:'Descripcion voluntariado 4'},
-    {nombre:'Voluntariado4',descripcion:'Descripcion voluntariado 4'},
-    {nombre:'Voluntariado4',descripcion:'Descripcion voluntariado 4'},
+    {nombre:'Voluntariado1',descripcion:'Descripcion voluntariado 1',fecha_publicacion:'2024-03-12'},
+    {nombre:'Voluntariado2',descripcion:'Descripcion voluntariado 2',fecha_publicacion:'2024-03-12'},
+    {nombre:'Voluntariado3',descripcion:'Descripcion voluntariado 3',fecha_publicacion:'2024-03-12'},
+    {nombre:'Voluntariado4',descripcion:'Descripcion voluntariado 4',fecha_publicacion:'2024-03-12'},
+    {nombre:'Voluntariado4',descripcion:'Descripcion voluntariado 4',fecha_publicacion:'2024-03-12'},
+    {nombre:'Voluntariado4',descripcion:'Descripcion voluntariado 4',fecha_publicacion:'2024-03-12'},
+    {nombre:'Voluntariado4',descripcion:'Descripcion voluntariado 4',fecha_publicacion:'2024-03-12'},
+    {nombre:'Voluntariado4',descripcion:'Descripcion voluntariado 4',fecha_publicacion:'2024-03-12'},
 ]
 
 }

@@ -1,16 +1,12 @@
-<!-- VOLUNTARIADOS -->
-<div class="row mt-4">
-    <h4 id="voluntariados">Voluntariados</h4>
-    <div class="col-md-4 mt-3" *ngFor="let voluntariado of voluntariados">
-        <div class="card file">
+<div class="row">
+    <div class="col-md-4 mt-3" *ngFor="let voluntaring of voluntarings">
+        <div class="card mb-3 background-cards">
             <img src="../../assets/producto.png" class="card-img-top">
             <div class="card-body">
-                <p class="card-text text-center">{{voluntariado.nombre}}</p>
-                <p class="card-text text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel doloribus
-                    tempore autem, veniam odio numquam ea reprehenderit natus! Non eaque laudantium praesentium autem
-                    debitis deleniti omnis exercitationem! Asperiores, maxime itaque.</p>
+              <h5 class="card-title">{{voluntaring.nombre}}</h5>
+              <p class="card-text"><small class="text-body-secondary">{{voluntaring.fecha_publicacion}}</small></p>
             </div>
-        </div>
+          </div>
 
     </div>
 

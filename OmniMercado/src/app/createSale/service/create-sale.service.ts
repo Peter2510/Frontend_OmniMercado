@@ -26,7 +26,7 @@ export class CreateSaleService {
     return this.http.get<any>(`${baseURL}/obtener-categorias-productos`);
   }
 
-  public createSale(saleData: any, photos: any): Observable<any> {
+  public createSale(saleData: any, photos: any,categories:any): Observable<any> {
 
 
     const formData = new FormData();
@@ -37,15 +37,17 @@ export class CreateSaleService {
       }
     }
 
-    // Agregar cada archivo del FileList al formData
     for (let i = 0; i < photos.length; i++) {
       const file: File = photos[i];
-      formData.append('photo[]', file); // Usa 'photo[]' para indicar que es un array de archivos
+      formData.append('photo[]', file);
     }
-
+    
     formData.append('id_user', this.loginService.getIdUser());
-    console.log(photos, formData)
-
+    
+    for (let i = 0; i < categories.length; i++) {
+      formData.append('id_categories[]', categories[i].id_tipo_categoria);
+    }
+    
     return this.http.post<any>(`${baseURL}/crear-publicacion-producto`, formData);
 
   }

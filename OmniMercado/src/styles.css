@@ -14,3 +14,7 @@
 .color-text{
   color: var(--text-color)
 }
+
+.background-cards{
+  background-color: var(--tertiary-color);
+}

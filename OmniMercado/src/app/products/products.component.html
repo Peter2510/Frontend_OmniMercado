@@ -1,16 +1,12 @@
-<div class="row mt-4 ms-5 ">
-    <h4 id="ventas">Ventas</h4>
-    <div class="col-md-4 mt-3" *ngFor="let producto of productos">
-
-        <div class="card file">
+<div class="row">
+    <div class="col-md-4 mt-3" *ngFor="let product of products">
+        <div class="card mb-3 background-cards">
             <img src="../../assets/producto.png" class="card-img-top">
             <div class="card-body">
-                <p class="card-text text-center">{{producto.nombre}}</p>
-                <p class="card-text text-center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel
-                    doloribus tempore autem, veniam odio numquam ea reprehenderit natus! Non eaque laudantium
-                    praesentium autem debitis deleniti omnis exercitationem! Asperiores, maxime itaque.</p>
+              <h5 class="card-title">{{product.nombre}}</h5>
+              <p class="card-text"><small class="text-body-secondary">{{product.fecha_publicacion}}</small></p>
             </div>
-        </div>
+          </div>
 
     </div>
 

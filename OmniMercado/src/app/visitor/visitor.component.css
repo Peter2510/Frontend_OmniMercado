@@ -6,3 +6,6 @@ nav a{
     color: var(--text-color)
 }
 
+.posts{
+    background-color: var(--quaternary-color);
+}
