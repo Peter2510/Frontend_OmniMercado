@@ -18,3 +18,7 @@
 .background-cards{
   background-color: var(--tertiary-color);
 }
+
+.category{
+  background-color: #fff;
+}

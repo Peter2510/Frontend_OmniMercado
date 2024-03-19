@@ -15,7 +15,7 @@ class PermissionsServiceAdmin {
     if(this.loginService.isLogged()&& this.loginService.getRole()==0){
       return true;
     }
-    this.router.navigate(['login']);
+    this.router.navigate(['visitante']);
     return false;
   }
 }

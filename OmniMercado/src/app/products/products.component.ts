@@ -1,23 +1,35 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ProductService } from './service/product.service';
+import { Product } from '../models/Product';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
-export class ProductsComponent {
+export class ProductsComponent implements OnInit{
+    
+  products:Product[];
+  
+  constructor(private productService:ProductService){
 
-    products = [
+  }
 
-        {nombre:'Producto1',descripcion:'Descripcion producto 1',fecha_publicacion:'2024-03-12'},
-        {nombre:'Producto2',descripcion:'Descripcion producto 2',fecha_publicacion:'2024-03-12'},
-        {nombre:'Producto3',descripcion:'Descripcion producto 3',fecha_publicacion:'2024-03-12'},
-        {nombre:'Producto4',descripcion:'Descripcion producto 4',fecha_publicacion:'2024-03-12'},
-        {nombre:'Producto4',descripcion:'Descripcion producto 4',fecha_publicacion:'2024-03-12'},
-        {nombre:'Producto4',descripcion:'Descripcion producto 4',fecha_publicacion:'2024-03-12'},
-        {nombre:'Producto4',descripcion:'Descripcion producto 4',fecha_publicacion:'2024-03-12'},
-        {nombre:'Producto4',descripcion:'Descripcion producto 4',fecha_publicacion:'2024-03-12'},
-        {nombre:'Producto4',descripcion:'Descripcion producto 4',fecha_publicacion:'2024-03-12'},
-    ]
+  ngOnInit(){
+    this.productService.getAvailableProducts().subscribe({
+      next: (r_success)=>{
+          this.products = r_success.products;
+          console.log(this.products);
+      },
+      error: (err:HttpErrorResponse)=>{
+
+      }
+    })
+  }
+
+    public seeProductDetails(id:number){
+      alert(`Details Product ${id}`)
+    }
 
 }

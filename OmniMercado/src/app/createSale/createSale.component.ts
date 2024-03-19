@@ -62,12 +62,12 @@ export class CreateSale {
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id_tipo_categoria',
+      noDataAvailablePlaceholderText:'Sin resultados',
       textField: 'nombre',
       allowSearchFilter: true,
       enableCheckAll:false,
       maxHeight:95,
-      searchPlaceholderText:"Buscar",
-      
+      searchPlaceholderText:'Buscar'
     };
     this.getProductConditionTypes();
     this.getProductCategory();
@@ -130,13 +130,16 @@ export class CreateSale {
     this.categoryNull = this.form.getRawValue().category.length ==0;
     this.photosNull = this.photos == null;
 
+    this.saleData.localCurrency = this.saleData.localCurrency === null ? 0 : this.saleData.localCurrency;
+    this.saleData.virtualCoin = this.saleData.virtualCoin === null ? 0 : this.saleData.virtualCoin;
+    
     if(!this.titleNull && !this.conditionNull && !this.categoryNull && this.photos!=null){
         this.saleData.categories = this.selectedCategories();
 
         if(!(this.photos.length>this.maxFiles)){
 
           this.createSale()
-          //console.log(this.selectedCategories)
+          // console.log(this.selectedCategories)
       
         }else{
           Swal.fire('',`Solo se permite un máximo de ${this.maxFiles} fotos por publicación`,'info');

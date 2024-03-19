@@ -12,6 +12,7 @@ import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SalesComponent } from './products/sales/sales.component';
 import { CreateSale } from './createSale/createSale.component';
+import { UserPostsComponent } from './user/user-posts/user-posts.component';
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: "perfil-usuario", component: UserProfileComponent , canActivate: [usuarioGuard] },
 
   { path: "crear-venta", component: CreateSale , canActivate: [usuarioGuard] },
+  { path: "ventas-publicadas", component: UserPostsComponent , canActivate: [usuarioGuard] },
   { path: "compras", component: SalesComponent , canActivate: [usuarioGuard] },
   { path: "perfil-usuario", component: UserProfileComponent , canActivate: [usuarioGuard] },
   { path: "perfil-usuario", component: UserProfileComponent , canActivate: [usuarioGuard] },
