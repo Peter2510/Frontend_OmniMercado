@@ -20,7 +20,6 @@ export class ProductsComponent implements OnInit{
     this.productService.getAvailableProducts().subscribe({
       next: (r_success)=>{
           this.products = r_success.products;
-          console.log(this.products);
       },
       error: (err:HttpErrorResponse)=>{
 

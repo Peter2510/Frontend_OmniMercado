@@ -22,3 +22,9 @@
 .category{
   background-color: #fff;
 }
+
+.img-card{
+  max-height: 150px;
+  width: auto;
+  object-fit: cover; 
+}

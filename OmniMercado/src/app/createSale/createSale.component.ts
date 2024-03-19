@@ -159,7 +159,7 @@ export class CreateSale {
     this.saleService.createSale(this.saleData,this.photos,this.selectedCategories()).subscribe({
       next: (r_success)=>{
         Swal.fire('',`${r_success.message}`,'success').then(() => {
-          window.location.reload();
+          this.router.navigate(['ventas-publicadas']);
         });;
         
       },
