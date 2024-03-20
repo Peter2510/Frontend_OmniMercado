@@ -6,6 +6,7 @@ import { CreateSaleService } from './service/create-sale.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { ProductCategory } from '../models/ProductCategory';
+import { LoginService } from '../login/service/login.service';
 
 @Component({
   selector: 'app-create-sale',
@@ -37,7 +38,7 @@ export class CreateSale {
     categories: []
   };
 
-  constructor(private formBuilder : FormBuilder,private saleService:CreateSaleService,private router:Router){}
+  constructor(private formBuilder : FormBuilder,private saleService:CreateSaleService,private router:Router,private loginService:LoginService){}
 
   getProductConditionTypes(){
     this.saleService.getProductConditionTypes().subscribe({
@@ -158,9 +159,12 @@ export class CreateSale {
   createSale(){
     this.saleService.createSale(this.saleData,this.photos,this.selectedCategories()).subscribe({
       next: (r_success)=>{
-        Swal.fire('',`${r_success.message}`,'success').then(() => {
+
+        const message = this.loginService.userActiveToPublish() === 0 ? 'Publicacion pendiente de aprobación' : r_success.message;
+
+        Swal.fire('', message, 'success').then(() => {
           this.router.navigate(['ventas-publicadas']);
-        });;
+        });
         
       },
       error:(err:HttpErrorResponse)=>{

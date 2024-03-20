@@ -13,22 +13,27 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { SalesComponent } from './products/sales/sales.component';
 import { CreateSale } from './createSale/createSale.component';
 import { UserPostsComponent } from './user/user-posts/user-posts.component';
+import { ProductsPendingApprovalComponent } from './admin/products-pending-approval/products-pending-approval.component';
+import { CreateAdminComponent } from './admin/create-admin/create-admin.component';
 
 
 const routes: Routes = [
   { path: "", redirectTo: 'visitante', pathMatch: 'full' },
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignupComponent },
+
   { path: "admin", component: AdminComponent, canActivate: [adminGuard] },
   { path: "perfil-admin", component: AdminProfileComponent, canActivate: [adminGuard]},
+  { path: "aprobacion-productos", component: ProductsPendingApprovalComponent, canActivate: [adminGuard]},
+  { path: "crear-administrativo", component: CreateAdminComponent, canActivate: [adminGuard]},
+
   { path: "usuario", component: UserComponent , canActivate: [usuarioGuard] },
   { path: "perfil-usuario", component: UserProfileComponent , canActivate: [usuarioGuard] },
-
   { path: "crear-venta", component: CreateSale , canActivate: [usuarioGuard] },
   { path: "ventas-publicadas", component: UserPostsComponent , canActivate: [usuarioGuard] },
   { path: "compras", component: SalesComponent , canActivate: [usuarioGuard] },
-  { path: "perfil-usuario", component: UserProfileComponent , canActivate: [usuarioGuard] },
-  { path: "perfil-usuario", component: UserProfileComponent , canActivate: [usuarioGuard] },
+
+
 
   { path: "visitante", component: VisitorComponent },
   { path: "not-found", component: NotFoundComponent},

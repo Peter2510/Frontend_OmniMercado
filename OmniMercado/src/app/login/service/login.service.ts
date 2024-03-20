@@ -145,6 +145,15 @@ export class LoginService {
       }
     }
 
+    public userActiveToPublish(){
+      let userStorage = this.getUser();
+      if(userStorage!=null){
+        return userStorage.activo_publicar;
+      }else{
+        this.logOut();
+        return null;
+      }      
+    }
 
 
 

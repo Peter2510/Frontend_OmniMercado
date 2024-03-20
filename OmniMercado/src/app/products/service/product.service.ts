@@ -31,5 +31,9 @@ export class ProductService {
     return this.http.get<any>(`${baseURL}/publicaciones-disponibles-para-usuario/${user_id}`);
   }
 
+  public getProductsPendingApproval(){
+    return this.http.get<any>(`${baseURL}/productos-pendientes-aprobacion`);
+  }
+
   
 }

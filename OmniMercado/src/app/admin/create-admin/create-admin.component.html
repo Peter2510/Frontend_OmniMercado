@@ -1,0 +1,95 @@
+<app-admin-nav></app-admin-nav>
+<div class="col-lg-9 offset-lg-2">
+
+    <div class="p-3 rounded mt-5 d-flex justify-content-center align-items-center">
+
+        <div class="mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+
+                <div class="col-md-12">
+
+                    <div class="p-4 shadow-lg">
+                        <form (ngSubmit)="validateCredentials()">
+                            <p class="fs-2 text-center color-text mb-4">Agregar administrativo</p>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="name" placeholder="Nombre"
+                                    [(ngModel)]="admin.name" [ngModelOptions]="{standalone: true}">
+                                <label for="title">Nombre</label>
+                                <div class="alert alert-warning mt-2" role="alert" *ngIf="!nameNull">
+                                    Debes ingresar un nombre
+                                </div>
+
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="correo" placeholder="email"
+                                    [(ngModel)]="admin.email" [ngModelOptions]="{standalone: true}">
+                                <label for="correo">Correo</label>
+                                <div class="alert alert-warning mt-2" role="alert" *ngIf="!emailNull">
+                                    Debes ingresar un correo
+                                </div>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <select class="form-select" aria-label="Default select example"
+                                    [(ngModel)]="admin.gender" [ngModelOptions]="{standalone: true}">
+                                    <option class="d-block truncate-te" selected disabled [value]="0">Selecciona un
+                                        género</option>
+                                    <option class="form-select" *ngFor="let gender of genders"
+                                        [value]="gender.id_genero">{{gender.nombre}}</option>
+                                </select>
+                                <label for="genero">Género</label>
+                                <div class="alert alert-warning mt-2" role="alert" *ngIf="!genderNull">
+                                    Debes seleccionar un género
+                                </div>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <select class="form-select" aria-label="Default select example" [(ngModel)]="admin.rol"
+                                    [ngModelOptions]="{standalone: true}">
+                                    <option class="d-block truncate-te" selected disabled [value]="0">Selecciona el tipo
+                                        de administrativo</option>
+                                    <option class="form-select" *ngFor="let rol of roles" [value]="rol.id_rol">
+                                        {{rol.nombre}}</option>
+                                </select>
+                                <label for="genero">Rol</label>
+                                <div class="alert alert-warning mt-2" role="alert" *ngIf="!rolNull">
+                                    Debes seleccionar un rol
+                                </div>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="contraseña" placeholder="pass"
+                                    [(ngModel)]="admin.password" [ngModelOptions]="{standalone: true}">
+                                <label for="contraseña" class="d-block">Contraseña</label>
+                                <div class="alert alert-warning mt-2" role="alert" *ngIf="!passNull">
+                                    Debes ingresar una contraseña
+                                </div>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="confpass" placeholder="pass"
+                                    [(ngModel)]="admin.confpassword" [ngModelOptions]="{standalone: true}">
+                                <label for="confpass" class="d-block truncate-te">Confirmar contraseña</label>
+                                <div class="alert alert-warning mt-2" role="alert" *ngIf="!confpassNull">
+                                    Debes ingresar de nuevo la contraseña
+                                </div>
+                                <div class="alert alert-warning mt-2" role="alert" *ngIf="!samePass">
+                                    Las contraseñas no coinciden
+                                </div>
+                            </div>
+
+                            <div class="d-grid">
+                                <button class="btn btn-outline-light btn-login text-uppercase fw-bold"
+                                    type="submit">Crear usuario adminstrativo</button>
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

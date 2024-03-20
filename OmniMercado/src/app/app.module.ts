@@ -21,6 +21,8 @@ import { SalesComponent } from './products/sales/sales.component';
 import { CreateSale } from './createSale/createSale.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { UserPostsComponent } from './user/user-posts/user-posts.component';
+import { ProductsPendingApprovalComponent } from './admin/products-pending-approval/products-pending-approval.component';
+import { CreateAdminComponent } from './admin/create-admin/create-admin.component';
 
 
 @NgModule({
@@ -40,7 +42,9 @@ import { UserPostsComponent } from './user/user-posts/user-posts.component';
     AdminNavComponent,
     SalesComponent,
     CreateSale,
-    UserPostsComponent
+    UserPostsComponent,
+    ProductsPendingApprovalComponent,
+    CreateAdminComponent
     ],
   imports: [
     BrowserModule,

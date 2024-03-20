@@ -5,9 +5,6 @@ import { SignupService } from './service/signup.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import {Gender} from '../models/Gender'
 
-
-
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -58,7 +55,7 @@ export class SignupComponent {
     this.dateNull = this.user.birthYear !== '';
     this.passNull = this.user.password !== '';
     this.confpassNull = this.user.confpassword !== '';
-    this.samePass = this.user.password == this.user.confpassword;
+    this.samePass = (this.user.password == this.user.confpassword)&&this.user.password.length>0;
     this.genderNull = this.user.gender != 0;
 
     if (this.dateNull) {

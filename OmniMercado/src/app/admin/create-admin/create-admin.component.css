@@ -1,0 +1,28 @@
+.form-color{
+    background-color: var(--tertiary-color);
+    padding: 3rem;
+}
+
+.link{
+    text-decoration: none;
+    color: var(--text-color)
+}
+
+.input-color{
+    background-color: var(--tertiary-color);
+}
+
+@media (max-width: 576px) {
+    .form-floating label {
+        font-size: 12px;
+    }
+}
+
+.truncate-te{
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
