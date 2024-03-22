@@ -10,7 +10,7 @@ import { BarterProduct } from 'src/app/models/BarterProduct';
 })
 export class BarterProductsPendingApprovalComponent {
   
-  barterProducts:BarterProduct[];
+  barterProducts:BarterProduct[]=[];
 
   constructor(private barterProductService:BarterService){}
 

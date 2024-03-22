@@ -12,7 +12,7 @@ export class BartersComponent {
 
   getAvailableBarterProducts
 
-  barterProducts:BarterProduct[];
+  barterProducts:BarterProduct[]=[];
   
   constructor(private productBarterService:BarterService){
 

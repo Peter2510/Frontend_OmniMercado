@@ -1,11 +1,17 @@
 <app-user-nav></app-user-nav>
 <div class="col-lg-9 offset-lg-2 p-5">
   <div class="row">
+    <h2 class="text-center color-text">Intercambios publicados</h2>
+    <div *ngIf="barterProducts.length==0">
+      <p class="mt-4 color-text fs-4 text-center">
+        Aún no has publicado intercambios
+      </p>
+    </div>
     <div class="col-md-4 mt-3" *ngFor="let barterProduct of barterProducts">
       <div class="card mb-3" [ngClass]="{
-        'background-cards bg-primary-subtle': barterProduct.id_estado === 1,
+        'background-cards bg-warning-subtle': barterProduct.id_estado === 1,
         'background-cards bg-success-subtle': barterProduct.id_estado === 2,
-        'background-cards bg-warning-subtle': barterProduct.id_estado === 3,
+        'background-cards bg-info-subtle': barterProduct.id_estado === 3,
       }">
         <img [src]="'data:image/' + barterProduct.images.type + ';base64,' + barterProduct.images.image"
           class="img-card card-img-top">

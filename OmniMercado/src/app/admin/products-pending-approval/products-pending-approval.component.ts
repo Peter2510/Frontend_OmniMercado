@@ -10,7 +10,7 @@ import { ProductService } from 'src/app/products/service/product.service';
 })
 export class ProductsPendingApprovalComponent {
 
-  products:Product[];
+  products:Product[]=[];
 
   constructor(private productService:ProductService){}
 

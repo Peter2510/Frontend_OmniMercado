@@ -35,6 +35,7 @@ const routes: Routes = [
   { path: "perfil-usuario", component: UserProfileComponent , canActivate: [usuarioGuard] },
   { path: "crear-venta", component: CreateProduct , canActivate: [usuarioGuard] },
   { path: "crear-intercambio", component: CreateBarterComponent , canActivate: [usuarioGuard] },
+  
   { path: "productos-publicados", component: UserProductsComponent , canActivate: [usuarioGuard] },
   { path: "intercambios-publicados", component: UserBarterProductsComponent , canActivate: [usuarioGuard] },
 

@@ -10,7 +10,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class ProductsComponent implements OnInit{
     
-  products:Product[];
+  products:Product[]=[];
   
   constructor(private productService:ProductService){
 
