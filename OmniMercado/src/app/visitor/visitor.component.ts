@@ -2,8 +2,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Swal from 'sweetalert2';
-import { CreateSaleService } from '../createSale/service/create-sale.service';
+import { CreateProductService } from '../products/create-product/service/create-product.service';
 import { ProductCategory } from '../models/ProductCategory';
+import { ProductService } from '../products/service/product.service';
 
 @Component({
   selector: 'app-visitor',
@@ -18,9 +19,8 @@ export class VisitorComponent {
   productCategoryTypes:ProductCategory[];
 
 
-  constructor(private formBuilder : FormBuilder,private saleService:CreateSaleService){}
+  constructor(private formBuilder : FormBuilder,private productService:ProductService){}
 
-  ////////////////////////////////////////////
   ngOnInit() {
     this.initForm();
     this.dropdownSettings = {
@@ -65,7 +65,7 @@ export class VisitorComponent {
   }
 
   getProductCategory() {
-    this.saleService.getProductCategory().subscribe({
+    this.productService.getProductCategory().subscribe({
       next: (r_success) => {
         this.productCategoryTypes = r_success.categories
         this.dropdownList = this.getData();
@@ -93,5 +93,4 @@ export class VisitorComponent {
       'warning'
     );
   }
-
 }

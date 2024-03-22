@@ -6,12 +6,24 @@
       <div class="card mb-3 background-cards">
         <img [src]="'data:image/' + product.images.type + ';base64,' + product.images.image"
           class=" img-card card-img-top">
-        <div class="card-body">
+        <div class="card-body">          
           <h5 class="card-title">{{product.titulo}}</h5>
-          <p class="card-text mb-0"><small class="text-body-secondary">{{product.fecha_publicacion}}</small></p>
+          <p class="card-text mb-0">
+            <svg width="20px" height="34px" viewBox="0 0 34 34" version="1.1">
+              <g id="surface1">
+              <path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 4.25 12.75 L 29.75 12.75 L 29.75 28.332031 C 29.75 29.117188 29.117188 29.75 28.332031 29.75 L 5.667969 29.75 C 4.882812 29.75 4.25 29.117188 4.25 28.332031 Z M 4.25 12.75 "/>
+              <path style="fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:4;" d="M 19.999081 21 L 4.000919 21 C 3.446691 21 3 20.553309 3 19.999081 L 3 9 L 21 9 L 21 19.999081 C 21 20.553309 20.553309 21 19.999081 21 Z M 21 4.999081 C 21 4.44761 20.553309 4.000919 19.999081 4.000919 L 4.000919 4.000919 C 3.446691 4.000919 3 4.44761 3 4.999081 L 3 9 L 21 9 Z M 16.000919 3 L 16.000919 6 M 7.999081 3 L 7.999081 6 M 12 16.999081 L 12 13.000919 M 10.000919 15 L 13.999081 15 " transform="matrix(1.416667,0,0,1.416667,0,0)"/>
+              </g>
+              </svg>      
+                {{product.fecha_publicacion}}
+        </p>
           <div class="mt-2">
-            <button type="button" class="btn btn-success me-2">Aprobar</button>
-            <button type="button" class="btn btn-danger">Denegar</button>
+            <button type="button" class="btn me-3">
+              <svg fill="#000000" width="30px" height="45px" viewBox="0 0 14 14" role="img" focusable="false" aria-hidden="true"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path fill="green" d="M13 4.1974q0 .3097-.21677.5265L7.17806 10.329l-1.0529 1.0529q-.21677.2168-.52645.2168-.30968 0-.52645-.2168L4.01935 10.329 1.21677 7.5264Q1 7.3097 1 7t.21677-.5265l1.05291-1.0529q.21677-.2167.52645-.2167.30968 0 .52645.2167l2.27613 2.2839 5.07871-5.0864q.21677-.2168.52645-.2168.30968 0 .52645.2168l1.05291 1.0529Q13 3.8877 13 4.1974z"></path></g></svg>
+            </button>
+            <button type="button" class="btn me-2">
+              <svg viewBox="0 0 24 24" fill="none"  stroke="#ff0000" width="40px" height="45px"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_429_11083)"> <path d="M7 7.00006L17 17.0001M7 17.0001L17 7.00006" stroke="#d20404" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path> </g> <defs> <clipPath id="clip0_429_11083"> <rect width="24" height="24" fill="white"></rect> </clipPath> </defs> </g></svg>
+            </button>
           </div>
         </div>
       </div>

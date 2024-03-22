@@ -9,24 +9,15 @@ const baseURL = environment.apiUrl;
 @Injectable({
   providedIn: 'root'
 })
-export class CreateSaleService {
+export class CreateProductService {
 
 
   constructor(private http: HttpClient, private loginService: LoginService) { }
 
   public signupStatusSubject = new Subject<boolean>;
 
-  public getProductConditionTypes(): Observable<any> {
 
-    return this.http.get<any>(`${baseURL}/obtener-condicion-productos`);
-  }
-
-  public getProductCategory(): Observable<any> {
-
-    return this.http.get<any>(`${baseURL}/obtener-categorias-productos`);
-  }
-
-  public createSale(saleData: any, photos: any,categories:any): Observable<any> {
+  public createProduct(saleData: any, photos: any,categories:any): Observable<any> {
 
 
     const formData = new FormData();

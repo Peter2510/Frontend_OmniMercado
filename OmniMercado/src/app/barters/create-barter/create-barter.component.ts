@@ -1,21 +1,20 @@
-import { Component} from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ProductConditionType } from '../models/ProductConditionType';
-import { CreateSaleService } from './service/create-sale.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { LoginService } from 'src/app/login/service/login.service';
+import { ProductCategory } from 'src/app/models/ProductCategory';
+import { ProductConditionType } from 'src/app/models/ProductConditionType';
+import { CreateProductService } from 'src/app/products/create-product/service/create-product.service';
+import { ProductService } from 'src/app/products/service/product.service';
 import Swal from 'sweetalert2';
-import { ProductCategory } from '../models/ProductCategory';
-import { LoginService } from '../login/service/login.service';
 
 @Component({
-  selector: 'app-create-sale',
-  templateUrl: './createSale.component.html',
-  styleUrls: ['./createSale.component.css']
+  selector: 'app-create-barter',
+  templateUrl: './create-barter.component.html',
+  styleUrls: ['./create-barter.component.css']
 })
-export class CreateSale {
-
-  
+export class CreateBarterComponent {
   dropdownList;
   dropdownSettings;
   form: FormGroup;
@@ -23,25 +22,28 @@ export class CreateSale {
   conditionNull = false;
   categoryNull = false;
   photosNull = false;
+  requestDescriptionNull = false;
+  descriptionNull = false;
   productConditionTypes:ProductConditionType[];
   productCategoryTypesSelected;
   productCategoryTypes:ProductCategory[];
   maxFiles: number = 5;
   photos: File[] | null = null;
 
-  saleData:SaleData = {
+  barterData:BarterData = {
     title: '',
-    localCurrency: 0,
-    virtualCoin: 0,
+    virtual_coin_equivalent: 0,
+    local_currency_equivalent: 0,
+    request_description: '',
     condition: 0,
     description: '',
     categories: []
   };
 
-  constructor(private formBuilder : FormBuilder,private saleService:CreateSaleService,private router:Router,private loginService:LoginService){}
+  constructor(private formBuilder : FormBuilder,private productService:ProductService,private router:Router,private loginService:LoginService){}
 
   getProductConditionTypes(){
-    this.saleService.getProductConditionTypes().subscribe({
+    this.productService.getProductConditionTypes().subscribe({
       next: (r_success) => {
           this.productConditionTypes = r_success.conditionTypes
       },
@@ -67,7 +69,6 @@ export class CreateSale {
       textField: 'nombre',
       allowSearchFilter: true,
       enableCheckAll:false,
-      maxHeight:95,
       searchPlaceholderText:'Buscar'
     };
     this.getProductConditionTypes();
@@ -85,11 +86,6 @@ export class CreateSale {
     console.log('Actual data ', this.getObjectListFromData(this.form.value.category.map(item => item.id_tipo_categoria)));
   }
 
-  onItemSelect($event:any){
-    //console.log('$event is ', $event); 
-    //this.handleButtonClick();
-  }
-
   selectedCategories(){
     return this.getObjectListFromData(this.form.value.category.map(item => item.id_tipo_categoria));
   }
@@ -103,7 +99,7 @@ export class CreateSale {
   }
 
   getProductCategory(){
-    this.saleService.getProductCategory().subscribe({
+    this.productService.getProductCategory().subscribe({
       next: (r_success)=>{
         this.productCategoryTypes = r_success.categories
         this.dropdownList = this.getData();
@@ -126,16 +122,18 @@ export class CreateSale {
 
   validateData(){
   
-    this.titleNull = this.saleData.title == '';
-    this.conditionNull = this.saleData.condition == 0;
+    this.titleNull = this.barterData.title == '';
+    this.conditionNull = this.barterData.condition == 0;
     this.categoryNull = this.form.getRawValue().category.length ==0;
     this.photosNull = this.photos == null;
+    this.descriptionNull = this.barterData.description == '';
+    this.requestDescriptionNull = this.barterData.request_description == '';
 
-    this.saleData.localCurrency = this.saleData.localCurrency === null ? 0 : this.saleData.localCurrency;
-    this.saleData.virtualCoin = this.saleData.virtualCoin === null ? 0 : this.saleData.virtualCoin;
+    this.barterData.virtual_coin_equivalent = this.barterData.virtual_coin_equivalent === null ? 0 : this.barterData.virtual_coin_equivalent;
+    this.barterData.local_currency_equivalent = this.barterData.local_currency_equivalent === null ? 0 : this.barterData.local_currency_equivalent;
     
-    if(!this.titleNull && !this.conditionNull && !this.categoryNull && this.photos!=null){
-        this.saleData.categories = this.selectedCategories();
+    if(!this.titleNull && !this.conditionNull && !this.categoryNull && this.photos!=null && !this.descriptionNull && !this.requestDescriptionNull){
+        this.barterData.categories = this.selectedCategories();
 
         if(!(this.photos.length>this.maxFiles)){
 
@@ -157,30 +155,33 @@ export class CreateSale {
   
 
   createSale(){
-    this.saleService.createSale(this.saleData,this.photos,this.selectedCategories()).subscribe({
-      next: (r_success)=>{
+    console.log(this.barterData)
+    // this.productService.createProduct(this.saleData,this.photos,this.selectedCategories()).subscribe({
+    //   next: (r_success)=>{
 
-        const message = this.loginService.userActiveToPublish() === 0 ? 'Publicacion pendiente de aprobación' : r_success.message;
+    //     const message = this.loginService.userActiveToPublish() === 0 ? 'Publicacion pendiente de aprobación' : r_success.message;
 
-        Swal.fire('', message, 'success').then(() => {
-          this.router.navigate(['ventas-publicadas']);
-        });
+    //     Swal.fire('', message, 'success').then(() => {
+    //       this.router.navigate(['ventas-publicadas']);
+    //     });
         
-      },
-      error:(err:HttpErrorResponse)=>{
-        this.handleErrorResponse(err);
-      }
-    })
+    //   },
+    //   error:(err:HttpErrorResponse)=>{
+    //     this.handleErrorResponse(err);
+    //   }
+    // })
   }
 
 
 }
 
-interface SaleData {
+interface BarterData {
   title: string;
-  localCurrency: number;
-  virtualCoin: number;
-  condition: number;
+  local_currency_equivalent: number;
+  virtual_coin_equivalent: number;
   description: string;
+  condition: number;
+  request_description: string;
   categories: any[];
 }
+

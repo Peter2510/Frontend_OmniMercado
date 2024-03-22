@@ -1,0 +1,93 @@
+<app-user-nav></app-user-nav>
+<div class="col-lg-9 offset-lg-2" style="overflow-y: hidden;">
+    
+    <div class="p-3 rounded mt-5 d-flex justify-content-center align-items-center">
+
+        <div class="mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+    
+                <div class="col-md-12">
+    
+                    <div class="p-4 shadow-lg">
+    
+                        <form (ngSubmit)="validateData()">
+    
+                            <p class="fs-2 text-center color-text">Crea tu venta</p>
+    
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="title" placeholder="Titulo" [(ngModel)]="saleData.title" [ngModelOptions]="{standalone: true}">
+                                <label for="title">Titulo</label>
+                                <div class="alert alert-warning mt-2" role="alert" *ngIf="titleNull">
+                                    Debes ingresar un titulo
+                                </div>
+                                
+                            </div>
+    
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" min="0" id="virtualCoin" placeholder="Moneda Virtual" [(ngModel)]="saleData.virtualCoin" [ngModelOptions]="{standalone: true}">
+                                <label for="virtualCoin">Precio en Moneda Virtual</label>
+                            </div>
+    
+
+                            <div class="form-floating mb-3">
+                                <select class="form-select" aria-label="Default select example" [(ngModel)]="saleData.condition" [ngModelOptions]="{standalone: true}">
+                                    <option class="d-block truncate-te" selected disabled [value]="0" >Seleccionar condición</option>
+                                    <option class="form-select" *ngFor="let condition of productConditionTypes" [value]="condition.id_tipo_condicion">{{condition.nombre}}</option>
+                                </select>
+                                <label for="genero">Condicion</label>
+                                <div class="alert alert-warning mt-2" role="alert" *ngIf="conditionNull">
+                                    Debes seleccionar una condicion
+                                </div>
+                            </div>
+
+
+                            <div class="mb-3">
+                                <label class="form-label color-text">Categorias</label>
+                                    <form [formGroup]="form" class="category">
+                                      <ng-multiselect-dropdown formControlName="category"
+                                    [placeholder]="'Seleccionar categorias'"
+                                    [settings]="dropdownSettings"
+                                    [data]="dropdownList"
+                                    >
+                                    </ng-multiselect-dropdown>
+                                    </form>
+                                <div class="alert alert-warning mt-2" role="alert" *ngIf="categoryNull">
+                                    Debes seleccionar al menos una categoria
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">                                
+                                <label for="description" class="form-label color-text">Descripción</label>
+                                <textarea class="form-control" id="description" placeholder="Descripción" rows="3" [(ngModel)]="saleData.description" [ngModelOptions]="{standalone: true}"></textarea>
+                              </div>
+                              <div class="alert alert-warning mt-2" role="alert" *ngIf="descriptionNull">
+                                Debes ingresar una descripción
+                            </div>
+
+
+                              <div class="mb-3">
+                                <label for="formFile" class="form-label color-text">Fotos para la publicación</label>
+                                <input class="form-control" accept=".jpg, .png, .jpeg" type="file" id="formFile" multiple (change)="onFileChange($event)">
+                            </div>
+                            
+                            <div class="alert alert-warning mt-2" role="alert" *ngIf="photosNull">
+                                Debes seleccionar por lo menos una fotografía
+                            </div>
+    
+                                
+                            <div class="d-grid">
+                                <button class="btn btn-outline-light btn-login text-uppercase fw-bold" type="submit">Crear venta</button>
+                              </div>
+                              
+    
+                        </form>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

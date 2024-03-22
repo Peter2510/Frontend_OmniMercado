@@ -10,11 +10,12 @@ import { usuarioGuard } from './login/guard/usuario/usuario.guard';
 import { SignupComponent } from './signup/signup.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
-import { SalesComponent } from './products/sales/sales.component';
-import { CreateSale } from './createSale/createSale.component';
+
+import { CreateProduct } from './products/create-product/create-product.component';
 import { UserPostsComponent } from './user/user-posts/user-posts.component';
 import { ProductsPendingApprovalComponent } from './admin/products-pending-approval/products-pending-approval.component';
 import { CreateAdminComponent } from './admin/create-admin/create-admin.component';
+import { CreateBarterComponent } from './barters/create-barter/create-barter.component';
 
 
 const routes: Routes = [
@@ -29,10 +30,9 @@ const routes: Routes = [
 
   { path: "usuario", component: UserComponent , canActivate: [usuarioGuard] },
   { path: "perfil-usuario", component: UserProfileComponent , canActivate: [usuarioGuard] },
-  { path: "crear-venta", component: CreateSale , canActivate: [usuarioGuard] },
+  { path: "crear-venta", component: CreateProduct , canActivate: [usuarioGuard] },
+  { path: "crear-intercambio", component: CreateBarterComponent , canActivate: [usuarioGuard] },
   { path: "ventas-publicadas", component: UserPostsComponent , canActivate: [usuarioGuard] },
-  { path: "compras", component: SalesComponent , canActivate: [usuarioGuard] },
-
 
 
   { path: "visitante", component: VisitorComponent },

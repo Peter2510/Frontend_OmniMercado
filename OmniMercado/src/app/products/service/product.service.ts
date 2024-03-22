@@ -35,5 +35,15 @@ export class ProductService {
     return this.http.get<any>(`${baseURL}/productos-pendientes-aprobacion`);
   }
 
+  public getProductConditionTypes(): Observable<any> {
+
+    return this.http.get<any>(`${baseURL}/obtener-condicion-productos`);
+  }
+
+  public getProductCategory(): Observable<any> {
+
+    return this.http.get<any>(`${baseURL}/obtener-categorias-productos`);
+  }
+
   
 }

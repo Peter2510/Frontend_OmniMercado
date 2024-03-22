@@ -17,12 +17,13 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { UserNavComponent } from './user/user-nav/user-nav.component';
 import { AdminNavComponent } from './admin/admin-nav/admin-nav.component';
-import { SalesComponent } from './products/sales/sales.component';
-import { CreateSale } from './createSale/createSale.component';
+import { CreateProduct } from './products/create-product/create-product.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { UserPostsComponent } from './user/user-posts/user-posts.component';
 import { ProductsPendingApprovalComponent } from './admin/products-pending-approval/products-pending-approval.component';
 import { CreateAdminComponent } from './admin/create-admin/create-admin.component';
+import { BartersComponent } from './barters/barters.component';
+import { CreateBarterComponent } from './barters/create-barter/create-barter.component';
 
 
 @NgModule({
@@ -40,11 +41,12 @@ import { CreateAdminComponent } from './admin/create-admin/create-admin.componen
     AdminProfileComponent,
     UserNavComponent,
     AdminNavComponent,
-    SalesComponent,
-    CreateSale,
+    CreateProduct,
     UserPostsComponent,
     ProductsPendingApprovalComponent,
-    CreateAdminComponent
+    CreateAdminComponent,
+    BartersComponent,
+    CreateBarterComponent
     ],
   imports: [
     BrowserModule,

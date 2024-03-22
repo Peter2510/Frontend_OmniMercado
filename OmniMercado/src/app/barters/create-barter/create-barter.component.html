@@ -1,5 +1,5 @@
 <app-user-nav></app-user-nav>
-<div class="col-lg-9 offset-lg-2">
+<div class="col-lg-9 offset-lg-2" style="overflow-y: hidden;">
     
     <div class="p-3 rounded mt-5 d-flex justify-content-center align-items-center">
 
@@ -12,10 +12,10 @@
     
                         <form (ngSubmit)="validateData()">
     
-                            <p class="fs-2 text-center color-text">Crea tu venta</p>
+                            <p class="fs-2 text-center color-text">Crear intercambio</p>
     
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="title" placeholder="Titulo" [(ngModel)]="saleData.title" [ngModelOptions]="{standalone: true}">
+                                <input type="text" class="form-control" id="title" placeholder="Titulo" [(ngModel)]="barterData.title" [ngModelOptions]="{standalone: true}">
                                 <label for="title">Titulo</label>
                                 <div class="alert alert-warning mt-2" role="alert" *ngIf="titleNull">
                                     Debes ingresar un titulo
@@ -24,18 +24,18 @@
                             </div>
     
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" min="0" id="localCurrency" placeholder="Moneda Local" [(ngModel)]="saleData.localCurrency" [ngModelOptions]="{standalone: true}">
-                                <label for="localCurrency">Moneda Local</label>
+                                <input type="number" class="form-control" min="0" id="virtualCoin" placeholder="Moneda Virtual" [(ngModel)]="barterData.virtual_coin_equivalent" [ngModelOptions]="{standalone: true}">
+                                <label for="virtualCoin">Equivalente en moneda Virtual</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" min="0" id="virtualCoin" placeholder="Moneda Virtual" [(ngModel)]="saleData.virtualCoin" [ngModelOptions]="{standalone: true}">
-                                <label for="virtualCoin">Moneda Virtual</label>
+                                <input type="number" class="form-control" min="0" id="localCurrency" placeholder="Moneda Local" [(ngModel)]="barterData.local_currency_equivalent" [ngModelOptions]="{standalone: true}">
+                                <label for="localCurrency">Equivalente moneda local</label>
                             </div>
     
 
                             <div class="form-floating mb-3">
-                                <select class="form-select" aria-label="Default select example" [(ngModel)]="saleData.condition" [ngModelOptions]="{standalone: true}">
+                                <select class="form-select" aria-label="Default select example" [(ngModel)]="barterData.condition" [ngModelOptions]="{standalone: true}">
                                     <option class="d-block truncate-te" selected disabled [value]="0" >Seleccionar condición</option>
                                     <option class="form-select" *ngFor="let condition of productConditionTypes" [value]="condition.id_tipo_condicion">{{condition.nombre}}</option>
                                 </select>
@@ -53,7 +53,6 @@
                                     [placeholder]="'Seleccionar categorias'"
                                     [settings]="dropdownSettings"
                                     [data]="dropdownList"
-                                    (onSelect)="onItemSelect($event)"
                                     >
                                     </ng-multiselect-dropdown>
                                     </form>
@@ -64,9 +63,19 @@
                             
                             <div class="mb-3">                                
                                 <label for="description" class="form-label color-text">Descripción</label>
-                                <textarea class="form-control" id="description" placeholder="Descripción" rows="3" [(ngModel)]="saleData.description" [ngModelOptions]="{standalone: true}"></textarea>
+                                <textarea class="form-control" id="description" placeholder="Descripción" rows="3" [(ngModel)]="barterData.description" [ngModelOptions]="{standalone: true}"></textarea>
                               </div>
+                              <div class="alert alert-warning mt-2" role="alert" *ngIf="descriptionNull">
+                                Debes ingresar una descripción del producto a intercambiar
+                            </div>
 
+                              <div class="mb-3">                                
+                                <label for="requestDescription" class="form-label color-text">Descripción del producto, bien o servicio que deseas a cambio</label>
+                                <textarea class="form-control" id="requestDescription" placeholder="Descripción del intercambio" rows="3" [(ngModel)]="barterData.request_description" [ngModelOptions]="{standalone: true}"></textarea>
+                              </div>
+                              <div class="alert alert-warning mt-2" role="alert" *ngIf="requestDescriptionNull">
+                                Debes ingresar una descripción del producto, bien o servicio que deseas a cambio
+                            </div>
 
                               <div class="mb-3">
                                 <label for="formFile" class="form-label color-text">Fotos para la publicación</label>
@@ -79,7 +88,7 @@
     
                                 
                             <div class="d-grid">
-                                <button class="btn btn-outline-light btn-login text-uppercase fw-bold" type="submit">Crear venta</button>
+                                <button class="btn btn-outline-light btn-login text-uppercase fw-bold" type="submit">Crear intercambio</button>
                               </div>
                               
     

@@ -28,3 +28,25 @@
   width: auto;
   object-fit: cover; 
 }
+
+
+/* Works on Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) var(--tertiary-color);
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--primary-color);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 20px;
+  border: 3px solid var(--tertiary-color-color);
+}

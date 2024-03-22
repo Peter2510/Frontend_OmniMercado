@@ -1,7 +1,8 @@
 <nav class="navbar sticky-top navbar-expand-lg nav">
     <div class="container-fluid">
         <a class="navbar-brand" href="#ventas">OnmiMercado</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse mt-1" id="navbarNav">
@@ -11,6 +12,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#voluntariados">Voluntariados</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#intercambios">Intercambios</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/login">Iniciar Sesión</a>
@@ -25,35 +29,31 @@
 
 <div class="container mt-3">
 
-<div class="row p-3">
-    
-    <div class="col-md-5 mb-3" >
-        <label class="form-label color-text">Categorias</label>
+    <div class="row p-3">
+
+        <div class="col-md-5 mb-3">
+            <label class="form-label color-text">Categorias</label>
             <form [formGroup]="form" class="category">
-              <ng-multiselect-dropdown formControlName="category"
-            [placeholder]="'Seleccionar categorias'"
-            [settings]="dropdownSettings"
-            [data]="dropdownList"
-            (onSelect)="onItemSelect($event)"
-            >
-            </ng-multiselect-dropdown>
+                <ng-multiselect-dropdown formControlName="category" [placeholder]="'Seleccionar categorias'"
+                    [settings]="dropdownSettings" [data]="dropdownList" (onSelect)="onItemSelect($event)">
+                </ng-multiselect-dropdown>
             </form>
-        <!--
+            <!--
             <div class="alert alert-warning mt-2" role="alert" *ngIf="categoryNull">
             Debes seleccionar al menos una categoria
             </div>
         -->
-    </div>
+        </div>
 
-    <div class="col-md-7">
-        <label class="form-label color-text">Buscar publicaciones</label>
-        <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-            <button class="btn btn-outline-light btn-login" type="submit">Buscar</button>
-          </form>
-    </div>
+        <div class="col-md-7">
+            <label class="form-label color-text">Buscar publicaciones</label>
+            <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                <button class="btn btn-outline-light btn-login" type="submit">Buscar</button>
+            </form>
+        </div>
 
-</div>
+    </div>
 
     <div data-bs-spy="scroll" data-bs-target="#navbar" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true"
         class="scrollspy-example p-3 rounded-2" tabindex="0">
@@ -61,10 +61,8 @@
         <app-products></app-products>
         <h4 id="voluntariados" class="color-text">Voluntariados</h4>
         <app-volunteering></app-volunteering>
+        <h4 id="intercambios" class="color-text">Intercambios</h4>
+        <app-barters></app-barters>
     </div>
+
 </div>
-
-
-
-
-
