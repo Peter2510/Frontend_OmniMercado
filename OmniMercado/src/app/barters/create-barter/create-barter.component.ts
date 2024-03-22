@@ -163,8 +163,7 @@ export class CreateBarterComponent {
         const message = this.loginService.userActiveToPublish() === 0 ? 'Publicacion pendiente de aprobación' : r_success.message;
 
         Swal.fire('', message, 'success').then(() => {
-          //this.router.navigate(['ventas-publicadas']);
-          alert('todo ok')
+          this.router.navigate(['intercambios-publicados']);
         });
 
       },

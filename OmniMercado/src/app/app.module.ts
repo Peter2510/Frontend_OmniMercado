@@ -19,11 +19,13 @@ import { UserNavComponent } from './user/user-nav/user-nav.component';
 import { AdminNavComponent } from './admin/admin-nav/admin-nav.component';
 import { CreateProduct } from './products/create-product/create-product.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import { UserPostsComponent } from './user/user-posts/user-posts.component';
+import { UserProductsComponent } from './user/user-products/user-products.component';
 import { ProductsPendingApprovalComponent } from './admin/products-pending-approval/products-pending-approval.component';
 import { CreateAdminComponent } from './admin/create-admin/create-admin.component';
 import { BartersComponent } from './barters/barters.component';
 import { CreateBarterComponent } from './barters/create-barter/create-barter.component';
+import { UserBarterProductsComponent } from './user/user-barter-products/user-barter-products.component';
+import { BarterProductsPendingApprovalComponent } from './admin/barter-products-pending-approval/barter-products-pending-approval.component';
 
 
 @NgModule({
@@ -42,11 +44,13 @@ import { CreateBarterComponent } from './barters/create-barter/create-barter.com
     UserNavComponent,
     AdminNavComponent,
     CreateProduct,
-    UserPostsComponent,
+    UserProductsComponent,
     ProductsPendingApprovalComponent,
     CreateAdminComponent,
     BartersComponent,
-    CreateBarterComponent
+    CreateBarterComponent,
+    UserBarterProductsComponent,
+    BarterProductsPendingApprovalComponent
     ],
   imports: [
     BrowserModule,

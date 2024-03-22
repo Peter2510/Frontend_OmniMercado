@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { BarterProduct } from '../models/BarterProduct';
+import { BarterService } from './service/barter.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-barters',
@@ -7,16 +10,23 @@ import { Component } from '@angular/core';
 })
 export class BartersComponent {
 
-  barters = [
+  getAvailableBarterProducts
 
-    {nombre:'Intercambio1',descripcion:'Descripcion intercambio 1',fecha_publicacion:'2024-03-12'},
-    {nombre:'Intercambio2',descripcion:'Descripcion intercambio 2',fecha_publicacion:'2024-03-12'},
-    {nombre:'Intercambio3',descripcion:'Descripcion intercambio 3',fecha_publicacion:'2024-03-12'},
-    {nombre:'Intercambio4',descripcion:'Descripcion intercambio 4',fecha_publicacion:'2024-03-12'},
-    {nombre:'Intercambio4',descripcion:'Descripcion intercambio 5',fecha_publicacion:'2024-03-12'},
-    {nombre:'Intercambio4',descripcion:'Descripcion intercambio 6',fecha_publicacion:'2024-03-12'},
-    {nombre:'Intercambio4',descripcion:'Descripcion intercambio 7',fecha_publicacion:'2024-03-12'},
-    {nombre:'Intercambio4',descripcion:'Descripcion intercambio 8 ',fecha_publicacion:'2024-03-12'},
-]
+  barterProducts:BarterProduct[];
+  
+  constructor(private productBarterService:BarterService){
+
+  }
+
+  ngOnInit(){
+    this.productBarterService.getAvailableBarterProducts().subscribe({
+      next: (r_success)=>{
+          this.barterProducts = r_success.barterProducts;
+      },
+      error: (err:HttpErrorResponse)=>{
+
+      }
+    })
+  }
 
 }

@@ -12,10 +12,12 @@ import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
 import { CreateProduct } from './products/create-product/create-product.component';
-import { UserPostsComponent } from './user/user-posts/user-posts.component';
+import { UserProductsComponent } from './user/user-products/user-products.component';
 import { ProductsPendingApprovalComponent } from './admin/products-pending-approval/products-pending-approval.component';
 import { CreateAdminComponent } from './admin/create-admin/create-admin.component';
 import { CreateBarterComponent } from './barters/create-barter/create-barter.component';
+import { UserBarterProductsComponent } from './user/user-barter-products/user-barter-products.component';
+import { BarterProductsPendingApprovalComponent } from './admin/barter-products-pending-approval/barter-products-pending-approval.component';
 
 
 const routes: Routes = [
@@ -26,13 +28,17 @@ const routes: Routes = [
   { path: "admin", component: AdminComponent, canActivate: [adminGuard] },
   { path: "perfil-admin", component: AdminProfileComponent, canActivate: [adminGuard]},
   { path: "aprobacion-productos", component: ProductsPendingApprovalComponent, canActivate: [adminGuard]},
+  { path: "aprobacion-intercambios", component: BarterProductsPendingApprovalComponent, canActivate: [adminGuard]},
   { path: "crear-administrativo", component: CreateAdminComponent, canActivate: [adminGuard]},
 
   { path: "usuario", component: UserComponent , canActivate: [usuarioGuard] },
   { path: "perfil-usuario", component: UserProfileComponent , canActivate: [usuarioGuard] },
   { path: "crear-venta", component: CreateProduct , canActivate: [usuarioGuard] },
   { path: "crear-intercambio", component: CreateBarterComponent , canActivate: [usuarioGuard] },
-  { path: "ventas-publicadas", component: UserPostsComponent , canActivate: [usuarioGuard] },
+  { path: "productos-publicados", component: UserProductsComponent , canActivate: [usuarioGuard] },
+  { path: "intercambios-publicados", component: UserBarterProductsComponent , canActivate: [usuarioGuard] },
+
+  
 
 
   { path: "visitante", component: VisitorComponent },

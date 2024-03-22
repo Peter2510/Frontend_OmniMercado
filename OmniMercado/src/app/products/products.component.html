@@ -1,4 +1,9 @@
 <div class="row">
+  <div *ngIf="products.length==0">
+    <p class="mt-4 color-text fs-4 text-center">
+      No hay productos publicados
+    </p>
+  </div>
     <div class="col-md-4 mt-3" *ngFor="let product of products">
         <div class="card mb-3 background-cards">
           <img [src]="'data:image/' + product.images.type + ';base64,' + product.images.image" class=" img-card card-img-top">

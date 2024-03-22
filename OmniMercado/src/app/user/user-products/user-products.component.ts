@@ -4,11 +4,11 @@ import { Product } from 'src/app/models/Product';
 import { ProductService } from 'src/app/products/service/product.service';
 
 @Component({
-  selector: 'app-user-posts',
-  templateUrl: './user-posts.component.html',
-  styleUrls: ['./user-posts.component.css']
+  selector: 'app-user-products',
+  templateUrl: './user-products.component.html',
+  styleUrls: ['./user-products.component.css']
 })
-export class UserPostsComponent {
+export class UserProductsComponent {
 
   products:Product[];
 

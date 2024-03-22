@@ -1,0 +1,34 @@
+<app-user-nav></app-user-nav>
+<div class="col-lg-9 offset-lg-2 p-5">
+  <div class="row">
+    <div class="col-md-4 mt-3" *ngFor="let barterProduct of barterProducts">
+      <div class="card mb-3" [ngClass]="{
+        'background-cards bg-primary-subtle': barterProduct.id_estado === 1,
+        'background-cards bg-success-subtle': barterProduct.id_estado === 2,
+        'background-cards bg-warning-subtle': barterProduct.id_estado === 3,
+      }">
+        <img [src]="'data:image/' + barterProduct.images.type + ';base64,' + barterProduct.images.image"
+          class="img-card card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{barterProduct.titulo}}</h5>
+          <p class="card-text mb-0"><small class="text-body-secondary">
+            <svg width="20px" height="34px" fill="#ffffff" viewBox="0 0 20 20" stroke="#ffffff" stroke-width="0.0002"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#000000" stroke-width="1.4"><path d="M19.388.405a.605.605 0 0 0-1.141.399c.929 2.67-.915 4.664-2.321 5.732l-.568-.814c-.191-.273-.618-.5-.95-.504l-3.188.014a2.162 2.162 0 0 0-1.097.338L.729 12.157a1.01 1.01 0 0 0-.247 1.404l4.269 6.108c.32.455.831.4 1.287.082l9.394-6.588c.27-.191.582-.603.692-.918l.998-3.145c.11-.314.043-.793-.148-1.066l-.346-.496c1.888-1.447 3.848-4.004 2.76-7.133zm-4.371 9.358a1.608 1.608 0 0 1-2.24-.396 1.614 1.614 0 0 1 .395-2.246 1.607 1.607 0 0 1 1.868.017c-.272.164-.459.26-.494.275a.606.606 0 0 0 .259 1.153c.086 0 .174-.02.257-.059.194-.092.402-.201.619-.33a1.615 1.615 0 0 1-.664 1.586z"></path></g><g id="SVGRepo_iconCarrier"><path d="M19.388.405a.605.605 0 0 0-1.141.399c.929 2.67-.915 4.664-2.321 5.732l-.568-.814c-.191-.273-.618-.5-.95-.504l-3.188.014a2.162 2.162 0 0 0-1.097.338L.729 12.157a1.01 1.01 0 0 0-.247 1.404l4.269 6.108c.32.455.831.4 1.287.082l9.394-6.588c.27-.191.582-.603.692-.918l.998-3.145c.11-.314.043-.793-.148-1.066l-.346-.496c1.888-1.447 3.848-4.004 2.76-7.133zm-4.371 9.358a1.608 1.608 0 0 1-2.24-.396 1.614 1.614 0 0 1 .395-2.246 1.607 1.607 0 0 1 1.868.017c-.272.164-.459.26-.494.275a.606.606 0 0 0 .259 1.153c.086 0 .174-.02.257-.059.194-.092.402-.201.619-.33a1.615 1.615 0 0 1-.664 1.586z"></path></g></svg>
+            {{barterProduct.equivalente_moneda_local}}
+          </small></p>
+          <p class="card-text mb-0"><small class="text-body-secondary">
+            <svg fill="#ffffff" viewBox="0 0 24 24" width="20px" height="34px" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#000000" stroke-width="3.504"><path d="M15,22a6,6,0,1,1,6-6A6,6,0,0,1,15,22ZM8.5,8.857c3.038,0,5.5-1.535,5.5-3.428S11.538,2,8.5,2,3,3.535,3,5.429,5.462,8.857,8.5,8.857ZM7.673,12.8a8.018,8.018,0,0,1,1.368-2.119c-.18.011-.356.033-.541.033C5.462,10.714,3,9.179,3,7.286V9.428C3,11.145,5.032,12.549,7.673,12.8Zm-.534,4.656A8.03,8.03,0,0,1,7,16c0-.24.015-.477.036-.712C4.712,14.889,3,13.576,3,12v2.143C3,15.742,4.762,17.077,7.139,17.456ZM8.5,22a8.83,8.83,0,0,0,1.079-.067,5.451,5.451,0,0,1-.673-.762,8.064,8.064,0,0,1-.929-1.345C5.188,19.66,3,18.211,3,16.429v2.142C3,20.465,5.462,22,8.5,22Z"></path></g><g id="SVGRepo_iconCarrier"><path d="M15,22a6,6,0,1,1,6-6A6,6,0,0,1,15,22ZM8.5,8.857c3.038,0,5.5-1.535,5.5-3.428S11.538,2,8.5,2,3,3.535,3,5.429,5.462,8.857,8.5,8.857ZM7.673,12.8a8.018,8.018,0,0,1,1.368-2.119c-.18.011-.356.033-.541.033C5.462,10.714,3,9.179,3,7.286V9.428C3,11.145,5.032,12.549,7.673,12.8Zm-.534,4.656A8.03,8.03,0,0,1,7,16c0-.24.015-.477.036-.712C4.712,14.889,3,13.576,3,12v2.143C3,15.742,4.762,17.077,7.139,17.456ZM8.5,22a8.83,8.83,0,0,0,1.079-.067,5.451,5.451,0,0,1-.673-.762,8.064,8.064,0,0,1-.929-1.345C5.188,19.66,3,18.211,3,16.429v2.142C3,20.465,5.462,22,8.5,22Z"></path></g></svg>
+            {{barterProduct.equivalente_moneda_virtual}}
+          </small></p>
+          <p class="card-text mb-0"><small class="text-body-secondary">
+            <svg width="20px" height="34px" viewBox="0 0 34 34" version="1.1">
+              <g id="surface1">
+              <path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,100%,100%);fill-opacity:1;" d="M 4.25 12.75 L 29.75 12.75 L 29.75 28.332031 C 29.75 29.117188 29.117188 29.75 28.332031 29.75 L 5.667969 29.75 C 4.882812 29.75 4.25 29.117188 4.25 28.332031 Z M 4.25 12.75 "/>
+              <path style="fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(0%,0%,0%);stroke-opacity:1;stroke-miterlimit:4;" d="M 19.999081 21 L 4.000919 21 C 3.446691 21 3 20.553309 3 19.999081 L 3 9 L 21 9 L 21 19.999081 C 21 20.553309 20.553309 21 19.999081 21 Z M 21 4.999081 C 21 4.44761 20.553309 4.000919 19.999081 4.000919 L 4.000919 4.000919 C 3.446691 4.000919 3 4.44761 3 4.999081 L 3 9 L 21 9 Z M 16.000919 3 L 16.000919 6 M 7.999081 3 L 7.999081 6 M 12 16.999081 L 12 13.000919 M 10.000919 15 L 13.999081 15 " transform="matrix(1.416667,0,0,1.416667,0,0)"/>
+              </g>
+              </svg>      
+            {{barterProduct.fecha_publicacion}}
+          </small></p>
+        </div>
+      </div>
+    </div>
+  </div>

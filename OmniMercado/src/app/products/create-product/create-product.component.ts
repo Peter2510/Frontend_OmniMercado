@@ -163,7 +163,7 @@ export class CreateProduct {
         const message = this.loginService.userActiveToPublish() === 0 ? 'Publicacion pendiente de aprobación' : r_success.message;
 
         Swal.fire('', message, 'success').then(() => {
-          this.router.navigate(['ventas-publicadas']);
+          this.router.navigate(['productos-publicados']);
         });
         
       },
