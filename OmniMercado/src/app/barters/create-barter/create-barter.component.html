@@ -15,7 +15,7 @@
                             <p class="fs-2 text-center color-text">Crear intercambio</p>
     
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="title" placeholder="Titulo" [(ngModel)]="barterData.title" [ngModelOptions]="{standalone: true}">
+                                <input type="text" class="form-control" id="title" placeholder="Titulo" [(ngModel)]="barterProductData.title" [ngModelOptions]="{standalone: true}">
                                 <label for="title">Titulo</label>
                                 <div class="alert alert-warning mt-2" role="alert" *ngIf="titleNull">
                                     Debes ingresar un titulo
@@ -24,18 +24,18 @@
                             </div>
     
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" min="0" id="virtualCoin" placeholder="Moneda Virtual" [(ngModel)]="barterData.virtual_coin_equivalent" [ngModelOptions]="{standalone: true}">
+                                <input type="number" class="form-control" min="0" id="virtualCoin" placeholder="Moneda Virtual" [(ngModel)]="barterProductData.virtual_coin_equivalent" [ngModelOptions]="{standalone: true}">
                                 <label for="virtualCoin">Equivalente en moneda Virtual</label>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" min="0" id="localCurrency" placeholder="Moneda Local" [(ngModel)]="barterData.local_currency_equivalent" [ngModelOptions]="{standalone: true}">
+                                <input type="number" class="form-control" min="0" id="localCurrency" placeholder="Moneda Local" [(ngModel)]="barterProductData.local_currency_equivalent" [ngModelOptions]="{standalone: true}">
                                 <label for="localCurrency">Equivalente moneda local</label>
                             </div>
     
 
                             <div class="form-floating mb-3">
-                                <select class="form-select" aria-label="Default select example" [(ngModel)]="barterData.condition" [ngModelOptions]="{standalone: true}">
+                                <select class="form-select" aria-label="Default select example" [(ngModel)]="barterProductData.condition" [ngModelOptions]="{standalone: true}">
                                     <option class="d-block truncate-te" selected disabled [value]="0" >Seleccionar condición</option>
                                     <option class="form-select" *ngFor="let condition of productConditionTypes" [value]="condition.id_tipo_condicion">{{condition.nombre}}</option>
                                 </select>
@@ -63,7 +63,7 @@
                             
                             <div class="mb-3">                                
                                 <label for="description" class="form-label color-text">Descripción</label>
-                                <textarea class="form-control" id="description" placeholder="Descripción" rows="3" [(ngModel)]="barterData.description" [ngModelOptions]="{standalone: true}"></textarea>
+                                <textarea class="form-control" id="description" placeholder="Descripción" rows="3" [(ngModel)]="barterProductData.description" [ngModelOptions]="{standalone: true}"></textarea>
                               </div>
                               <div class="alert alert-warning mt-2" role="alert" *ngIf="descriptionNull">
                                 Debes ingresar una descripción del producto a intercambiar
@@ -71,7 +71,7 @@
 
                               <div class="mb-3">                                
                                 <label for="requestDescription" class="form-label color-text">Descripción del producto, bien o servicio que deseas a cambio</label>
-                                <textarea class="form-control" id="requestDescription" placeholder="Descripción del intercambio" rows="3" [(ngModel)]="barterData.request_description" [ngModelOptions]="{standalone: true}"></textarea>
+                                <textarea class="form-control" id="requestDescription" placeholder="Descripción del intercambio" rows="3" [(ngModel)]="barterProductData.request_description" [ngModelOptions]="{standalone: true}"></textarea>
                               </div>
                               <div class="alert alert-warning mt-2" role="alert" *ngIf="requestDescriptionNull">
                                 Debes ingresar una descripción del producto, bien o servicio que deseas a cambio

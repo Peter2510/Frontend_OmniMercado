@@ -8,6 +8,7 @@ import { ProductConditionType } from 'src/app/models/ProductConditionType';
 import { CreateProductService } from 'src/app/products/create-product/service/create-product.service';
 import { ProductService } from 'src/app/products/service/product.service';
 import Swal from 'sweetalert2';
+import { CreateBarterService } from './service/create-barter.service';
 
 @Component({
   selector: 'app-create-barter',
@@ -30,17 +31,17 @@ export class CreateBarterComponent {
   maxFiles: number = 5;
   photos: File[] | null = null;
 
-  barterData:BarterData = {
+  barterProductData:BarterData = {
     title: '',
     virtual_coin_equivalent: 0,
     local_currency_equivalent: 0,
+    description: '',
     request_description: '',
     condition: 0,
-    description: '',
     categories: []
   };
 
-  constructor(private formBuilder : FormBuilder,private productService:ProductService,private router:Router,private loginService:LoginService){}
+  constructor(private formBuilder : FormBuilder,private productService:ProductService,private barterProductService:CreateBarterService,private router:Router,private loginService:LoginService){}
 
   getProductConditionTypes(){
     this.productService.getProductConditionTypes().subscribe({
@@ -122,18 +123,18 @@ export class CreateBarterComponent {
 
   validateData(){
   
-    this.titleNull = this.barterData.title == '';
-    this.conditionNull = this.barterData.condition == 0;
+    this.titleNull = this.barterProductData.title == '';
+    this.conditionNull = this.barterProductData.condition == 0;
     this.categoryNull = this.form.getRawValue().category.length ==0;
     this.photosNull = this.photos == null;
-    this.descriptionNull = this.barterData.description == '';
-    this.requestDescriptionNull = this.barterData.request_description == '';
+    this.descriptionNull = this.barterProductData.description == '';
+    this.requestDescriptionNull = this.barterProductData.request_description == '';
 
-    this.barterData.virtual_coin_equivalent = this.barterData.virtual_coin_equivalent === null ? 0 : this.barterData.virtual_coin_equivalent;
-    this.barterData.local_currency_equivalent = this.barterData.local_currency_equivalent === null ? 0 : this.barterData.local_currency_equivalent;
+    this.barterProductData.virtual_coin_equivalent = this.barterProductData.virtual_coin_equivalent === null ? 0 : this.barterProductData.virtual_coin_equivalent;
+    this.barterProductData.local_currency_equivalent = this.barterProductData.local_currency_equivalent === null ? 0 : this.barterProductData.local_currency_equivalent;
     
     if(!this.titleNull && !this.conditionNull && !this.categoryNull && this.photos!=null && !this.descriptionNull && !this.requestDescriptionNull){
-        this.barterData.categories = this.selectedCategories();
+        this.barterProductData.categories = this.selectedCategories();
 
         if(!(this.photos.length>this.maxFiles)){
 
@@ -155,21 +156,22 @@ export class CreateBarterComponent {
   
 
   createSale(){
-    console.log(this.barterData)
-    // this.productService.createProduct(this.saleData,this.photos,this.selectedCategories()).subscribe({
-    //   next: (r_success)=>{
+    console.log(this.barterProductData)
+    this.barterProductService.createBarterProduct(this.barterProductData,this.photos,this.selectedCategories()).subscribe({
+      next: (r_success)=>{
 
-    //     const message = this.loginService.userActiveToPublish() === 0 ? 'Publicacion pendiente de aprobación' : r_success.message;
+        const message = this.loginService.userActiveToPublish() === 0 ? 'Publicacion pendiente de aprobación' : r_success.message;
 
-    //     Swal.fire('', message, 'success').then(() => {
-    //       this.router.navigate(['ventas-publicadas']);
-    //     });
-        
-    //   },
-    //   error:(err:HttpErrorResponse)=>{
-    //     this.handleErrorResponse(err);
-    //   }
-    // })
+        Swal.fire('', message, 'success').then(() => {
+          //this.router.navigate(['ventas-publicadas']);
+          alert('todo ok')
+        });
+
+      },
+      error:(err:HttpErrorResponse)=>{
+        this.handleErrorResponse(err);
+      }
+    })
   }
 
 
