@@ -13,8 +13,6 @@ import { SignupComponent } from './signup/signup.component';
 import { ProductsComponent } from './products/products.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VoluntariadosComponent } from './volunteering/volunteering.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
-import { AdminProfileComponent } from './admin-profile/admin-profile.component';
 import { UserNavComponent } from './user/user-nav/user-nav.component';
 import { AdminNavComponent } from './admin/admin-nav/admin-nav.component';
 import { CreateProduct } from './products/create-product/create-product.component';
@@ -28,6 +26,7 @@ import { UserBarterProductsComponent } from './user/user-barter-products/user-ba
 import { BarterProductsPendingApprovalComponent } from './admin/barter-products-pending-approval/barter-products-pending-approval.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,8 +38,6 @@ import { BarterProductsPendingApprovalComponent } from './admin/barter-products-
     SignupComponent,
     ProductsComponent,
     VoluntariadosComponent,
-    UserProfileComponent,
-    AdminProfileComponent,
     UserNavComponent,
     AdminNavComponent,
     CreateProduct,

@@ -8,8 +8,8 @@ import { UserComponent } from './user/user.component';
 import { VisitorComponent } from './visitor/visitor.component';
 import { usuarioGuard } from './login/guard/usuario/usuario.guard';
 import { SignupComponent } from './signup/signup.component';
-import { AdminProfileComponent } from './admin-profile/admin-profile.component';
-import { UserProfileComponent } from './user-profile/user-profile.component';
+import { AdminProfileComponent } from './admin/admin-profile/admin-profile.component';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
 
 import { CreateProduct } from './products/create-product/create-product.component';
 import { UserProductsComponent } from './user/user-products/user-products.component';
