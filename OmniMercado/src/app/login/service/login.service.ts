@@ -95,6 +95,16 @@ export class LoginService {
       }
     }
 
+    public getIdAdmin(){
+      let userStorage = this.getUser();
+      if(userStorage!=null){
+        return userStorage.id_administrativo;
+      }else{
+        this.logOut();
+        return null;
+      }
+    }
+
     public getAdmin(){
       let userStorage = this.getUser();
       if(userStorage!=null){

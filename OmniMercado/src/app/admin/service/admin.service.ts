@@ -11,7 +11,7 @@ const baseURL = environment.apiUrl;
 })
 export class AdminService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private loginService:LoginService) { }
 
   public getRoles(): Observable<any> {
 
@@ -29,6 +29,13 @@ export class AdminService {
 
     return this.http.post<any>(`${baseURL}/crear-admin`, formData);
 
+  }
+
+  getAdminProfile():Observable<any>{
+    
+    let user_id = this.loginService.getIdAdmin();
+
+    return this.http.get<any>(`${baseURL}/perfil-admin/${user_id}`);
   }
 
 }

@@ -1,0 +1,41 @@
+<app-user-nav></app-user-nav>
+<div class="col-lg-9 offset-lg-2" style="overflow-y: hidden;">
+    <div class="p-3 rounded mt-5 d-flex justify-content-center align-items-center">
+        <div class="mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <div class="p-4 shadow-lg">
+                        <div class="form-color">
+                            <p class="fs-2 text-center color-text">Mi perfil</p>
+                            <div class="text-center mx-auto my-3">
+                                <img class="rounded-circle" [src]="getEncodedImageSource()" alt="FotoPerfil" width="115"
+                                    height="120">
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="nombre" placeholder="nombre"
+                                    [(ngModel)]="user.nombre" [ngModelOptions]="{standalone: true}" readonly>
+                                <label for="nombre">Nombre</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="correo" placeholder="email"
+                                    [(ngModel)]="user.correo" [ngModelOptions]="{standalone: true}" readonly>
+                                <label for="correo">Correo</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control" id="fechanacimiento"
+                                    placeholder="fecha_nacimiento" [(ngModel)]="user.fecha_nacimiento"
+                                    [ngModelOptions]="{standalone: true}" readonly>
+                                <label for="fechanacimiento">Fecha de nacimiento</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="genero" placeholder="genero"
+                                    [(ngModel)]="user.genero" [ngModelOptions]="{standalone: true}" readonly>
+                                <label for="nombre">Género</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

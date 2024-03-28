@@ -15,5 +15,6 @@ export class User{
    activo_publicar:Boolean;
    activo_plataforma:Boolean;
    url_imagen:String;
+   genero: String;
    tipo_usuario:Number;
 }

@@ -24,6 +24,8 @@ import { BartersComponent } from './barters/barters.component';
 import { CreateBarterComponent } from './barters/create-barter/create-barter.component';
 import { UserBarterProductsComponent } from './user/user-barter-products/user-barter-products.component';
 import { BarterProductsPendingApprovalComponent } from './admin/barter-products-pending-approval/barter-products-pending-approval.component';
+import { AdminProfileComponent } from './admin/admin-profile/admin-profile.component';
+import { UserProfileComponent } from './user/user-profile/user-profile.component';
 
 
 
@@ -47,7 +49,9 @@ import { BarterProductsPendingApprovalComponent } from './admin/barter-products-
     BartersComponent,
     CreateBarterComponent,
     UserBarterProductsComponent,
-    BarterProductsPendingApprovalComponent
+    BarterProductsPendingApprovalComponent,
+    AdminProfileComponent,
+    UserProfileComponent
     ],
   imports: [
     BrowserModule,

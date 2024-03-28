@@ -10,8 +10,8 @@
     <div class="col-md-4 mt-3" *ngFor="let product of products">
       <div class="card mb-3" [ngClass]="{
         'background-cards bg-warning-subtle': product.id_estado_producto === 1,
-        'background-cards bg-success-subtle': product.id_estado_producto === 2,
-        'background-cards bg-info-subtle': product.id_estado_producto === 3,
+        'background-cards bg-info-subtle': product.id_estado_producto === 2,
+        'background-cards bg-success-subtle': product.id_estado_producto === 3,
       }">
         <img [src]="'data:image/' + product.images.type + ';base64,' + product.images.image"
           class="img-card card-img-top">

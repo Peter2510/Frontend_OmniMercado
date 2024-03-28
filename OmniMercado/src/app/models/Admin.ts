@@ -7,5 +7,5 @@ export class Admin{
     activo:Boolean;
     url_imagen:String;
     tipo_usuario:Number;
-    genero: number
+    genero: String
 }
