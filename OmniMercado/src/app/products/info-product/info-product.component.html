@@ -1,0 +1,55 @@
+<div class="col-lg-12" style="overflow-y: hidden;">
+    <div class="p-3 rounded mt-5 d-flex justify-content-center">
+        <div *ngIf="!product">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <div id="carouselProductIndicators" class="carousel slide">
+            <h1 class="color-text text-center mb-4">{{product.titulo}}</h1>
+            <div class="carousel-indicators">
+                <button *ngFor="let image of product?.images; let i = index" type="button"
+                    data-bs-target="#carouselProductIndicators" [attr.data-bs-slide-to]="i" [class.active]="i === 0"
+                    [attr.aria-label]="'Slide ' + (i + 1)"></button>
+            </div>
+            <div class="carousel-inner">
+                <div *ngFor="let image of product?.images; let i = index" class="carousel-item"
+                    [class.active]="i === 0">
+                    <img *ngIf="image" [src]="'data:image/' + image.type + ';base64,' + image.image" class="d-block"
+                        alt="..." width="350" height="350">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselProductIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselProductIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="p-5 color-text" *ngIf="product">
+        <h4>Detalles</h4>
+        <p>
+            {{product.descripcion}}
+        </p>
+        <h4>Condición</h4>
+        <p>
+            {{product.condicion}}
+        </p>
+        <h4>Precio</h4>
+        <p>
+            {{product.precio_moneda_virtual}}
+        </p>
+        <h4>Información del vendedor</h4>
+        <p>
+            Nombre: {{product.user.nombre}} <br>
+            Correo: {{product.user.correo}}
+        </p>
+    </div>
+
+</div>

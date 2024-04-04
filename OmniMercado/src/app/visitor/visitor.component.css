@@ -1,11 +1,3 @@
-nav{
-    background-color: var(--tertiary-color);
-}
-
-nav a{
-    color: var(--text-color)
-}
-
 .posts{
     background-color: var(--quaternary-color);
 }

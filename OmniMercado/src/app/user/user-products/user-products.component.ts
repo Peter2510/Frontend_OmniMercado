@@ -18,6 +18,8 @@ export class UserProductsComponent {
     this.productService.getUserProducts().subscribe({
       next: (r_success)=>{
           this.products = r_success.products;
+          console.log(this.products);
+          
       },
       error: (err:HttpErrorResponse)=>{
 

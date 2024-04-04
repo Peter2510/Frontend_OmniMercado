@@ -26,7 +26,12 @@ import { UserBarterProductsComponent } from './user/user-barter-products/user-ba
 import { BarterProductsPendingApprovalComponent } from './admin/barter-products-pending-approval/barter-products-pending-approval.component';
 import { AdminProfileComponent } from './admin/admin-profile/admin-profile.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
-
+import { InfoProductVisitorComponent } from './products/info-product-visitor/info-product-visitor.component';
+import { InfoProductUserComponent } from './products/info-product-user/info-product-user.component';
+import { InfoProductAdminComponent } from './products/info-product-admin/info-product-admin.component';
+import { VisitorNavComponent } from './visitor/visitor-nav/visitor-nav.component';
+import { InfoProductComponent } from './products/info-product/info-product.component';
+import { SalesComponent } from './user/sales/sales.component';
 
 
 @NgModule({
@@ -51,7 +56,13 @@ import { UserProfileComponent } from './user/user-profile/user-profile.component
     UserBarterProductsComponent,
     BarterProductsPendingApprovalComponent,
     AdminProfileComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    InfoProductVisitorComponent,
+    InfoProductUserComponent,
+    InfoProductAdminComponent,
+    VisitorNavComponent,
+    InfoProductComponent,
+    SalesComponent
     ],
   imports: [
     BrowserModule,

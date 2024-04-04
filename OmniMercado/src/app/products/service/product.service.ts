@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { LoginService } from 'src/app/login/service/login.service';
+import { BehaviorSubject } from 'rxjs';
 
 
 const baseURL = environment.apiUrl;
@@ -13,7 +14,11 @@ const baseURL = environment.apiUrl;
 
 export class ProductService {
  
+  private dataSubject = new BehaviorSubject<any>(null);
+
   constructor(private http: HttpClient,private loginService:LoginService) { }
+
+  data$ = this.dataSubject.asObservable();
 
   public getAvailableProducts(): Observable<any> {
 
@@ -28,7 +33,7 @@ export class ProductService {
   
   public getUserAvailableProducts(){
     let user_id = this.loginService.getIdUser();
-    return this.http.get<any>(`${baseURL}/publicaciones-disponibles-para-usuario/${user_id}`);
+    return this.http.get<any>(`${baseURL}/productos-disponibles-para-usuario/${user_id}`);
   }
 
   public getProductsPendingApproval(){
@@ -45,5 +50,13 @@ export class ProductService {
     return this.http.get<any>(`${baseURL}/obtener-categorias-productos`);
   }
 
-  
+  public getProductById(id: number): Observable<any> {
+
+    return this.http.get<any>(`${baseURL}/producto/${id}`);
+  }
+
+  sendId(data: any) {
+    this.dataSubject.next(data);
+  }
+
 }

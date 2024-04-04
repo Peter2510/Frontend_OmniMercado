@@ -5,22 +5,21 @@ import { Product } from 'src/app/models/Product';
 import { ProductService } from 'src/app/products/service/product.service';
 
 @Component({
-  selector: 'app-products-pending-approval',
-  templateUrl: './products-pending-approval.component.html',
-  styleUrls: ['./products-pending-approval.component.css']
+  selector: 'app-sales',
+  templateUrl: './sales.component.html',
+  styleUrls: ['./sales.component.css']
 })
-export class ProductsPendingApprovalComponent {
+export class SalesComponent {
 
-  products:Product[]=[];
+  products:Product[] =[];
 
   constructor(private productService:ProductService,private router:Router){}
 
   ngOnInit(){
-    this.productService.getProductsPendingApproval().subscribe({
+    this.productService.getUserAvailableProducts().subscribe({
       next: (r_success)=>{
-
-        this.products = r_success.products;
-
+          this.products = r_success.products;
+          
       },
       error: (err:HttpErrorResponse)=>{
 
@@ -30,7 +29,6 @@ export class ProductsPendingApprovalComponent {
 
   public seeProductDetails(id:any){
     this.productService.sendId({ id: id });
-    this.router.navigate(['/info-producto-a']);
+    this.router.navigate(['/info-producto-u']);
   }
-
 }

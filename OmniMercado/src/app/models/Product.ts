@@ -9,4 +9,6 @@ export class Product{
     id_publicador?:number        
     categorias:any[]
     images:any
+    user:any
+    condicion:string
 }

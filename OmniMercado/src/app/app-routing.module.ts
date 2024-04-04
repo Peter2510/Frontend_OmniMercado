@@ -18,6 +18,10 @@ import { CreateAdminComponent } from './admin/create-admin/create-admin.componen
 import { CreateBarterComponent } from './barters/create-barter/create-barter.component';
 import { UserBarterProductsComponent } from './user/user-barter-products/user-barter-products.component';
 import { BarterProductsPendingApprovalComponent } from './admin/barter-products-pending-approval/barter-products-pending-approval.component';
+import { InfoProductVisitorComponent } from './products/info-product-visitor/info-product-visitor.component';
+import { InfoProductUserComponent } from './products/info-product-user/info-product-user.component';
+import { InfoProductAdminComponent } from './products/info-product-admin/info-product-admin.component';
+import { SalesComponent } from './user/sales/sales.component';
 
 
 const routes: Routes = [
@@ -32,14 +36,16 @@ const routes: Routes = [
   { path: "crear-administrativo", component: CreateAdminComponent, canActivate: [adminGuard]},
 
   { path: "usuario", component: UserComponent , canActivate: [usuarioGuard] },
+  { path: "compras", component: SalesComponent , canActivate: [usuarioGuard] },
   { path: "perfil-usuario", component: UserProfileComponent , canActivate: [usuarioGuard] },
   { path: "crear-venta", component: CreateProduct , canActivate: [usuarioGuard] },
   { path: "crear-intercambio", component: CreateBarterComponent , canActivate: [usuarioGuard] },
   
   { path: "productos-publicados", component: UserProductsComponent , canActivate: [usuarioGuard] },
   { path: "intercambios-publicados", component: UserBarterProductsComponent , canActivate: [usuarioGuard] },
-
-  
+  { path: "info-producto-v", component: InfoProductVisitorComponent},
+  { path: "info-producto-u", component: InfoProductUserComponent, canActivate: [usuarioGuard] },
+  { path: "info-producto-a", component: InfoProductAdminComponent, canActivate: [adminGuard] },
 
 
   { path: "visitante", component: VisitorComponent },
