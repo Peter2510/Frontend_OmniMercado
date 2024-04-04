@@ -59,4 +59,24 @@ export class ProductService {
     this.dataSubject.next(data);
   }
 
+  public setProductToPending(id: number): Observable<any> {
+
+    return this.http.patch<any>(`${baseURL}/cambiar-estado-producto-a-pendiente/${id}`, null);
+  }
+
+  public setProductToAvailable(id: number): Observable<any> {
+
+    return this.http.patch<any>(`${baseURL}/cambiar-estado-producto-a-disponible/${id}`, null);
+  }
+
+  public setProductToSold(id: number): Observable<any> {
+      
+      return this.http.patch<any>(`${baseURL}/cambiar-estado-producto-a-vendido/${id}`, null);
+  }
+
+  public setProductToRejected(id: number): Observable<any> {
+      
+    return this.http.patch<any>(`${baseURL}/cambiar-estado-producto-a-rechazado/${id}`, null);
+  }
+
 }

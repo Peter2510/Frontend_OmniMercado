@@ -27,7 +27,7 @@
             {{product.fecha_publicacion}}
           </p>
           <div class="mt-2">
-            <button type="button" class="btn me-3">
+            <button type="button" class="btn me-3" (click)="approveProduct($event,product.id_producto)">
               <svg fill="#000000" width="30px" height="45px" viewBox="0 0 14 14" role="img" focusable="false"
                 aria-hidden="true">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -39,7 +39,7 @@
                 </g>
               </svg>
             </button>
-            <button type="button" class="btn me-2">
+            <button type="button" class="btn me-2" (click)="rejectProduct($event,product.id_producto)">
               <svg viewBox="0 0 24 24" fill="none" stroke="#ff0000" width="40px" height="45px">
                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
