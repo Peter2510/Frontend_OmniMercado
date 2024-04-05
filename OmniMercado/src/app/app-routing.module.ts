@@ -22,6 +22,7 @@ import { InfoProductVisitorComponent } from './products/info-product-visitor/inf
 import { InfoProductUserComponent } from './products/info-product-user/info-product-user.component';
 import { InfoProductAdminComponent } from './products/info-product-admin/info-product-admin.component';
 import { SalesComponent } from './user/sales/sales.component';
+import { CreateVolunteeringComponent } from './volunteering/create-volunteering/create-volunteering.component';
 
 
 const routes: Routes = [
@@ -40,12 +41,14 @@ const routes: Routes = [
   { path: "perfil-usuario", component: UserProfileComponent , canActivate: [usuarioGuard] },
   { path: "crear-venta", component: CreateProduct , canActivate: [usuarioGuard] },
   { path: "crear-intercambio", component: CreateBarterComponent , canActivate: [usuarioGuard] },
+  { path: "crear-voluntariado", component: CreateVolunteeringComponent , canActivate: [usuarioGuard] },
   
   { path: "productos-publicados", component: UserProductsComponent , canActivate: [usuarioGuard] },
   { path: "intercambios-publicados", component: UserBarterProductsComponent , canActivate: [usuarioGuard] },
   { path: "info-producto-v", component: InfoProductVisitorComponent},
   { path: "info-producto-u", component: InfoProductUserComponent, canActivate: [usuarioGuard] },
   { path: "info-producto-a", component: InfoProductAdminComponent, canActivate: [adminGuard] },
+
 
 
   { path: "visitante", component: VisitorComponent },

@@ -32,6 +32,7 @@ import { InfoProductAdminComponent } from './products/info-product-admin/info-pr
 import { VisitorNavComponent } from './visitor/visitor-nav/visitor-nav.component';
 import { InfoProductComponent } from './products/info-product/info-product.component';
 import { SalesComponent } from './user/sales/sales.component';
+import { CreateVolunteeringComponent } from './volunteering/create-volunteering/create-volunteering.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { SalesComponent } from './user/sales/sales.component';
     InfoProductAdminComponent,
     VisitorNavComponent,
     InfoProductComponent,
-    SalesComponent
+    SalesComponent,
+    CreateVolunteeringComponent
     ],
   imports: [
     BrowserModule,
