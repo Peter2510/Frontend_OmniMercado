@@ -19,34 +19,39 @@ export class CreateVolunteeringComponent {
   dropdownSettings;
   form: FormGroup;
   titleNull = false;
-  conditionNull = false;
+  maxVolunteersNull = false;
   categoryNull = false;
-  photosNull = false;
+  minAgeNull = false;
+  maxAgeNull = false;
+  placeNull = false;
+  dateNull = false;
+  timeNull = false;
+  oldDate = false;
   requestDescriptionNull = false;
+  photosNull = false;
+  codeNull = false;
   descriptionNull = false;
   productCategoryTypesSelected;
   productCategoryTypes:VolunteeringCategory[];
   maxFiles: number = 5;
   photos: File[] | null = null;
+  price: number = 0;
   volunteering:VolunteeringData = {
     codigo_pago : '',
     titulo : '',
-    retribucion_moneda_virtual: 0,
+    retribucion_moneda_virtual:0,
     descripcion: '',
     lugar: '',
-    fecha: new Date(),
-    hora: new Date(),
+    fecha: null,
+    hora: null,
     maximo_voluntariados: 0,
     minimo_edad: 0,
     maximo_edad: 0,
-    id_estado: 0,
     descripcion_retribucion: '',
-    fecha_publicacion: new Date(),
     categories :[]
   }
-  price:number = this.volunteering.retribucion_moneda_virtual * this.volunteering.maximo_voluntariados;
+  
  
-
   constructor(private formBuilder : FormBuilder,private router:Router,private loginService:LoginService,private volunteeringService:VolunteeringService){}
 
   ngOnInit(){
@@ -110,32 +115,65 @@ export class CreateVolunteeringComponent {
     })
   }
 
-  // validateData(){
-  
-  //   this.titleNull = this.volunteering.titulo == '';
-  //   this.categoryNull = this.form.getRawValue().category.length ==0;
-  //   this.photosNull = this.photos == null;
-  //   this.descriptionNull = this.volunteering.descripcion == '';
-  //   this.requestDescriptionNull = this.volunteering.descripcion_retribucion == '';
-  //   this.volunteering.retribucion_moneda_virtual = this.volunteering.retribucion_moneda_virtual === null ? 0 : this.volunteering.retribucion_moneda_virtual;
-  //   this.volunteering.lugar = this.volunteering.lugar === null ? '' : this.volunteering.lugar;
+  calculateCost(){
+    this.price = this.volunteering.retribucion_moneda_virtual * this.volunteering.maximo_voluntariados;
+  }
+
+  validateDate(){
+    //validate date to be less than today
+    let today = new Date();
+    if(this.volunteering.fecha){
+    let date = new Date(this.volunteering.fecha);
+    if(date < today){
+      this.oldDate = true;
+    }else{
+      this.oldDate = false;
+    }
+  }
+  }
+
+  validateData(){
+   
+    this.titleNull = this.volunteering.titulo == '';
+    this.maxVolunteersNull = this.volunteering.maximo_voluntariados == 0 || this.volunteering.maximo_voluntariados == null;
+    this.categoryNull = this.form.getRawValue().category.length ==0;
+    this.descriptionNull = this.volunteering.descripcion == '';
+    this.maxAgeNull = this.volunteering.maximo_edad == 0 || this.volunteering.maximo_edad == null;
+    this.minAgeNull = this.volunteering.minimo_edad == 0 || this.volunteering.minimo_edad == null;
+    this.placeNull = this.volunteering.lugar == '';
+    this.dateNull = this.volunteering.fecha == null;
+    this.timeNull = this.volunteering.hora == null;
+    this.photosNull = this.photos == null;
+    this.volunteering.retribucion_moneda_virtual = this.volunteering.retribucion_moneda_virtual === null ? 0 : this.volunteering.retribucion_moneda_virtual;
     
     
-  //   if(!this.titleNull && !this.conditionNull && !this.categoryNull && this.photos!=null && !this.descriptionNull && !this.requestDescriptionNull){
-  //       this.volunteering.categories = this.selectedCategories();
+    
+    if(!this.titleNull && !this.categoryNull &&
+       this.photos!=null && !this.descriptionNull &&
+        !this.placeNull && !this.dateNull && !this.timeNull && 
+        !this.maxVolunteersNull && !this.minAgeNull && !this.maxAgeNull){
 
-  //       if(!(this.photos.length>this.maxFiles)){
+        this.volunteering.categories = this.selectedCategories();
 
-  //         this.createSale()
-  //         // console.log(this.selectedCategories)
+        if(!(this.photos.length>this.maxFiles)){
+
+          if(this.volunteering.retribucion_moneda_virtual == 0 && this.volunteering.descripcion_retribucion == ''){
+            
+            this.requestDescriptionNull = true;
+            return;
+          }
+          
+          this.createVolunteering();
+          
+
       
-  //       }else{
-  //         Swal.fire('',`Solo se permite un máximo de ${this.maxFiles} fotos por publicación`,'info');
-  //       }
+        }else{
+          Swal.fire('',`Solo se permite un máximo de ${this.maxFiles} fotos por publicación`,'info');
+        }
 
-  //   }
+    }
 
-  // }
+  }
 
   onFileChange(event: any) {
     const files = event.target.files;
@@ -143,29 +181,26 @@ export class CreateVolunteeringComponent {
   }
   
 
-  // createSale(){
-  //   console.log(this.volunteering)
-  //   this.barterProductService.createBarterProduct(this.volunteering,this.photos,this.selectedCategories()).subscribe({
-  //     next: (r_success)=>{
-
-  //       const message = this.loginService.userActiveToPublish() === 0 ? 'Publicacion pendiente de aprobación' : r_success.message;
-
-  //       Swal.fire('', message, 'success').then(() => {
-  //         this.router.navigate(['intercambios-publicados']);
-  //       });
-
-  //     },
-  //     error:(err:HttpErrorResponse)=>{
-  //       this.handleErrorResponse(err);
-  //     }
-  //   })
-  // }
+  createVolunteering(){
+    this.volunteeringService.createVolunteering(this.volunteering,this.photos,this.selectedCategories()).subscribe({
+      next: (r_success)=>{
+       const message = this.loginService.userActiveToPublish() === 0 ? 'Publicacion pendiente de aprobación' : r_success.message;
+       Swal.fire('', message, 'success').then(() => {
+          this.router.navigate(['intercambios-publicados']);
+        });
+     },
+      error:(err:HttpErrorResponse)=>{
+        this.handleErrorResponse(err);
+      }
+    })
+  }
 
   handleErrorResponse(error: HttpErrorResponse) {
     Swal.fire(
       'Lo sentimos', `Estamos experimentando problemas técnicos. Por favor, inténtalo de nuevo más tarde.`,
       'warning'
      );  
+     console.error(error);
 }
   
 }
@@ -176,13 +211,11 @@ interface VolunteeringData {
   retribucion_moneda_virtual:number;
   descripcion:string;
   lugar:string;
-  fecha:Date;
-  hora:Date;
+  fecha:Date | null;
+  hora:Date | null;
   maximo_voluntariados:number;
   minimo_edad:number;
   maximo_edad:number;
-  id_estado:number;
   descripcion_retribucion:string;
-  fecha_publicacion:Date;
   categories: any[];
 }

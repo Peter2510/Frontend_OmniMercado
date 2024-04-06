@@ -1,130 +1,163 @@
 <app-user-nav></app-user-nav>
 <div class="col-lg-9 offset-lg-2" style="overflow-y: hidden;">
-    
+
     <div class="p-3 rounded mt-5 d-flex justify-content-center align-items-center">
 
         <div class="mb-3" style="max-width: 540px;">
             <div class="row g-0">
-    
+
                 <div class="col-md-12">
-    
+
                     <div class="p-4 shadow-lg">
-    
-                        <form>
-    
+
+                        <form (ngSubmit)="validateData()">
+
                             <p class="fs-2 text-center color-text">Crear Voluntariado</p>
-    
+
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="title" placeholder="Titulo" [(ngModel)]="volunteering.titulo" [ngModelOptions]="{standalone: true}">
+                                <input type="text" class="form-control" id="title" placeholder="Titulo"
+                                    [(ngModel)]="volunteering.titulo" [ngModelOptions]="{standalone: true}">
                                 <label for="title">Titulo</label>
                                 <div class="alert alert-warning mt-2" role="alert" *ngIf="titleNull">
                                     Debes ingresar un titulo
-                                </div> 
-                            </div>
-    
-                            <div class="form-floating mb-3">
-                                <input type="number" class="form-control" min="0" id="volunt" placeholder="Cantidad máxima de voluntarios" [(ngModel)]="volunteering.maximo_voluntariados" [ngModelOptions]="{standalone: true}">
-                                <label for="volunt">Cantidad máxima de voluntarios</label>
+                                </div>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="number" class="form-control" min="0" id="virtualCoin" placeholder="Moneda Virtual" [(ngModel)]="volunteering.retribucion_moneda_virtual" [ngModelOptions]="{standalone: true}">
+                                <input type="number" class="form-control" min="0" id="volunt"
+                                    placeholder="Cantidad máxima de voluntarios"
+                                    [(ngModel)]="volunteering.maximo_voluntariados"
+                                    [ngModelOptions]="{standalone: true}" (input)="calculateCost()">
+                                <label for="volunt">Cantidad máxima de voluntarios</label>
+                                <div class="alert alert-warning mt-2" role="alert" *ngIf="maxVolunteersNull">
+                                    Debes ingresar una cantidad máxima de voluntarios
+                                </div>
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                <input type="number" class="form-control" min="0" id="virtualCoin"
+                                    placeholder="Moneda Virtual" [(ngModel)]="volunteering.retribucion_moneda_virtual"
+                                    [ngModelOptions]="{standalone: true}" (input)="calculateCost()">
                                 <label for="virtualCoin">Pago en moneda virtual por voluntario</label>
                             </div>
 
+
                             <div class="form-floating mb-3">
-                                <input readonly type="number" class="form-control" id="price" placeholder="Precio" [(ngModel)]="price" [ngModelOptions]="{standalone: true}">
-                                <label for="price">Costo del voluntariado</label>
+                                <input readonly type="number" class="form-control" id="price" placeholder="Precio"
+                                    [(ngModel)]="price" [ngModelOptions]="{standalone: true}">
+                                <label for="price">Costo máximo del voluntariado</label>
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label color-text">Categorias</label>
-                                    <form [formGroup]="form" class="category">
-                                      <ng-multiselect-dropdown formControlName="category"
-                                    [placeholder]="'Seleccionar categorias'"
-                                    [settings]="dropdownSettings"
-                                    [data]="dropdownList"
-                                    >
+                                <form [formGroup]="form" class="category">
+                                    <ng-multiselect-dropdown formControlName="category"
+                                        [placeholder]="'Seleccionar categorias'" [settings]="dropdownSettings"
+                                        [data]="dropdownList">
                                     </ng-multiselect-dropdown>
-                                    </form>
+                                </form>
                                 <div class="alert alert-warning mt-2" role="alert" *ngIf="categoryNull">
                                     Debes seleccionar al menos una categoria
                                 </div>
                             </div>
-                            
-                            <div class="mb-3">                                
-                                <label for="description" class="form-label color-text">Descripción</label>
-                                <textarea class="form-control" id="description" placeholder="Descripción del voluntariado" rows="3" [(ngModel)]="volunteering.descripcion" [ngModelOptions]="{standalone: true}"></textarea>
-                              </div>
-                              <div class="alert alert-warning mt-2" role="alert" *ngIf="descriptionNull">
+
+                            <div class="mb-3">
+                                <textarea class="form-control" id="description"
+                                    placeholder="Descripción del voluntariado" rows="3"
+                                    [(ngModel)]="volunteering.descripcion"
+                                    [ngModelOptions]="{standalone: true}"></textarea>
+                            </div>
+                            <div class="alert alert-warning mt-2" role="alert" *ngIf="descriptionNull">
                                 Debes ingresar un descripción del voluntariado
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="number" min="0" class="form-control" id="min-age" placeholder="Edad minima" [(ngModel)]="volunteering.minimo_edad" [ngModelOptions]="{standalone: true}">
+                                <input type="number" min="0" class="form-control" id="min-age" placeholder="Edad minima"
+                                    [(ngModel)]="volunteering.minimo_edad" [ngModelOptions]="{standalone: true}">
                                 <label for="min-age">Edad mínima</label>
-                                <div class="alert alert-warning mt-2" role="alert" *ngIf="titleNull">
+                                <div class="alert alert-warning mt-2" role="alert" *ngIf="minAgeNull">
                                     Debes ingresar una edad minima
-                                </div> 
+                                </div>
                             </div>
 
                             <div class="form-floating mb-3">
-                                <input type="number" min="0" class="form-control" id="min-age" placeholder="Edad minima" [(ngModel)]="volunteering.maximo_edad" [ngModelOptions]="{standalone: true}">
+                                <input type="number" min="0" class="form-control" id="min-age" placeholder="Edad minima"
+                                    [(ngModel)]="volunteering.maximo_edad" [ngModelOptions]="{standalone: true}">
                                 <label for="min-age">Edad máxima</label>
-                                <div class="alert alert-warning mt-2" role="alert" *ngIf="titleNull">
+                                <div class="alert alert-warning mt-2" role="alert" *ngIf="maxAgeNull">
                                     Debes ingresar una edad máxima
-                                </div> 
+                                </div>
                             </div>
 
-                            <div class="mb-3">                                
-                                <label for="place" class="form-label color-text">Lugar</label>
-                                <textarea class="form-control" id="place" placeholder="Lugar del voluntariado" rows="3" [(ngModel)]="volunteering.lugar" [ngModelOptions]="{standalone: true}"></textarea>
-                              </div>
-                              <div class="alert alert-warning mt-2" role="alert" *ngIf="descriptionNull">
+                            <div class="mb-3">
+                                <textarea class="form-control" id="place" placeholder="Lugar del voluntariado" rows="3"
+                                    [(ngModel)]="volunteering.lugar" [ngModelOptions]="{standalone: true}"></textarea>
+                            </div>
+                            <div class="alert alert-warning mt-2" role="alert" *ngIf="placeNull">
                                 Debes ingresar un lugar
                             </div>
 
-                            <div class="mb-3">                                
+                            <div class="mb-3">
                                 <label for="date" class="form-label color-text">Fecha</label>
-                                <input type="date" class="form-control" id="date" placeholder="Lugar del voluntariado" rows="3" [(ngModel)]="volunteering.lugar" [ngModelOptions]="{standalone: true}">
-                              </div>
-                              <div class="alert alert-warning mt-2" role="alert" *ngIf="descriptionNull">
+                                <input type="date" class="form-control" id="date" placeholder="Lugar del voluntariado"
+                                    rows="3" [(ngModel)]="volunteering.fecha" [ngModelOptions]="{standalone: true}" (input)="validateDate()" >
+                            </div>
+                            <div class="alert alert-warning mt-2" role="alert" *ngIf="dateNull">
                                 Debes ingresar una fecha
                             </div>
+                            <div class="alert alert-warning mt-2" role="alert" *ngIf="oldDate">
+                                La fecha no puede ser posterior a la actual
+                            </div>
 
-                            <div class="mb-3">                                
+                            <div class="mb-3">
                                 <label for="date" class="form-label color-text">Hora</label>
-                                <input type="time" class="form-control" id="date" placeholder="Lugar del voluntariado" rows="3" [(ngModel)]="volunteering.hora" [ngModelOptions]="{standalone: true}">
-                              </div>
-                              <div class="alert alert-warning mt-2" role="alert" *ngIf="descriptionNull">
+                                <input type="time" class="form-control" id="date" placeholder="Lugar del voluntariado"
+                                    rows="3" [(ngModel)]="volunteering.hora" [ngModelOptions]="{standalone: true}">
+                            </div>
+                            <div class="alert alert-warning mt-2" role="alert" *ngIf="timeNull">
                                 Debes ingresar la hora del voluntariado
                             </div>
 
-                              <div class="mb-3">                                
-                                <label for="requestDescription" class="form-label color-text">Descripción del producto, bien o servicio que brindas a cambio</label>
-                                <textarea class="form-control" id="requestDescription" placeholder="Descripción" rows="3" [(ngModel)]="volunteering.descripcion_retribucion" [ngModelOptions]="{standalone: true}"></textarea>
-                              </div>
-                              <div class="alert alert-warning mt-2" role="alert" *ngIf="requestDescriptionNull">
-                                Debes ingresar una descripción del producto, bien o servicio que deseas a cambio
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="code" placeholder="Código de pago"
+                                    [(ngModel)]="volunteering.codigo_pago" [ngModelOptions]="{standalone: true}">
+                                <label for="code">Código de pago</label>
+                                <div class="alert alert-warning mt-2" role="alert" *ngIf="codeNull">
+                                    Debes ingresar un código de pago
+                                </div>
                             </div>
 
-                              <div class="mb-3">
-                                <label for="formFile" class="form-label color-text">Fotos para la publicación</label>
-                                <input class="form-control" accept=".jpg, .png, .jpeg" type="file" id="formFile" multiple (change)="onFileChange($event)">
+                            <div class="mb-3">
+                                <label for="requestDescription" class="form-label color-text">Descripción del producto,
+                                    bien o servicio que brindas a cambio</label>
+                                <textarea class="form-control" id="requestDescription"
+                                    placeholder="Solo si quieres pagar con productos, bienes o servicios" rows="3"
+                                    [(ngModel)]="volunteering.descripcion_retribucion"
+                                    [ngModelOptions]="{standalone: true}"></textarea>
                             </div>
-                            
+                            <div class="alert alert-warning mt-2" role="alert" *ngIf="requestDescriptionNull">
+                                Debes ingresar una descripción del producto, bien o servicio que brindas a cambio
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label color-text">Fotos para la publicación</label>
+                                <input class="form-control" accept=".jpg, .png, .jpeg" type="file" id="formFile"
+                                    multiple (change)="onFileChange($event)">
+                            </div>
+
                             <div class="alert alert-warning mt-2" role="alert" *ngIf="photosNull">
                                 Debes seleccionar por lo menos una fotografía
                             </div>
-    
-                                
+
+
                             <div class="d-grid">
-                                <button class="btn btn-outline-light btn-login text-uppercase fw-bold" type="submit">Crear voluntariado</button>
-                              </div>
-                              
-    
+                                <button class="btn btn-outline-light btn-login text-uppercase fw-bold"
+                                    type="submit">Crear voluntariado</button>
+                            </div>
+
+
                         </form>
-    
+
                     </div>
                 </div>
             </div>
@@ -132,4 +165,3 @@
     </div>
 
 </div>
-
