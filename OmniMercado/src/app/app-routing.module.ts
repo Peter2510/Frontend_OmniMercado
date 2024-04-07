@@ -23,6 +23,11 @@ import { InfoProductUserComponent } from './products/info-product-user/info-prod
 import { InfoProductAdminComponent } from './products/info-product-admin/info-product-admin.component';
 import { SalesComponent } from './user/sales/sales.component';
 import { CreateVolunteeringComponent } from './volunteering/create-volunteering/create-volunteering.component';
+import { VolunteeringsPendingApprovalComponent } from './admin/volunteerings-pending-approval/volunteerings-pending-approval.component';
+import { InfoVolunteeringVisitorComponent } from './volunteering/info-volunteering-visitor/info-volunteering-visitor.component';
+import { InfoVolunteeringUserComponent } from './volunteering/info-volunteering-user/info-volunteering-user.component';
+import { InfoVolunteeringAdminComponent } from './volunteering/info-volunteering-admin/info-volunteering-admin.component';
+import { UserVolunteeringsComponent } from './user/user-volunteerings/user-volunteerings.component';
 
 
 const routes: Routes = [
@@ -35,16 +40,25 @@ const routes: Routes = [
   { path: "aprobacion-productos", component: ProductsPendingApprovalComponent, canActivate: [adminGuard]},
   { path: "aprobacion-intercambios", component: BarterProductsPendingApprovalComponent, canActivate: [adminGuard]},
   { path: "crear-administrativo", component: CreateAdminComponent, canActivate: [adminGuard]},
+  { path: "aprobacion-voluntariados", component: VolunteeringsPendingApprovalComponent, canActivate: [adminGuard]},
 
   { path: "usuario", component: UserComponent , canActivate: [usuarioGuard] },
   { path: "compras", component: SalesComponent , canActivate: [usuarioGuard] },
   { path: "perfil-usuario", component: UserProfileComponent , canActivate: [usuarioGuard] },
   { path: "crear-venta", component: CreateProduct , canActivate: [usuarioGuard] },
   { path: "crear-intercambio", component: CreateBarterComponent , canActivate: [usuarioGuard] },
-  { path: "crear-voluntariado", component: CreateVolunteeringComponent , canActivate: [usuarioGuard] },
   
+  { path: "crear-voluntariado", component: CreateVolunteeringComponent , canActivate: [usuarioGuard] },
+  { path: "info-voluntariado-v", component: InfoVolunteeringVisitorComponent},
+  { path: "info-voluntariado-u", component: InfoVolunteeringUserComponent, canActivate: [usuarioGuard] },
+  { path: "info-voluntariado-a", component: InfoVolunteeringAdminComponent, canActivate: [adminGuard] },
+
+  
+
   { path: "productos-publicados", component: UserProductsComponent , canActivate: [usuarioGuard] },
   { path: "intercambios-publicados", component: UserBarterProductsComponent , canActivate: [usuarioGuard] },
+  { path: "voluntariados-publicados", component: UserVolunteeringsComponent , canActivate: [usuarioGuard] },
+
   { path: "info-producto-v", component: InfoProductVisitorComponent},
   { path: "info-producto-u", component: InfoProductUserComponent, canActivate: [usuarioGuard] },
   { path: "info-producto-a", component: InfoProductAdminComponent, canActivate: [adminGuard] },

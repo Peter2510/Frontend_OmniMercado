@@ -33,6 +33,12 @@ import { VisitorNavComponent } from './visitor/visitor-nav/visitor-nav.component
 import { InfoProductComponent } from './products/info-product/info-product.component';
 import { SalesComponent } from './user/sales/sales.component';
 import { CreateVolunteeringComponent } from './volunteering/create-volunteering/create-volunteering.component';
+import { VolunteeringsPendingApprovalComponent } from './admin/volunteerings-pending-approval/volunteerings-pending-approval.component';
+import { InfoVolunteeringComponent } from './volunteering/info-volunteering/info-volunteering.component';
+import { InfoVolunteeringAdminComponent } from './volunteering/info-volunteering-admin/info-volunteering-admin.component';
+import { InfoVolunteeringUserComponent } from './volunteering/info-volunteering-user/info-volunteering-user.component';
+import { InfoVolunteeringVisitorComponent } from './volunteering/info-volunteering-visitor/info-volunteering-visitor.component';
+import { UserVolunteeringsComponent } from './user/user-volunteerings/user-volunteerings.component';
 
 
 @NgModule({
@@ -64,7 +70,13 @@ import { CreateVolunteeringComponent } from './volunteering/create-volunteering/
     VisitorNavComponent,
     InfoProductComponent,
     SalesComponent,
-    CreateVolunteeringComponent
+    CreateVolunteeringComponent,
+    VolunteeringsPendingApprovalComponent,
+    InfoVolunteeringComponent,
+    InfoVolunteeringAdminComponent,
+    InfoVolunteeringUserComponent,
+    InfoVolunteeringVisitorComponent,
+    UserVolunteeringsComponent
     ],
   imports: [
     BrowserModule,

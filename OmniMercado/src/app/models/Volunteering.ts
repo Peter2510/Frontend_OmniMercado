@@ -1,3 +1,5 @@
+import { User } from "./User";
+
 export class Volunteering{
     id_voluntariado:number;
     codigo_pago:string;
@@ -14,4 +16,6 @@ export class Volunteering{
     descripcion_retribucion:string;
     fecha_publicacion:Date;
     categories:[];
+    images:any;
+    user:User;
 }
