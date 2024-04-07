@@ -1,41 +1,38 @@
-import { Component, OnInit } from '@angular/core';
-import { OnDestroy } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ProductService } from '../service/product.service';
-import { Product } from 'src/app/models/Product';
+import { BarterProduct } from 'src/app/models/BarterProduct';
+import { BarterService } from '../service/barter.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
 
-
 @Component({
-  selector: 'app-info-product',
-  templateUrl: './info-product.component.html',
-  styleUrls: ['./info-product.component.css']
+  selector: 'app-info-barter',
+  templateUrl: './info-barter.component.html',
+  styleUrls: ['./info-barter.component.css']
 })
-export class InfoProductComponent  implements OnDestroy, OnInit{
+export class InfoBarterComponent implements OnDestroy, OnInit{
   
   private subscription: Subscription;
-  public product:Product;
-  private idProduct: number;
+  public barterProduct:BarterProduct;
+  private idBarterProduct: number;
 
-  constructor(private productService: ProductService,private router:Router) {
+  constructor(private barterProductService: BarterService,private router:Router) {
   }
 
-
   ngOnInit(): void {
-    this.subscription = this.productService.data$.subscribe(data => {
+    this.subscription = this.barterProductService.data$.subscribe(data => {
       if (data) {
-        this.idProduct = data.id;
+        this.idBarterProduct = data.id;
       }else{
         this.router.navigate(['not-found']);
       }
     });
 
-    if(this.idProduct){
-      this.productService.getProductById(this.idProduct).subscribe({
+    if(this.idBarterProduct){
+      this.barterProductService.getBarterProductById(this.idBarterProduct).subscribe({
         next: (r_success) => {
-          this.product = r_success.product;
+          this.barterProduct = r_success.barterProduct;
         },
         error: (err) => {
          this.handleErrorResponse(err); 

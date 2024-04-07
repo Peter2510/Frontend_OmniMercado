@@ -39,6 +39,10 @@ import { InfoVolunteeringAdminComponent } from './volunteering/info-volunteering
 import { InfoVolunteeringUserComponent } from './volunteering/info-volunteering-user/info-volunteering-user.component';
 import { InfoVolunteeringVisitorComponent } from './volunteering/info-volunteering-visitor/info-volunteering-visitor.component';
 import { UserVolunteeringsComponent } from './user/user-volunteerings/user-volunteerings.component';
+import { InfoBarterComponent } from './barters/info-barter/info-barter.component';
+import { InfoBarterUserComponent } from './barters/info-barter-user/info-barter-user.component';
+import { InfoBarterAdminComponent } from './barters/info-barter-admin/info-barter-admin.component';
+import { InfoBarterVisitorComponent } from './barters/info-barter-visitor/info-barter-visitor.component';
 
 
 @NgModule({
@@ -76,7 +80,11 @@ import { UserVolunteeringsComponent } from './user/user-volunteerings/user-volun
     InfoVolunteeringAdminComponent,
     InfoVolunteeringUserComponent,
     InfoVolunteeringVisitorComponent,
-    UserVolunteeringsComponent
+    UserVolunteeringsComponent,
+    InfoBarterComponent,
+    InfoBarterUserComponent,
+    InfoBarterAdminComponent,
+    InfoBarterVisitorComponent
     ],
   imports: [
     BrowserModule,

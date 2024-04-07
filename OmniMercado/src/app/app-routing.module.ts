@@ -28,6 +28,9 @@ import { InfoVolunteeringVisitorComponent } from './volunteering/info-volunteeri
 import { InfoVolunteeringUserComponent } from './volunteering/info-volunteering-user/info-volunteering-user.component';
 import { InfoVolunteeringAdminComponent } from './volunteering/info-volunteering-admin/info-volunteering-admin.component';
 import { UserVolunteeringsComponent } from './user/user-volunteerings/user-volunteerings.component';
+import { InfoBarterVisitorComponent } from './barters/info-barter-visitor/info-barter-visitor.component';
+import { InfoBarterUserComponent } from './barters/info-barter-user/info-barter-user.component';
+import { InfoBarterAdminComponent } from './barters/info-barter-admin/info-barter-admin.component';
 
 
 const routes: Routes = [
@@ -63,6 +66,9 @@ const routes: Routes = [
   { path: "info-producto-u", component: InfoProductUserComponent, canActivate: [usuarioGuard] },
   { path: "info-producto-a", component: InfoProductAdminComponent, canActivate: [adminGuard] },
 
+  { path: "info-intercambio-v", component: InfoBarterVisitorComponent},
+  { path: "info-intercambio-u", component: InfoBarterUserComponent, canActivate: [usuarioGuard] },
+  { path: "info-intercambio-a", component: InfoBarterAdminComponent, canActivate: [adminGuard] },
 
 
   { path: "visitante", component: VisitorComponent },

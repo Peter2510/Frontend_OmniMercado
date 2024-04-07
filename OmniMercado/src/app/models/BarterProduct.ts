@@ -1,3 +1,5 @@
+import { User } from "./User"
+
 export class BarterProduct{
     id_producto_trueque?:number
     titulo:string
@@ -11,4 +13,6 @@ export class BarterProduct{
     id_publicador?:number        
     categorias:any[]
     images:any
+    condicion:string
+    user:User
 }
