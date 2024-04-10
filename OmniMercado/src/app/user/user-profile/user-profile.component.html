@@ -6,32 +6,46 @@
                 <div class="col-md-12">
                     <div class="p-4 shadow-lg">
                         <div class="form-color">
-                            <p class="fs-2 text-center color-text">Mi perfil</p>
-                            <div class="text-center mx-auto my-3">
-                                <img class="rounded-circle" [src]="getEncodedImageSource()" alt="FotoPerfil" width="115"
-                                    height="120">
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="nombre" placeholder="nombre"
-                                    [(ngModel)]="user.nombre" [ngModelOptions]="{standalone: true}" readonly>
-                                <label for="nombre">Nombre</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="correo" placeholder="email"
-                                    [(ngModel)]="user.correo" [ngModelOptions]="{standalone: true}" readonly>
-                                <label for="correo">Correo</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="date" class="form-control" id="fechanacimiento"
-                                    placeholder="fecha_nacimiento" [(ngModel)]="user.fecha_nacimiento"
-                                    [ngModelOptions]="{standalone: true}" readonly>
-                                <label for="fechanacimiento">Fecha de nacimiento</label>
-                            </div>
-                            <div class="form-floating mb-3">
-                                <input type="text" class="form-control" id="genero" placeholder="genero"
-                                    [(ngModel)]="user.genero" [ngModelOptions]="{standalone: true}" readonly>
-                                <label for="nombre">Género</label>
-                            </div>
+
+                            <form (ngSubmit)="update()">
+
+                                <p class="fs-2 text-center color-text">Mi perfil</p>
+                                <div class="text-center mx-auto my-3">
+                                    <img class="rounded-circle" [src]="getEncodedImageSource()" alt="FotoPerfil"
+                                        width="115" height="120">
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="nombre" placeholder="nombre"
+                                        [(ngModel)]="user.nombre" [ngModelOptions]="{standalone: true}" readonly>
+                                    <label for="nombre">Nombre</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="correo" placeholder="email"
+                                        [(ngModel)]="user.correo" [ngModelOptions]="{standalone: true}" readonly>
+                                    <label for="correo">Correo</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="date" class="form-control" id="fechanacimiento"
+                                        placeholder="fecha_nacimiento" [(ngModel)]="user.fecha_nacimiento"
+                                        [ngModelOptions]="{standalone: true}" readonly>
+                                    <label for="fechanacimiento">Fecha de nacimiento</label>
+                                </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="genero" placeholder="genero"
+                                        [(ngModel)]="user.genero" [ngModelOptions]="{standalone: true}" readonly>
+                                    <label for="nombre">Género</label>
+                                </div>
+                                <div class="form-check form-switch color-text" >
+                                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                                        [(ngModel)]="user.informacion_visible_para_todos" (change)="toggleMostrarInformacion()" [ngModelOptions]="{standalone: true}">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">Mostrar información a no registrados</label>
+                                </div>                                
+
+                                <div class="d-grid mt-3">
+                                    <button class="btn btn-outline-light btn-login text-uppercase fw-bold" type="submit">Actualizar perfil</button>
+                                </div>
+                            </form>
+
                         </div>
                     </div>
                 </div>

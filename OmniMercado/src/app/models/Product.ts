@@ -1,3 +1,5 @@
+import { User } from "./User"
+
 export class Product{
     id_producto?:number
     titulo:string
@@ -9,6 +11,6 @@ export class Product{
     id_publicador?:number        
     categorias:any[]
     images:any
-    user:any
+    user:User
     condicion:string
 }

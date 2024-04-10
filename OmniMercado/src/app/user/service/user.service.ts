@@ -20,4 +20,11 @@ export class UserService {
     return this.http.get<any>(`${baseURL}/perfil-usuario/${user_id}`);
   }
 
+  public updateUser(state:any): Observable<any> {
+    let user_id = this.loginService.getIdUser();
+    const formData = new FormData();
+    formData.append('state', state);
+    return this.http.post<any>(`${baseURL}/actualizar-perfil-usuario/${user_id}`, formData);
+  }
+
 }

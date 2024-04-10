@@ -17,4 +17,5 @@ export class User{
    url_imagen:String;
    genero: String;
    tipo_usuario:Number;
+   informacion_visible_para_todos:Number;
 }

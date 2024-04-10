@@ -1,2 +1,89 @@
 <app-visitor-nav></app-visitor-nav>
-<app-info-volunteering></app-info-volunteering>
+<div class="col-lg-12" style="overflow-y: hidden;">
+    <div class="p-3 rounded mt-5 d-flex justify-content-center">
+        <div *ngIf="!volunteering">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <div id="carouselvolunteeringIndicators" class="carousel slide">
+            <h1 class="color-text text-center mb-4">{{volunteering.titulo}}</h1>
+            <div class="carousel-indicators">
+                <button *ngFor="let image of volunteering?.images; let i = index" type="button"
+                    data-bs-target="#carouselvolunteeringIndicators" [attr.data-bs-slide-to]="i"
+                    [class.active]="i === 0" [attr.aria-label]="'Slide ' + (i + 1)"></button>
+            </div>
+            <div class="carousel-inner">
+                <div *ngFor="let image of volunteering?.images; let i = index" class="carousel-item"
+                    [class.active]="i === 0">
+                    <img *ngIf="image" [src]="'data:image/' + image.type + ';base64,' + image.image" class="d-block"
+                        alt="..." width="350" height="350">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselvolunteeringIndicators"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselvolunteeringIndicators"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="p-5 color-text" *ngIf="volunteering">
+        
+        <h4>Lugar</h4>
+        <p>
+            {{volunteering.lugar}}
+        </p>
+
+        <h4>Fecha</h4>
+        <p>
+            {{volunteering.fecha}}
+        </p>
+
+        <h4>Hora</h4>
+        <p>
+            {{volunteering.hora}}
+        </p>
+
+        <h4>Detalles</h4>
+        <p>
+            {{volunteering.descripcion}}
+        </p>
+
+        <h4>Edad entre</h4>
+        <p>
+            {{volunteering.minimo_edad}} y {{volunteering.maximo_edad}}
+        </p>
+
+        <div *ngIf="volunteering.retribucion_moneda_virtual>0">
+            <h4>Retribución moneda</h4>
+            <p>
+                {{volunteering.retribucion_moneda_virtual}}
+            </p>
+        </div>
+
+        <div *ngIf="volunteering.descripcion_retribucion.length>0">
+            <h4>Descripción retribución</h4>
+            <p>
+                {{volunteering.descripcion_retribucion}}
+            </p>
+        </div>
+
+        <h4>Información del publicador</h4>
+        <div *ngIf="volunteering.user.informacion_visible_para_todos == 1; else message">
+            <p>
+                Nombre: {{ volunteering.user.nombre }} <br>
+                Correo: {{ volunteering.user.correo }}
+            </p>
+        </div>
+        <ng-template #message>
+            <p>Debes iniciar sesión para ver la información</p>
+        </ng-template>
+    </div>
+
+</div>
