@@ -32,7 +32,7 @@ export class VolunteeringsPendingApprovalComponent {
 
   public seeProductDetails(id:any){
     this.volunteeringService.sendId({ id: id });
-    this.router.navigate(['/info-producto-a']);
+    this.router.navigate(['/info-voluntariado-a']);
   }
 
   approveProduct(event: any,id:any) {
@@ -78,6 +78,5 @@ export class VolunteeringsPendingApprovalComponent {
     }
      );  
 }
-
 
 }

@@ -1,5 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { BarterService } from 'src/app/barters/service/barter.service';
 import { BarterProduct } from 'src/app/models/BarterProduct';
 import Swal from 'sweetalert2';
@@ -11,9 +13,10 @@ import Swal from 'sweetalert2';
 })
 export class BarterProductsPendingApprovalComponent {
   
+  private subscription: Subscription;
   barterProducts:BarterProduct[]=[];
 
-  constructor(private barterProductService:BarterService){}
+  constructor(private barterProductService:BarterService,private router:Router){}
 
   ngOnInit(){
     this.barterProductService.getBarderProductsPendingApproval().subscribe({
@@ -27,6 +30,12 @@ export class BarterProductsPendingApprovalComponent {
       }
     })
   }
+
+  public seeProductDetails(id:any){
+    this.barterProductService.sendId({ id: id });
+    this.router.navigate(['/info-intercambio-a']);
+  }
+
 
   approveBarterProduct(event: any,id:any) {
     this.barterProductService.setBarterProductToAvailable(id).subscribe({
@@ -70,6 +79,12 @@ export class BarterProductsPendingApprovalComponent {
       timer: 1300
     }
      );  
+}
+
+ngOnDestroy() {
+  if (this.subscription) {
+    this.subscription.unsubscribe();
+  }
 }
 
 }
