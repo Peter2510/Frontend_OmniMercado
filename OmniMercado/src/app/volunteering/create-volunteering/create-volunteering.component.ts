@@ -184,8 +184,7 @@ export class CreateVolunteeringComponent {
   createVolunteering(){
     this.volunteeringService.createVolunteering(this.volunteering,this.photos,this.selectedCategories()).subscribe({
       next: (r_success)=>{
-       const message = this.loginService.userActiveToPublish() === 0 ? 'Publicacion pendiente de aprobación' : r_success.message;
-       Swal.fire('', message, 'success').then(() => {
+       Swal.fire('', r_success.message, 'success').then(() => {
           this.router.navigate(['intercambios-publicados']);
         });
      },
