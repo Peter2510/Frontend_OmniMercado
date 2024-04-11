@@ -38,4 +38,10 @@ export class AdminService {
     return this.http.get<any>(`${baseURL}/perfil-admin/${user_id}`);
   }
 
+  getCountPostPendingApproval():Observable<any>{
+    
+    return this.http.get<any>(`${baseURL}/cantidad-publicaciones-pendientes-aprobacion`);
+    
+  }
+
 }
