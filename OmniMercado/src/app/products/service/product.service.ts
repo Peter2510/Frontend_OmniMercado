@@ -13,10 +13,10 @@ const baseURL = environment.apiUrl;
 })
 
 export class ProductService {
- 
+
   private dataSubject = new BehaviorSubject<any>(null);
 
-  constructor(private http: HttpClient,private loginService:LoginService) { }
+  constructor(private http: HttpClient, private loginService: LoginService) { }
 
   data$ = this.dataSubject.asObservable();
 
@@ -25,18 +25,18 @@ export class ProductService {
     return this.http.get<any>(`${baseURL}/publicaciones-productos-activas`);
   }
 
-  public getUserProducts(){
+  public getUserProducts() {
     let user_id = this.loginService.getIdUser();
     return this.http.get<any>(`${baseURL}/publicaciones-usuario/${user_id}`);
   }
 
-  
-  public getUserAvailableProducts(){
+
+  public getUserAvailableProducts() {
     let user_id = this.loginService.getIdUser();
     return this.http.get<any>(`${baseURL}/productos-disponibles-para-usuario/${user_id}`);
   }
 
-  public getProductsPendingApproval(){
+  public getProductsPendingApproval() {
     return this.http.get<any>(`${baseURL}/productos-pendientes-aprobacion`);
   }
 
@@ -70,13 +70,26 @@ export class ProductService {
   }
 
   public setProductToSold(id: number): Observable<any> {
-      
-      return this.http.patch<any>(`${baseURL}/cambiar-estado-producto-a-vendido/${id}`, null);
+
+    return this.http.patch<any>(`${baseURL}/cambiar-estado-producto-a-vendido/${id}`, null);
   }
 
   public setProductToRejected(id: number): Observable<any> {
-      
+
     return this.http.patch<any>(`${baseURL}/cambiar-estado-producto-a-rechazado/${id}`, null);
+  }
+
+  public getPriceProduct(id: number): Observable<any> {
+
+    return this.http.get<any>(`${baseURL}/precio-producto/${id}`);
+  }
+
+  public createSale(id: any): Observable<any> {
+    const formData = new FormData();
+    let user_id = this.loginService.getIdUser();
+    formData.append("user_id", user_id);
+    formData.append("product_id", id);
+    return this.http.post<any>(`${baseURL}/crear-venta`, formData);
   }
 
 }

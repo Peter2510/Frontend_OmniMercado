@@ -18,4 +18,5 @@ export class User{
    genero: String;
    tipo_usuario:Number;
    informacion_visible_para_todos:Number;
+   credito: Number;
 }

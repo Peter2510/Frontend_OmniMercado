@@ -35,6 +35,11 @@
                                         [(ngModel)]="user.genero" [ngModelOptions]="{standalone: true}" readonly>
                                     <label for="nombre">Género</label>
                                 </div>
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" id="credito" placeholder="credito"
+                                        [(ngModel)]="user.credito" [ngModelOptions]="{standalone: true}" readonly>
+                                    <label for="nombre">Crédito pendiente de pago</label>
+                                </div>
                                 <div class="form-check form-switch color-text" >
                                     <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
                                         [(ngModel)]="user.informacion_visible_para_todos" (change)="toggleMostrarInformacion()" [ngModelOptions]="{standalone: true}">

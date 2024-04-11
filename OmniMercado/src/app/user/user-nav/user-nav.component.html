@@ -16,6 +16,7 @@
       <ul class="dropdown-menu">
         <li><a class="dropdown-item" href="/perfil-usuario">{{loginService.getName()}}</a></li>
         <li><a class="dropdown-item" (click)="logOut()">Cerrar sesión</a></li>
+        <li><a class="dropdown-item" (click)="logOut()">Recargar monedas</a></li>
       </ul>
     </div>
   </div>
@@ -49,16 +50,20 @@
     <!-- Barra de navegación izquierda -->
     <div class="col-lg-2 d-none d-lg-block position-fixed vh-100 p-3 nav-bar">
       
+      <h4 class="text-center mb-4">Ventas</h4>
       <a href="/crear-venta">Vender</a> <br><br>
-      <a href="/productos-publicados">Mis ventas publicadas</a> <br><br>
+      <a href="/productos-publicados">Mis ventas publicadas</a><br><br>
       <a href="/compras">Comprar</a><br><br>
 
+      <h4 class="text-center mb-4">Intercambios</h4>
       <a href="/crear-intercambio">Crear intercambio</a> <br><br>
       <a href="/intercambios-publicados">Mis intercambios publicados</a> <br><br>
+      <a href="/intercambios">Intercambiar</a> <br><br>
 
+      <h4 class="text-center mb-4">Voluntariados</h4>
       <a href="/crear-voluntariado">Crear Voluntariado</a><br><br>
       <a href="/voluntariados-publicados">Mis voluntariados publicados</a><br><br>
-      <a href="/voluntariado">Inscribirse</a>
+      <a href="/voluntariados">Inscribirse</a>
       
     </div>
 

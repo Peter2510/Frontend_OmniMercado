@@ -16,7 +16,7 @@ export class InfoProductAdminComponent {
 
   constructor(private productService: ProductService, private router: Router) { }
 
-  approveVolunteering() {
+  approveProduct() {
     this.subscription = this.productService.data$.subscribe(data => {
       if (data) {
         this.productService.setProductToAvailable(data.id).subscribe({
@@ -34,7 +34,7 @@ export class InfoProductAdminComponent {
 
   }
 
-  rejectVolunteering() {
+  rejectProduct() {
     this.subscription = this.productService.data$.subscribe(data => {
       if (data) {
         this.productService.setProductToRejected(data.id).subscribe({

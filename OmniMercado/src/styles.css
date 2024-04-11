@@ -50,3 +50,7 @@
   border-radius: 20px;
   border: 3px solid var(--tertiary-color-color);
 }
+
+a {
+  text-decoration: none;
+}

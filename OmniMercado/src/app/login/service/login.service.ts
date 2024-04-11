@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Observable, Subject, catchError } from 'rxjs';
 import { User} from 'src/app/models/User';
 import { environment } from '../../../environments/environment';
@@ -10,9 +10,33 @@ const baseURL = environment.apiUrl;
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class LoginService implements OnInit{
 
-  constructor(private http:HttpClient) { }
+  
+  constructor(private http:HttpClient) { 
+
+    this.getUserCoins().subscribe({
+      next: (response) => {
+        this.setCoins(response.coins.cantidad_moneda_virtual);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+
+
+   }
+  ngOnInit(): void {
+    
+        this.getUserCoins().subscribe({
+      next: (response) => {
+        this.setCoins(response.coins.cantidad_moneda_virtual);
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
 
   public loginStatusSubject = new Subject<boolean>;
 
@@ -125,6 +149,18 @@ export class LoginService {
       }
     }
 
+    public setCoins(coins:any){
+      let userStorage = this.getUser();
+      if(userStorage!=null){
+        userStorage.cantidad_moneda_virtual = coins;
+        localStorage.setItem('user',JSON.stringify(userStorage));
+        return;
+      }else{
+        this.logOut();
+        return null;
+      }
+    }
+
     public getImage(){
       let userStorage = localStorage.getItem('profile_photo');
       if(userStorage!=null){
@@ -163,6 +199,12 @@ export class LoginService {
         this.logOut();
         return null;
       }      
+    }
+
+    public getUserCoins(): Observable<any> {
+
+      return this.http.get<any>(`${baseURL}/obtener-cantidad-monedas/${this.getIdUser()}`);
+        
     }
 
 
