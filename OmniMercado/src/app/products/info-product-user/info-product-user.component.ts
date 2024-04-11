@@ -83,7 +83,7 @@ export class InfoProductUserComponent {
       showConfirmButton: false,
       timer: 1300
     }).then(() => {
-      this.router.navigate(['usuario']);
+      this.router.navigate(['mis-compras']);
     });
   }
 

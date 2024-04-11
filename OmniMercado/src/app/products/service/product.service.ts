@@ -92,4 +92,9 @@ export class ProductService {
     return this.http.post<any>(`${baseURL}/crear-venta`, formData);
   }
 
+  public getUserPurchaseProducts(): Observable<any> {
+    let user_id = this.loginService.getIdUser();
+    return this.http.get<any>(`${baseURL}/obtener-compras-usuario/${user_id}`);
+  }
+
 }

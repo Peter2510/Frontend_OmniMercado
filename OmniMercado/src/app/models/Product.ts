@@ -7,6 +7,7 @@ export class Product{
     descripcion:string
     id_estado_producto?:number   
     fecha_publicacion?:Date    
+    fecha_venta?:Date    
     tipo_condicion:number       
     id_publicador?:number        
     categorias:any[]
