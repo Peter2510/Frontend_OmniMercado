@@ -84,6 +84,11 @@ export class ProductService {
     return this.http.get<any>(`${baseURL}/precio-producto/${id}`);
   }
 
+  public getStateProduct(id: number): Observable<any> {
+
+    return this.http.get<any>(`${baseURL}/estado-producto/${id}`);
+  }
+
   public createSale(id: any): Observable<any> {
     const formData = new FormData();
     let user_id = this.loginService.getIdUser();

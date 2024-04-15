@@ -17,15 +17,14 @@ export class InfoProductUserComponent {
 
   constructor(private productService: ProductService, private router: Router, private loginService: LoginService) { }
 
-  createSale() {
+  purchase() {
     this.subscription = this.productService.data$.subscribe(data => {
       if (data) {
         this.productService.getPriceProduct(data.id).subscribe({
           next: (r_success) => {
             let price = parseFloat(r_success.price);
             let userCoin = parseFloat(this.loginService.getCoins());
-            console.log(data.id);
-
+            
             if(price > userCoin){
               Swal.fire({
                 icon: 'info',
@@ -52,6 +51,21 @@ export class InfoProductUserComponent {
               });
               return;
             }else{
+
+
+              Swal.fire({
+                icon: 'info',
+                title: '¿Estás seguro de realizar la compra?',
+                text: 'Se te descontarán ' + price + ' monedas de tu cuenta',
+                confirmButtonText: 'Sí, comprar',
+                cancelButtonText: 'Cancelar',
+                showCancelButton: true
+              }).then((result) => {
+                if (result.isDismissed) {
+                  return;
+                }
+              })
+
               this.productService.createSale(data.id).subscribe({
                 next: (response) => {
                   this.loginService.setCoins(response.userCoin);
