@@ -138,6 +138,7 @@ export class CreateVolunteeringComponent {
     this.maxVolunteersNull = this.volunteering.maximo_voluntariados == 0 || this.volunteering.maximo_voluntariados == null;
     this.categoryNull = this.form.getRawValue().category.length ==0;
     this.descriptionNull = this.volunteering.descripcion == '';
+    this.volunteering.descripcion_retribucion = this.volunteering.descripcion_retribucion == null ? '' : this.volunteering.descripcion_retribucion;
     this.maxAgeNull = this.volunteering.maximo_edad == 0 || this.volunteering.maximo_edad == null;
     this.minAgeNull = this.volunteering.minimo_edad == 0 || this.volunteering.minimo_edad == null;
     this.placeNull = this.volunteering.lugar == '';
@@ -185,7 +186,7 @@ export class CreateVolunteeringComponent {
     this.volunteeringService.createVolunteering(this.volunteering,this.photos,this.selectedCategories()).subscribe({
       next: (r_success)=>{
        Swal.fire('', r_success.message, 'success').then(() => {
-          this.router.navigate(['intercambios-publicados']);
+          this.router.navigate(['voluntariados-publicados']);
         });
      },
       error:(err:HttpErrorResponse)=>{

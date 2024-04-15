@@ -1,0 +1,62 @@
+<app-user-nav></app-user-nav>
+<div class="col-lg-9 offset-lg-2" style="overflow-y: hidden;">
+    <div class="p-3 rounded mt-5 d-flex justify-content-center align-items-center">
+        <div class="mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-75">
+                            <div class="container">
+                                <form (ngSubmit)="validate()">
+                                    <div class="row">
+                                        <div class="col-50">
+                                            <h3 class="mt-2 text-center">Comprar monedas </h3>
+
+                                            <h5>Divisa actual: Q.{{badge}}</h5>                                           
+
+                                            <label for="fname">Aceptamos tarjetas</label>
+                                            <img src="../../../assets/credit-cards.png" style="width:15%;">
+|
+                                            <div class="form-floating mb-3">
+                                                <input type="number" class="form-control" id="card" placeholder="Numero de tarjeta" [(ngModel)]="cardNumber" [ngModelOptions]="{standalone: true}">
+                                                <label for="name">Número de tarjeta</label>
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control" id="name" placeholder="Nombre" [(ngModel)]="name" [ngModelOptions]="{standalone: true}">
+                                                <label for="name">Nombre como aparece en la tarjeta</label>
+                                            </div>
+
+                                            <div class="form-floating mb-3">
+                                                <input type="month" class="form-control" id="month" placeholder="Mes" [(ngModel)]="date" [ngModelOptions]="{standalone: true}">
+                                                <label for="month">Fecha de expiración</label>
+                                            </div>
+                                            
+                                            <div class="row">
+                                                <div class="col-50">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="number" min="111" class="form-control" id="cvv" placeholder="cvv" [(ngModel)]="cvv" [ngModelOptions]="{standalone: true}">
+                                                        <label for="title">CVV</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-50">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="number" min="1" class="form-control" id="money" placeholder="Dinero" [(ngModel)]="money" [ngModelOptions]="{standalone: true}" (input)="calculateCoins()"  >
+                                                        <label for="title">Pago (En quetzales)</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <h3>Cantidad de monedas a comprar: {{coins}}</h3>
+                                    <input type="submit" value="Realizar compra" class="btn">
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

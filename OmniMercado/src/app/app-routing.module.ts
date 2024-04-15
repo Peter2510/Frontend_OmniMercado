@@ -32,6 +32,7 @@ import { InfoBarterVisitorComponent } from './barters/info-barter-visitor/info-b
 import { InfoBarterUserComponent } from './barters/info-barter-user/info-barter-user.component';
 import { InfoBarterAdminComponent } from './barters/info-barter-admin/info-barter-admin.component';
 import { ShoppingComponent } from './user/shopping/shopping.component';
+import { RechargeCoinsComponent } from './user/recharge-coins/recharge-coins.component';
 
 
 const routes: Routes = [
@@ -72,6 +73,7 @@ const routes: Routes = [
   { path: "info-intercambio-a", component: InfoBarterAdminComponent, canActivate: [adminGuard] },
 
   { path: "mis-compras", component: ShoppingComponent, canActivate: [usuarioGuard] },
+  { path: "recargar-monedas", component: RechargeCoinsComponent, canActivate: [usuarioGuard] },
 
   { path: "visitante", component: VisitorComponent },
   { path: "not-found", component: NotFoundComponent},

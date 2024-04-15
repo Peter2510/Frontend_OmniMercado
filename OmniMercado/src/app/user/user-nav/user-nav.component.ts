@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/login/service/login.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { LoginService } from 'src/app/login/service/login.service';
 export class UserNavComponent {
 
 
-  constructor(public loginService:LoginService){
+  constructor(public loginService:LoginService,private router:Router){
 
   }
 
@@ -22,6 +23,10 @@ export class UserNavComponent {
   logOut(){
     this.loginService.logOut();
     window.location.reload();
+  }
+
+  rechargeCois(){
+    this.router.navigate(['recargar-monedas']);
   }
 
 }

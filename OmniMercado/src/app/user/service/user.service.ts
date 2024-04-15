@@ -27,4 +27,16 @@ export class UserService {
     return this.http.post<any>(`${baseURL}/actualizar-perfil-usuario/${user_id}`, formData);
   }
 
+  public rechargeCoins(money:number): Observable<any> {
+    let user_id = this.loginService.getIdUser();
+    const formData = new FormData();
+    formData.append('money', money.toString());
+    formData.append('user_id',user_id);
+    return this.http.post<any>(`${baseURL}/recargar-monedas`, formData);
+  }
+
+  public getBadge(){
+    return this.http.get<any>(`${baseURL}/obtener-divisa`);
+  }
+
 }
