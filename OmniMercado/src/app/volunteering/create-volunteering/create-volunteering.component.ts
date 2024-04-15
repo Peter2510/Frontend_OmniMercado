@@ -181,27 +181,61 @@ export class CreateVolunteeringComponent {
     this.photos = files;
   }
   
-
   createVolunteering(){
-    this.volunteeringService.createVolunteering(this.volunteering,this.photos,this.selectedCategories()).subscribe({
-      next: (r_success)=>{
-       Swal.fire('', r_success.message, 'success').then(() => {
-          this.router.navigate(['voluntariados-publicados']);
-        });
-     },
-      error:(err:HttpErrorResponse)=>{
-        this.handleErrorResponse(err);
-      }
-    })
+
+    let userCoin = parseFloat(this.loginService.getCoins());
+
+    if(this.price > userCoin){
+
+      Swal.fire({
+        icon: 'info',
+        title: 'No tienes suficientes monedas para realizar la publicación',
+        text: 'Puedes recargar monedas, o pagar al crédito que debes pagar con tus monedas ganadas.',
+        confirmButtonText: 'Pagar con crédito',
+        cancelButtonText: 'Regresar',
+        showCancelButton: true
+      }).then((result) => {
+        if (result.isDismissed) {
+          return;
+        } else {
+          this.volunteeringService.createVolunteering(this.volunteering,this.photos,this.selectedCategories()).subscribe({
+            next: (r_success)=>{
+              Swal.fire('', r_success.message, 'success').then(() => {
+                this.loginService.setCoins(r_success.userCoin);
+                this.router.navigate(['voluntariados-publicados']);
+              });
+            },
+            error:(err:HttpErrorResponse)=>{
+              this.handleErrorResponse(err);
+            }
+          })
+        }
+      });
+      
+    }else{
+
+      this.volunteeringService.createVolunteering(this.volunteering,this.photos,this.selectedCategories()).subscribe({
+        next: (r_success)=>{
+         Swal.fire('', r_success.message, 'success').then(() => {
+            this.router.navigate(['voluntariados-publicados']);
+          });
+       },
+        error:(err:HttpErrorResponse)=>{
+          this.handleErrorResponse(err);
+        }
+      })
+
+    }
+
   }
 
   handleErrorResponse(error: HttpErrorResponse) {
-    Swal.fire(
-      'Lo sentimos', `Estamos experimentando problemas técnicos. Por favor, inténtalo de nuevo más tarde.`,
-      'warning'
-     );  
-     console.error(error);
-}
+    Swal.fire({
+      icon: 'error',
+      title: `${error.error.message}`,
+    }
+    );
+  }
   
 }
 

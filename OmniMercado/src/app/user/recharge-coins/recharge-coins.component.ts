@@ -42,7 +42,6 @@ export class RechargeCoinsComponent implements OnInit{
       this.userService.rechargeCoins(this.coins).subscribe({
         next: (response) => {
           
-
           Swal.fire({
             title: "¡Recarga exitosa!",
             icon: "success",
