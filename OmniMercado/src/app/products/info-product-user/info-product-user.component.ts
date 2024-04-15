@@ -14,59 +14,77 @@ import { LoginService } from 'src/app/login/service/login.service';
 export class InfoProductUserComponent {
 
   private subscription: Subscription;
+  private idProduct: number;
+  stateProduct: number;
 
-  constructor(private productService: ProductService, private router: Router, private loginService: LoginService) { }
+  constructor(private productService: ProductService, private router: Router, private loginService: LoginService) {
+    this.getIdProduct();
+    this.getStateProduct();
+  }
 
-  purchase() {
+  getIdProduct() {
     this.subscription = this.productService.data$.subscribe(data => {
       if (data) {
-        this.productService.getPriceProduct(data.id).subscribe({
-          next: (r_success) => {
-            let price = parseFloat(r_success.price);
-            let userCoin = parseFloat(this.loginService.getCoins());
-            
-            if(price > userCoin){
-              Swal.fire({
-                icon: 'info',
-                title: 'No tienes suficientes monedas para realizar la compra',
-                text: 'Puedes recargar monedas, o pagar al crédito que debes pagar con tus monedas ganadas.',
-                confirmButtonText: 'Pagar con crédito',
-                cancelButtonText: 'Regresar',
-                showCancelButton: true
-              }).then((result) => {
-                if (result.isDismissed) {
-                  return;
-                } else {
-                  this.productService.createSale(data.id).subscribe({
-                    next: (response) => {
-                      
-                      this.loginService.setCoins(response.userCoin);
-                      this.handleSuccessResponse(response);
-                    },
-                    error: (err: HttpErrorResponse) => {
-                      this.handleErrorResponse(err);
-                    }
-                  });
+        this.idProduct = data.id;
+      } else {
+        this.router.navigate(['not-found']);
+      }
+    });
+  }
+
+  getStateProduct(){
+    this.productService.getStateProduct(this.idProduct).subscribe({
+      next: (response) => {
+        this.stateProduct = response.state;
+      },
+      error: (err: HttpErrorResponse) => {
+        this.handleErrorResponse(err);
+      }
+    })
+  }
+
+  purchase() {
+    this.productService.getPriceProduct(this.idProduct).subscribe({
+      next: (r_success) => {
+        let price = parseFloat(r_success.price);
+        let userCoin = parseFloat(this.loginService.getCoins());
+
+        if (price > userCoin) {
+          Swal.fire({
+            icon: 'info',
+            title: 'No tienes suficientes monedas para realizar la compra',
+            text: 'Puedes recargar monedas, o pagar al crédito que debes pagar con tus monedas ganadas.',
+            confirmButtonText: 'Pagar con crédito',
+            cancelButtonText: 'Regresar',
+            showCancelButton: true
+          }).then((result) => {
+            if (result.isDismissed) {
+              return;
+            } else {
+              this.productService.createSale(this.idProduct).subscribe({
+                next: (response) => {
+
+                  this.loginService.setCoins(response.userCoin);
+                  this.handleSuccessResponse(response);
+                },
+                error: (err: HttpErrorResponse) => {
+                  this.handleErrorResponse(err);
                 }
               });
-              return;
-            }else{
-
-
-              Swal.fire({
-                icon: 'info',
-                title: '¿Estás seguro de realizar la compra?',
-                text: 'Se te descontarán ' + price + ' monedas de tu cuenta',
-                confirmButtonText: 'Sí, comprar',
-                cancelButtonText: 'Cancelar',
-                showCancelButton: true
-              }).then((result) => {
-                if (result.isDismissed) {
-                  return;
-                }
-              })
-
-              this.productService.createSale(data.id).subscribe({
+            }
+          });
+          return;
+        } else {
+          Swal.fire({
+            icon: 'info',
+            title: '¿Estás seguro de realizar la compra?',
+            text: 'Se te descontarán ' + price + ' monedas de tu cuenta',
+            confirmButtonText: 'Sí, comprar',
+            cancelButtonText: 'Cancelar',
+            showCancelButton: true
+          }).then((result) => {
+            if (!result.isDismissed) {
+              this.productService.createSale(this.idProduct).subscribe({
                 next: (response) => {
                   this.loginService.setCoins(response.userCoin);
                   this.handleSuccessResponse(response);
@@ -76,18 +94,13 @@ export class InfoProductUserComponent {
                 }
               });
             }
-            
-
-          },
-          error: (err: HttpErrorResponse) => {
-            this.handleErrorResponse(err);
-          }
-        })
-      } else {
-        this.router.navigate(['not-found']);
+          })
+        }
+      },
+      error: (err: HttpErrorResponse) => {
+        this.handleErrorResponse(err);
       }
-    });
-
+    })
   }
 
   handleSuccessResponse(response: any) {
