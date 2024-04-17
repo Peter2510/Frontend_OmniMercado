@@ -15,4 +15,5 @@ export class BarterProduct{
     images:any
     condicion:string
     user:User
+    fecha_trueque:Date
 }

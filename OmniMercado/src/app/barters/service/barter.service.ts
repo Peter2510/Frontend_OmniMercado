@@ -74,4 +74,24 @@ export class BarterService {
   
     }
 
+
+    public getStateBarterProduct(id: number): Observable<any> {
+
+      return this.http.get<any>(`${baseURL}/estado-intercambio/${id}`);
+    }
+
+    public createBarter(id: any): Observable<any> {
+      const formData = new FormData();
+      let user_id = this.loginService.getIdUser();
+      formData.append("user_id", user_id);
+      formData.append("barter_product_id", id);
+      return this.http.post<any>(`${baseURL}/crear-intercambio`, formData);
+    }
+  
+    public getUserExchanges(): Observable<any> {
+      let user_id = this.loginService.getIdUser();
+      return this.http.get<any>(`${baseURL}/obtener-intercambios-usuario/${user_id}`);
+    }
+  
+
 }

@@ -45,6 +45,8 @@ import { InfoBarterAdminComponent } from './barters/info-barter-admin/info-barte
 import { InfoBarterVisitorComponent } from './barters/info-barter-visitor/info-barter-visitor.component';
 import { ShoppingComponent } from './user/shopping/shopping.component';
 import { RechargeCoinsComponent } from './user/recharge-coins/recharge-coins.component';
+import { ExchangesComponent } from './barters/exchanges/exchanges.component';
+import { MyBartersComponent } from './user/my-barters/my-barters.component';
 
 
 @NgModule({
@@ -88,7 +90,9 @@ import { RechargeCoinsComponent } from './user/recharge-coins/recharge-coins.com
     InfoBarterAdminComponent,
     InfoBarterVisitorComponent,
     ShoppingComponent,
-    RechargeCoinsComponent
+    RechargeCoinsComponent,
+    ExchangesComponent,
+    MyBartersComponent
     ],
   imports: [
     BrowserModule,

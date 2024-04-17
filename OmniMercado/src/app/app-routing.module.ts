@@ -33,6 +33,8 @@ import { InfoBarterUserComponent } from './barters/info-barter-user/info-barter-
 import { InfoBarterAdminComponent } from './barters/info-barter-admin/info-barter-admin.component';
 import { ShoppingComponent } from './user/shopping/shopping.component';
 import { RechargeCoinsComponent } from './user/recharge-coins/recharge-coins.component';
+import { ExchangesComponent } from './barters/exchanges/exchanges.component';
+import { MyBartersComponent } from './user/my-barters/my-barters.component';
 
 
 const routes: Routes = [
@@ -58,7 +60,7 @@ const routes: Routes = [
   { path: "info-voluntariado-u", component: InfoVolunteeringUserComponent, canActivate: [usuarioGuard] },
   { path: "info-voluntariado-a", component: InfoVolunteeringAdminComponent, canActivate: [adminGuard] },
 
-  
+  { path: "intercambios", component: ExchangesComponent , canActivate: [usuarioGuard] },
 
   { path: "productos-publicados", component: UserProductsComponent , canActivate: [usuarioGuard] },
   { path: "intercambios-publicados", component: UserBarterProductsComponent , canActivate: [usuarioGuard] },
@@ -74,6 +76,8 @@ const routes: Routes = [
 
   { path: "mis-compras", component: ShoppingComponent, canActivate: [usuarioGuard] },
   { path: "recargar-monedas", component: RechargeCoinsComponent, canActivate: [usuarioGuard] },
+
+  { path: "mis-intercambios", component: MyBartersComponent, canActivate: [usuarioGuard] },
 
   { path: "visitante", component: VisitorComponent },
   { path: "not-found", component: NotFoundComponent},
