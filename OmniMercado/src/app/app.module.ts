@@ -49,6 +49,12 @@ import { ExchangesComponent } from './barters/exchanges/exchanges.component';
 import { MyBartersComponent } from './user/my-barters/my-barters.component';
 import { VolunteersAvailableComponent } from './volunteering/volunteers-available/volunteers-available.component';
 import { InscriptionsUserComponent } from './user/inscriptions-user/inscriptions-user.component';
+import { ProductsReportsComponent } from './reports/products-reports/products-reports.component';
+import { VolunteeringReportsComponent } from './reports/volunteering-reports/volunteering-reports.component';
+import { BartersReportsComponent } from './reports/barters-reports/barters-reports.component';
+import { InfoReportProductComponent } from './reports/info-report-product/info-report-product.component';
+import { InfoReportBarterComponent } from './reports/info-report-barter/info-report-barter.component';
+import { InfoReportVolunteeringComponent } from './reports/info-report-volunteering/info-report-volunteering.component';
 
 
 @NgModule({
@@ -96,7 +102,13 @@ import { InscriptionsUserComponent } from './user/inscriptions-user/inscriptions
     ExchangesComponent,
     MyBartersComponent,
     VolunteersAvailableComponent,
-    InscriptionsUserComponent
+    InscriptionsUserComponent,
+    ProductsReportsComponent,
+    VolunteeringReportsComponent,
+    BartersReportsComponent,
+    InfoReportProductComponent,
+    InfoReportBarterComponent,
+    InfoReportVolunteeringComponent
     ],
   imports: [
     BrowserModule,

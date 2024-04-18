@@ -121,4 +121,20 @@ export class ProductService {
 
   }
 
+  public getReportedProducts(): Observable<any> {
+    return this.http.get<any>(`${baseURL}/obtener-productos-con-reporte`);
+  }
+
+  public getReportsProduct(id: number): Observable<any> {
+    return this.http.get<any>(`${baseURL}/obtener-reportes-producto/${id}`);
+  }
+
+  public aproveReports(id: number): Observable<any> {
+    return this.http.patch<any>(`${baseURL}/aceptar-reportes-producto/${id}`, null);
+  }
+
+  public rejectReports(id: number): Observable<any> {
+    return this.http.patch<any>(`${baseURL}/rechazar-reportes-producto/${id}`, null);
+  }
+
 }

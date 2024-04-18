@@ -38,6 +38,12 @@ import { MyBartersComponent } from './user/my-barters/my-barters.component';
 import { VoluntariadosComponent } from './volunteering/volunteering.component';
 import { VolunteersAvailableComponent } from './volunteering/volunteers-available/volunteers-available.component';
 import { InscriptionsUserComponent } from './user/inscriptions-user/inscriptions-user.component';
+import { VolunteeringReportsComponent } from './reports/volunteering-reports/volunteering-reports.component';
+import { ProductsReportsComponent } from './reports/products-reports/products-reports.component';
+import { BartersReportsComponent } from './reports/barters-reports/barters-reports.component';
+import { InfoReportVolunteeringComponent } from './reports/info-report-volunteering/info-report-volunteering.component';
+import { InfoReportBarterComponent } from './reports/info-report-barter/info-report-barter.component';
+import { InfoReportProductComponent } from './reports/info-report-product/info-report-product.component';
 
 
 const routes: Routes = [
@@ -84,6 +90,16 @@ const routes: Routes = [
   { path: "voluntariados", component: VolunteersAvailableComponent, canActivate: [usuarioGuard] },
 
   { path: "registro-voluntariados", component: InscriptionsUserComponent, canActivate: [usuarioGuard] },
+
+
+  { path: "reportes-voluntariados", component: VolunteeringReportsComponent, canActivate: [adminGuard] },
+  { path: "reportes-productos", component: ProductsReportsComponent, canActivate: [adminGuard] },
+  { path: "reportes-intercambios", component: BartersReportsComponent, canActivate: [adminGuard] },
+  
+  { path: "info-reporte-voluntariado", component: InfoReportVolunteeringComponent, canActivate: [adminGuard] },
+  { path: "info-reporte-intercambio", component: InfoReportBarterComponent, canActivate: [adminGuard] },
+  { path: "info-reporte-producto", component: InfoReportProductComponent, canActivate: [adminGuard] },
+
 
   { path: "visitante", component: VisitorComponent },
   { path: "not-found", component: NotFoundComponent},
