@@ -47,6 +47,8 @@ import { ShoppingComponent } from './user/shopping/shopping.component';
 import { RechargeCoinsComponent } from './user/recharge-coins/recharge-coins.component';
 import { ExchangesComponent } from './barters/exchanges/exchanges.component';
 import { MyBartersComponent } from './user/my-barters/my-barters.component';
+import { VolunteersAvailableComponent } from './volunteering/volunteers-available/volunteers-available.component';
+import { InscriptionsUserComponent } from './user/inscriptions-user/inscriptions-user.component';
 
 
 @NgModule({
@@ -92,7 +94,9 @@ import { MyBartersComponent } from './user/my-barters/my-barters.component';
     ShoppingComponent,
     RechargeCoinsComponent,
     ExchangesComponent,
-    MyBartersComponent
+    MyBartersComponent,
+    VolunteersAvailableComponent,
+    InscriptionsUserComponent
     ],
   imports: [
     BrowserModule,

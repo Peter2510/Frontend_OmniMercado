@@ -35,6 +35,9 @@ import { ShoppingComponent } from './user/shopping/shopping.component';
 import { RechargeCoinsComponent } from './user/recharge-coins/recharge-coins.component';
 import { ExchangesComponent } from './barters/exchanges/exchanges.component';
 import { MyBartersComponent } from './user/my-barters/my-barters.component';
+import { VoluntariadosComponent } from './volunteering/volunteering.component';
+import { VolunteersAvailableComponent } from './volunteering/volunteers-available/volunteers-available.component';
+import { InscriptionsUserComponent } from './user/inscriptions-user/inscriptions-user.component';
 
 
 const routes: Routes = [
@@ -78,6 +81,9 @@ const routes: Routes = [
   { path: "recargar-monedas", component: RechargeCoinsComponent, canActivate: [usuarioGuard] },
 
   { path: "mis-intercambios", component: MyBartersComponent, canActivate: [usuarioGuard] },
+  { path: "voluntariados", component: VolunteersAvailableComponent, canActivate: [usuarioGuard] },
+
+  { path: "registro-voluntariados", component: InscriptionsUserComponent, canActivate: [usuarioGuard] },
 
   { path: "visitante", component: VisitorComponent },
   { path: "not-found", component: NotFoundComponent},

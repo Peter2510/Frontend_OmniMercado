@@ -1,1 +1,8 @@
-<p>info-volunteering-user works!</p>
+<app-user-nav></app-user-nav>
+<div class="col-lg-9 offset-lg-2 p-5">
+    <app-info-volunteering></app-info-volunteering>
+    <div class="d-grid gap-2 offset-lg-2">
+        <button *ngIf="seeButton==false" class="btn btn-success" type="button" (click)="register()">Inscribirse</button>
+        <!-- <button class="btn btn-primary" type="button">Button</button> -->
+    </div>
+</div>

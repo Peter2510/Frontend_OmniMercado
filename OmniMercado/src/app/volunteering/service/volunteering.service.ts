@@ -96,4 +96,44 @@ export class VolunteeringService {
     let user_id = this.loginService.getIdUser();
     return this.http.get<any>(`${baseURL}/voluntariados-usuario/${user_id}`);
   }
+
+
+  public getUserAvailableVolunteerings(){
+    let user_id = this.loginService.getIdUser();
+    return this.http.get<any>(`${baseURL}/voluntariados-disponibles-para-usuario/${user_id}`);
+  }
+
+  public getStateVolunteering(id: number): Observable<any> {
+
+    return this.http.get<any>(`${baseURL}/estado-voluntariado/${id}`);
+  }
+
+  public getRestricionVolunteering(id: number): Observable<any> {
+
+    return this.http.get<any>(`${baseURL}/restricciones-voluntariado/${id}`);
+  }
+
+  public registerVolunteering(id: any): Observable<any> {
+    const formData = new FormData();
+    let user_id = this.loginService.getIdUser();
+    formData.append("user_id", user_id);
+    formData.append("volunteering_id", id);
+    return this.http.post<any>(`${baseURL}/registro-voluntariado`, formData);
+  }
+
+  public userVolunteerRegistrations(){
+    let user_id = this.loginService.getIdUser();
+    return this.http.get<any>(`${baseURL}/voluntariados-registro-usuario/${user_id}`);
+  }
+
+  public validateIfUserIsRegistered(id: any): Observable<any> {
+    const formData = new FormData();
+    let user_id = this.loginService.getIdUser();
+    formData.append("user_id", user_id);
+    formData.append("volunteering_id", id);
+    return this.http.post<any>(`${baseURL}/usuario-registrado-voluntariado`, formData);
+  }
+  
+
+
 }

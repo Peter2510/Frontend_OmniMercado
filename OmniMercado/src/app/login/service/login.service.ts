@@ -207,6 +207,11 @@ export class LoginService implements OnInit{
         
     }
 
+    public getAge(): Observable<any> {
+
+      return this.http.get<any>(`${baseURL}/edad/${this.getIdUser()}`);
+        
+    }
 
 
 }

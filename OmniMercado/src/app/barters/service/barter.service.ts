@@ -92,6 +92,25 @@ export class BarterService {
       let user_id = this.loginService.getIdUser();
       return this.http.get<any>(`${baseURL}/obtener-intercambios-usuario/${user_id}`);
     }
+
+    public getCategoriesReport(): Observable<any> {
+      return this.http.get<any>(`${baseURL}/obtener-categoria-reportes`);
+    }
+
+    public createReport(id: any, categories:any): Observable<any> {
+
+
+      const formData = new FormData();
+  
+      formData.append('id_product',id );
+              
+      for (let i = 0; i < categories.length; i++) {
+        formData.append('id_categories[]', categories[i].id_categoria_reporte);
+      }
+      
+      return this.http.post<any>(`${baseURL}/reportar-producto-trueque`, formData);
+  
+    }
   
 
 }

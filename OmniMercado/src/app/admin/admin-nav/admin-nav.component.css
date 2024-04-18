@@ -23,3 +23,7 @@ ul{
 .nav-bar ul{
     background-color: var(--tertiary-color);
 }
+
+.navColor{
+    background-color: var(--tertiary-color);
+}

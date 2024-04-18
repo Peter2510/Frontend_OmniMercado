@@ -1,20 +1,14 @@
 <app-user-nav></app-user-nav>
 <div class="col-lg-9 offset-lg-2 p-5">
   <div class="row">
-    <h2 class="text-center color-text">Voluntariados publicados</h2>
+    <h2 class="text-center color-text">Voluntariados</h2>    
     <div *ngIf="volunteerings.length==0">
       <p class="mt-4 color-text fs-4 text-center">
-        Aún no has publicado voluntariados
+        No hay voluntariados disponibles
       </p>
     </div>
     <div class="col-md-4 mt-3" *ngFor="let volunteering of volunteerings">
-        <!-- 1 Pendiente, 2 Disponible, 3 Realizado, 4 Rechazado  -->
-      <div class="card mb-3" [ngClass]="{
-        'background-cards bg-warning-subtle': volunteering.id_estado === 1,
-        'background-cards bg-info-subtle': volunteering.id_estado === 2,
-        'background-cards bg-success-subtle': volunteering.id_estado === 3,
-        'background-cards bg-danger-subtle': volunteering.id_estado === 4,
-      }">
+        <div class="card mb-3 background-cards" (click)="seeProductDetails(volunteering.id_voluntariado)">
         <img [src]="'data:image/' + volunteering.images.type + ';base64,' + volunteering.images.image"
           class="img-card card-img-top">
         <div class="card-body">
@@ -27,9 +21,6 @@
               </g>
               </svg>      
             {{volunteering.fecha_publicacion}}
-            <p>
-              {{volunteering.descripcion_retribucion}}
-            </p>
           </small></p>
         </div>
       </div>
