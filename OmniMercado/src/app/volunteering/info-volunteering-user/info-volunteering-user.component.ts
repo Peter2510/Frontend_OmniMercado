@@ -1,31 +1,84 @@
-import { Component } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { Subscription, } from 'rxjs';
 import { VolunteeringService } from '../service/volunteering.service';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/login/service/login.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import Swal from 'sweetalert2';
+import {  FormBuilder, FormGroup, Validators  } from '@angular/forms';
+import { ReportCategory } from 'src/app/models/ReportCategory';
 
 @Component({
   selector: 'app-info-volunteering-user',
   templateUrl: './info-volunteering-user.component.html',
   styleUrls: ['./info-volunteering-user.component.css']
 })
-export class InfoVolunteeringUserComponent {
+export class InfoVolunteeringUserComponent implements OnInit{
 
   private subscription: Subscription;
   private idVolunteering: number;
   stateVolunteering: number;
   private age:number;
   seeButton = false;
+  dropdownList;
+  dropdownSettings;
+  form: FormGroup;
+  categoriasSeleccionadas;
+  categoriasReporte:ReportCategory[];
 
-  constructor(private volunteeringService: VolunteeringService, private router: Router, private loginService: LoginService) {
+  constructor(private volunteeringService: VolunteeringService, private router: Router, private loginService: LoginService,private formBuilder : FormBuilder) {
     
     this.getAge();
     this.getIdVolunteering();
     this.notAvailable();
     this.getStateVolunteering();
   }
+
+  ngOnInit(): void {
+    this.initForm();
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'id_categoria_reporte',
+      noDataAvailablePlaceholderText:'Sin resultados',
+      textField: 'nombre',
+      allowSearchFilter: true,
+      enableCheckAll:false,
+      searchPlaceholderText:'Buscar'
+    };
+    this.getProductCategory();
+  }
+
+  selectedCategories(){
+    return this.getObjectListFromData(this.form.value.category.map(item => item.id_categoria_reporte));
+  }
+
+  getObjectListFromData(ids:any){
+    return this.getData().filter(item => ids.includes(item.id_categoria_reporte))
+  }
+
+  getData() : Array<any>{
+    return this.categoriasReporte
+  }
+
+  getProductCategory(){
+    this.volunteeringService.getCategoriesReport().subscribe({
+      next: (r_success)=>{
+        this.categoriasReporte = r_success.categories
+        this.dropdownList = this.getData();
+      },
+      error:(error:HttpErrorResponse)=>{
+        this.handleErrorResponse(error);
+      }
+    })
+  }
+
+  initForm(){
+    this.form = this.formBuilder.group({
+      category : ['',[Validators.required]]
+    })
+  }
+
+
 
   getIdVolunteering() {
     this.subscription = this.volunteeringService.data$.subscribe(data => {
@@ -69,7 +122,7 @@ export class InfoVolunteeringUserComponent {
           }
         },
         error: (err: HttpErrorResponse) => {
-          this.handleErrorResponse(err);
+          
         }
        });
   }
@@ -120,7 +173,7 @@ export class InfoVolunteeringUserComponent {
       showConfirmButton: false,
       timer: 1300
     }).then(() => {
-      this.router.navigate(['registro-voluntariados']);
+      this.router.navigate(['voluntariados']);
     });
   }
 
@@ -135,6 +188,35 @@ export class InfoVolunteeringUserComponent {
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
+    }
+  }
+
+  report(){
+    if(this.form.valid){
+      Swal.fire({
+        icon: 'info',
+        title: '¿Estás seguro de reportar este producto?',
+        confirmButtonText: 'Sí, reportar',
+        cancelButtonText: 'Cancelar',
+        showCancelButton: true
+      }).then((result) => {
+        if (!result.isDismissed) {
+          this.volunteeringService.createReport(this.idVolunteering,this.selectedCategories()).subscribe({
+            next: (response) => {
+              this.handleSuccessResponse(response);
+            },
+            error: (err: HttpErrorResponse) => {
+              console.error(err)
+              this.handleErrorResponse(err);
+            }
+          });
+        }
+      })
+    }else{
+      Swal.fire({
+        icon: 'error',
+        title: 'Por favor selecciona al menos una categoría para reportar'
+      })
     }
   }
 

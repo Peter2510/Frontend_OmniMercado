@@ -102,4 +102,23 @@ export class ProductService {
     return this.http.get<any>(`${baseURL}/obtener-compras-usuario/${user_id}`);
   }
 
+  public getCategoriesReport(): Observable<any> {
+    return this.http.get<any>(`${baseURL}/obtener-categoria-reportes`);
+  }
+
+  public createReport(id: any, categories:any): Observable<any> {
+
+
+    const formData = new FormData();
+
+    formData.append('id_product',id );
+            
+    for (let i = 0; i < categories.length; i++) {
+      formData.append('id_categories[]', categories[i].id_categoria_reporte);
+    }
+    
+    return this.http.post<any>(`${baseURL}/reportar-producto`, formData);
+
+  }
+
 }

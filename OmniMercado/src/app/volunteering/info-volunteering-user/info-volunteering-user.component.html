@@ -3,6 +3,24 @@
     <app-info-volunteering></app-info-volunteering>
     <div class="d-grid gap-2 offset-lg-2">
         <button *ngIf="seeButton==false" class="btn btn-success" type="button" (click)="register()">Inscribirse</button>
-        <!-- <button class="btn btn-primary" type="button">Button</button> -->
+        
+        <form *ngIf="seeButton==false">
+
+            <div class="mb-3">
+                <h3 class="color-text mt-4 mb-3">¿Hay algo mal con la publicación?</h3>
+                <label class="form-label color-text">Categorias</label>
+                    <form [formGroup]="form" class="category">
+                      <ng-multiselect-dropdown formControlName="category"
+                    [placeholder]="'Seleccionar categorias'"
+                    [settings]="dropdownSettings"
+                    [data]="dropdownList"
+                    >
+                    </ng-multiselect-dropdown>
+                    </form>
+            </div>
+            <button *ngIf="seeButton==false" class="btn btn-danger" type="button" (click)="report()">Reportar</button>    
+        </form>
+        
+
     </div>
 </div>
