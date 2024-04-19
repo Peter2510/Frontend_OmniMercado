@@ -111,6 +111,23 @@ export class BarterService {
       return this.http.post<any>(`${baseURL}/reportar-producto-trueque`, formData);
   
     }
+
+
+    public getReportedProducts(): Observable<any> {
+      return this.http.get<any>(`${baseURL}/obtener-intercambios-con-reporte`);
+    }
+  
+    public getReportsProduct(id: number): Observable<any> {
+      return this.http.get<any>(`${baseURL}/obtener-reportes-intercambios/${id}`);
+    }
+  
+    public aproveReports(id: number): Observable<any> {
+      return this.http.patch<any>(`${baseURL}/aceptar-reportes-intercambio/${id}`, null);
+    }
+  
+    public rejectReports(id: number): Observable<any> {
+      return this.http.patch<any>(`${baseURL}/rechazar-reportes-intercambio/${id}`, null);
+    }
   
 
 }
